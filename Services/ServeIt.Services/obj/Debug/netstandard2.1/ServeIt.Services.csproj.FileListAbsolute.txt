@@ -1,0 +1,9 @@
+D:\ServeIt\Services\ServeIt.Services\bin\Debug\netstandard2.1\ServeIt.Services.deps.json
+D:\ServeIt\Services\ServeIt.Services\bin\Debug\netstandard2.1\ServeIt.Services.dll
+D:\ServeIt\Services\ServeIt.Services\bin\Debug\netstandard2.1\ServeIt.Services.pdb
+D:\ServeIt\Services\ServeIt.Services\obj\Debug\netstandard2.1\ServeIt.Services.csproj.AssemblyReference.cache
+D:\ServeIt\Services\ServeIt.Services\obj\Debug\netstandard2.1\ServeIt.Services.AssemblyInfoInputs.cache
+D:\ServeIt\Services\ServeIt.Services\obj\Debug\netstandard2.1\ServeIt.Services.AssemblyInfo.cs
+D:\ServeIt\Services\ServeIt.Services\obj\Debug\netstandard2.1\ServeIt.Services.csproj.CoreCompileInputs.cache
+D:\ServeIt\Services\ServeIt.Services\obj\Debug\netstandard2.1\ServeIt.Services.dll
+D:\ServeIt\Services\ServeIt.Services\obj\Debug\netstandard2.1\ServeIt.Services.pdb

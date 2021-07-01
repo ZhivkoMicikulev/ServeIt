@@ -1,0 +1,16 @@
+D:\ServeIt\Services\ServeIt.Services.Data\bin\Debug\netstandard2.1\ServeIt.Services.Data.deps.json
+D:\ServeIt\Services\ServeIt.Services.Data\bin\Debug\netstandard2.1\ServeIt.Services.Data.dll
+D:\ServeIt\Services\ServeIt.Services.Data\bin\Debug\netstandard2.1\ServeIt.Services.Data.pdb
+D:\ServeIt\Services\ServeIt.Services.Data\bin\Debug\netstandard2.1\ServeIt.Data.Common.dll
+D:\ServeIt\Services\ServeIt.Services.Data\bin\Debug\netstandard2.1\ServeIt.Data.Models.dll
+D:\ServeIt\Services\ServeIt.Services.Data\bin\Debug\netstandard2.1\ServeIt.Services.Mapping.dll
+D:\ServeIt\Services\ServeIt.Services.Data\bin\Debug\netstandard2.1\ServeIt.Data.Common.pdb
+D:\ServeIt\Services\ServeIt.Services.Data\bin\Debug\netstandard2.1\ServeIt.Data.Models.pdb
+D:\ServeIt\Services\ServeIt.Services.Data\bin\Debug\netstandard2.1\ServeIt.Services.Mapping.pdb
+D:\ServeIt\Services\ServeIt.Services.Data\obj\Debug\netstandard2.1\ServeIt.Services.Data.csproj.AssemblyReference.cache
+D:\ServeIt\Services\ServeIt.Services.Data\obj\Debug\netstandard2.1\ServeIt.Services.Data.AssemblyInfoInputs.cache
+D:\ServeIt\Services\ServeIt.Services.Data\obj\Debug\netstandard2.1\ServeIt.Services.Data.AssemblyInfo.cs
+D:\ServeIt\Services\ServeIt.Services.Data\obj\Debug\netstandard2.1\ServeIt.Services.Data.csproj.CoreCompileInputs.cache
+D:\ServeIt\Services\ServeIt.Services.Data\obj\Debug\netstandard2.1\ServeIt.Services.Data.csproj.CopyComplete
+D:\ServeIt\Services\ServeIt.Services.Data\obj\Debug\netstandard2.1\ServeIt.Services.Data.dll
+D:\ServeIt\Services\ServeIt.Services.Data\obj\Debug\netstandard2.1\ServeIt.Services.Data.pdb

@@ -1,0 +1,8 @@
+D:\ServeIt\Web\ServeIt.Web.Infrastructure\bin\Debug\netstandard2.1\ServeIt.Web.Infrastructure.deps.json
+D:\ServeIt\Web\ServeIt.Web.Infrastructure\bin\Debug\netstandard2.1\ServeIt.Web.Infrastructure.dll
+D:\ServeIt\Web\ServeIt.Web.Infrastructure\bin\Debug\netstandard2.1\ServeIt.Web.Infrastructure.pdb
+D:\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.Infrastructure.AssemblyInfoInputs.cache
+D:\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.Infrastructure.AssemblyInfo.cs
+D:\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.Infrastructure.csproj.CoreCompileInputs.cache
+D:\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.Infrastructure.dll
+D:\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.Infrastructure.pdb

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "OPgW+k00FHGBI26541om+PcAla3Cc4U7JtpPp0o3O/vMJDMyq371KrvHGFLgNit1dAi3U94pfbk9j1O5K3YwQA==",
+  "success": true,
+  "projectFilePath": "D:\\ServeIt\\ServeIt\\Services\\ServeIt.Services\\ServeIt.Services.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Zhivko\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.312\\stylecop.analyzers.1.2.0-beta.312.nupkg.sha512",
+    "C:\\Users\\Zhivko\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.312\\stylecop.analyzers.unstable.1.2.0.312.nupkg.sha512"
+  ],
+  "logs": []
+}

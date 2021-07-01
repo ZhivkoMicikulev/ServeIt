@@ -1,0 +1,9 @@
+D:\ServeIt\ServeIt.Common\bin\Debug\netstandard2.1\ServeIt.Common.deps.json
+D:\ServeIt\ServeIt.Common\bin\Debug\netstandard2.1\ServeIt.Common.dll
+D:\ServeIt\ServeIt.Common\bin\Debug\netstandard2.1\ServeIt.Common.pdb
+D:\ServeIt\ServeIt.Common\obj\Debug\netstandard2.1\ServeIt.Common.csproj.AssemblyReference.cache
+D:\ServeIt\ServeIt.Common\obj\Debug\netstandard2.1\ServeIt.Common.AssemblyInfoInputs.cache
+D:\ServeIt\ServeIt.Common\obj\Debug\netstandard2.1\ServeIt.Common.AssemblyInfo.cs
+D:\ServeIt\ServeIt.Common\obj\Debug\netstandard2.1\ServeIt.Common.csproj.CoreCompileInputs.cache
+D:\ServeIt\ServeIt.Common\obj\Debug\netstandard2.1\ServeIt.Common.dll
+D:\ServeIt\ServeIt.Common\obj\Debug\netstandard2.1\ServeIt.Common.pdb

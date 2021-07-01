@@ -1,0 +1,9 @@
+D:\ServeIt\Services\ServeIt.Services.Messaging\bin\Debug\netstandard2.1\ServeIt.Services.Messaging.deps.json
+D:\ServeIt\Services\ServeIt.Services.Messaging\bin\Debug\netstandard2.1\ServeIt.Services.Messaging.dll
+D:\ServeIt\Services\ServeIt.Services.Messaging\bin\Debug\netstandard2.1\ServeIt.Services.Messaging.pdb
+D:\ServeIt\Services\ServeIt.Services.Messaging\obj\Debug\netstandard2.1\ServeIt.Services.Messaging.csproj.AssemblyReference.cache
+D:\ServeIt\Services\ServeIt.Services.Messaging\obj\Debug\netstandard2.1\ServeIt.Services.Messaging.AssemblyInfoInputs.cache
+D:\ServeIt\Services\ServeIt.Services.Messaging\obj\Debug\netstandard2.1\ServeIt.Services.Messaging.AssemblyInfo.cs
+D:\ServeIt\Services\ServeIt.Services.Messaging\obj\Debug\netstandard2.1\ServeIt.Services.Messaging.csproj.CoreCompileInputs.cache
+D:\ServeIt\Services\ServeIt.Services.Messaging\obj\Debug\netstandard2.1\ServeIt.Services.Messaging.dll
+D:\ServeIt\Services\ServeIt.Services.Messaging\obj\Debug\netstandard2.1\ServeIt.Services.Messaging.pdb

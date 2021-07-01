@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "cgkM0vYQ5yyYTnewMQ32cdZti81Uj6GKS/lS7kosqndzrhEuhhiSHlXdXEL4GLHPAHSSGJt2xR38waQRBbZy6A==",
+  "success": true,
+  "projectFilePath": "D:\\ServeIt\\ServeIt\\Data\\ServeIt.Data.Common\\ServeIt.Data.Common.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Zhivko\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.312\\stylecop.analyzers.1.2.0-beta.312.nupkg.sha512",
+    "C:\\Users\\Zhivko\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.312\\stylecop.analyzers.unstable.1.2.0.312.nupkg.sha512",
+    "C:\\Users\\Zhivko\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
