@@ -360,6 +360,9 @@
               },
               "D:\\ServeIt\\ServeIt\\Services\\ServeIt.Services.Mapping\\ServeIt.Services.Mapping.csproj": {
                 "projectPath": "D:\\ServeIt\\ServeIt\\Services\\ServeIt.Services.Mapping\\ServeIt.Services.Mapping.csproj"
+              },
+              "D:\\ServeIt\\ServeIt\\Web\\ServeIt.Web.ViewModels\\ServeIt.Web.ViewModels.csproj": {
+                "projectPath": "D:\\ServeIt\\ServeIt\\Web\\ServeIt.Web.ViewModels\\ServeIt.Web.ViewModels.csproj"
               }
             }
           }
@@ -374,6 +377,10 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "StyleCop.Analyzers": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers",
               "suppressParent": "All",
@@ -813,6 +820,9 @@
             "projectReferences": {
               "D:\\ServeIt\\ServeIt\\Data\\ServeIt.Data.Models\\ServeIt.Data.Models.csproj": {
                 "projectPath": "D:\\ServeIt\\ServeIt\\Data\\ServeIt.Data.Models\\ServeIt.Data.Models.csproj"
+              },
+              "D:\\ServeIt\\ServeIt\\ServeIt.Common\\ServeIt.Common.csproj": {
+                "projectPath": "D:\\ServeIt\\ServeIt\\ServeIt.Common\\ServeIt.Common.csproj"
               },
               "D:\\ServeIt\\ServeIt\\Services\\ServeIt.Services.Mapping\\ServeIt.Services.Mapping.csproj": {
                 "projectPath": "D:\\ServeIt\\ServeIt\\Services\\ServeIt.Services.Mapping\\ServeIt.Services.Mapping.csproj"

@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Text;
-
+    using Microsoft.AspNetCore.Identity;
     using ServeIt.Data.Common.Models;
 
     public class Restaurant : BaseDeletableModel<string>
@@ -12,6 +12,8 @@
         public Restaurant()
         {
             this.Id = Guid.NewGuid().ToString();
+          
+
             this.Comments = new HashSet<Comment>();
             this.Orders = new HashSet<Order>();
             this.Tables = new HashSet<Table>();
@@ -50,9 +52,13 @@
 
         public virtual ICollection<Rating> Ratings { get; set; }
 
-        [Required]
+
         public string MenuId { get; set; }
 
         public Menu Menu { get; set; }
+
+        public virtual ICollection<UserRestaurant> UserRestaurants { get; set; }
+
+
     }
 }

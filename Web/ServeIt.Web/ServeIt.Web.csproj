@@ -36,4 +36,8 @@
     <ProjectReference Include="..\ServeIt.Web.Infrastructure\ServeIt.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\ServeIt.Web.ViewModels\ServeIt.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\js\main.js" />
+  </ItemGroup>
 </Project>

@@ -65,6 +65,10 @@
 
         public DbSet<UserReservation> UsersReservations { get; set; }
 
+        public DbSet<UserRestaurant> UsersRestaurants { get; set; }
+
+        public DbSet<User> Users { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -119,6 +123,8 @@
             builder.Entity<RatingUser>().HasKey(x => new { x.UserId, x.RatingId });
 
             builder.Entity<DishIngredient>().HasKey(x => new { x.DishId, x.IngredientId });
+            builder.Entity<UserRestaurant>().HasKey(x => new { x.UserId, x.RestaurantId });
+
 
 
         }

@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\ServeIt.Data.Models\ServeIt.Data.Models.csproj" />
+    <ProjectReference Include="..\..\ServeIt.Common\ServeIt.Common.csproj" />
     <ProjectReference Include="..\..\Services\ServeIt.Services.Mapping\ServeIt.Services.Mapping.csproj" />
   </ItemGroup>
 

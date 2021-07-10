@@ -1,0 +1,36 @@
+﻿@model ServeIt.Web.ViewModels.User.LoginUserInputModel
+@using ServeIt.Common
+
+@{
+    this.ViewData["Title"] = "Login Page";
+}
+<br />
+<br />
+<br />
+<br />
+<section id="book-a-table" class="book-a-table d-flex align-items-center">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            
+            <p>Login</p>
+        </div>
+        <form asp-action="Login" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-4 col-md-6 form-group">  <span class="text-danger">@ViewData["Error"]</span> </div>
+                
+          
+            <div class="row">
+                <div class="col-lg-4 col-md-6 form-group">
+                    <input type="text" asp-for="Username" class="form-control" id="name" placeholder="Your Username">
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <input type="password" class="form-control" asp-for="Password" id="email" placeholder="Your Password" data-rule="">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="text-center "><button type="submit">Login</button></div>
+            </div>
+        </form>
+
+    </div>
+</section>

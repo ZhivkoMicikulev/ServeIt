@@ -18,6 +18,7 @@
             this.UserReservations = new HashSet<UserReservation>();
             this.UserOrders = new HashSet<UserOrder>();
             this.RatingUsers = new HashSet<RatingUser>();
+            this.UserRestaurants = new HashSet<UserRestaurant>();
         }
 
         [Required]
@@ -29,7 +30,7 @@
         public string LastName { get; set; }
 
         [Required]
-        public DateTime RegisteredAt { get; set; } = DateTime.UtcNow;
+        public bool IsItOwnerOfRestaurant { get; set; }
 
         public virtual ICollection<UserReservation> UserReservations { get; set; }
 
@@ -52,5 +53,7 @@
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+
+        public virtual ICollection<UserRestaurant> UserRestaurants { get; set; }
     }
 }

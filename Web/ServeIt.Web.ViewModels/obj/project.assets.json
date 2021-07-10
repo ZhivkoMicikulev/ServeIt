@@ -343,6 +343,16 @@
           "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         }
       },
+      "ServeIt.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/ServeIt.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ServeIt.Common.dll": {}
+        }
+      },
       "ServeIt.Data.Common/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -1176,6 +1186,11 @@
         "version.txt"
       ]
     },
+    "ServeIt.Common/1.0.0": {
+      "type": "project",
+      "path": "../../ServeIt.Common/ServeIt.Common.csproj",
+      "msbuildProject": "../../ServeIt.Common/ServeIt.Common.csproj"
+    },
     "ServeIt.Data.Common/1.0.0": {
       "type": "project",
       "path": "../../Data/ServeIt.Data.Common/ServeIt.Data.Common.csproj",
@@ -1194,6 +1209,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.1": [
+      "ServeIt.Common >= 1.0.0",
       "ServeIt.Data.Models >= 1.0.0",
       "ServeIt.Services.Mapping >= 1.0.0",
       "StyleCop.Analyzers >= 1.2.0-beta.312"
@@ -1236,6 +1252,9 @@
           "projectReferences": {
             "D:\\ServeIt\\ServeIt\\Data\\ServeIt.Data.Models\\ServeIt.Data.Models.csproj": {
               "projectPath": "D:\\ServeIt\\ServeIt\\Data\\ServeIt.Data.Models\\ServeIt.Data.Models.csproj"
+            },
+            "D:\\ServeIt\\ServeIt\\ServeIt.Common\\ServeIt.Common.csproj": {
+              "projectPath": "D:\\ServeIt\\ServeIt\\ServeIt.Common\\ServeIt.Common.csproj"
             },
             "D:\\ServeIt\\ServeIt\\Services\\ServeIt.Services.Mapping\\ServeIt.Services.Mapping.csproj": {
               "projectPath": "D:\\ServeIt\\ServeIt\\Services\\ServeIt.Services.Mapping\\ServeIt.Services.Mapping.csproj"

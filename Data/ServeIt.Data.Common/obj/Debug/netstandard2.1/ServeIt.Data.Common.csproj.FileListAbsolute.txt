@@ -7,3 +7,12 @@ D:\ServeIt\Data\ServeIt.Data.Common\obj\Debug\netstandard2.1\ServeIt.Data.Common
 D:\ServeIt\Data\ServeIt.Data.Common\obj\Debug\netstandard2.1\ServeIt.Data.Common.csproj.CoreCompileInputs.cache
 D:\ServeIt\Data\ServeIt.Data.Common\obj\Debug\netstandard2.1\ServeIt.Data.Common.dll
 D:\ServeIt\Data\ServeIt.Data.Common\obj\Debug\netstandard2.1\ServeIt.Data.Common.pdb
+D:\ServeIt\ServeIt\Data\ServeIt.Data.Common\bin\Debug\netstandard2.1\ServeIt.Data.Common.deps.json
+D:\ServeIt\ServeIt\Data\ServeIt.Data.Common\bin\Debug\netstandard2.1\ServeIt.Data.Common.dll
+D:\ServeIt\ServeIt\Data\ServeIt.Data.Common\bin\Debug\netstandard2.1\ServeIt.Data.Common.pdb
+D:\ServeIt\ServeIt\Data\ServeIt.Data.Common\obj\Debug\netstandard2.1\ServeIt.Data.Common.csproj.AssemblyReference.cache
+D:\ServeIt\ServeIt\Data\ServeIt.Data.Common\obj\Debug\netstandard2.1\ServeIt.Data.Common.AssemblyInfoInputs.cache
+D:\ServeIt\ServeIt\Data\ServeIt.Data.Common\obj\Debug\netstandard2.1\ServeIt.Data.Common.AssemblyInfo.cs
+D:\ServeIt\ServeIt\Data\ServeIt.Data.Common\obj\Debug\netstandard2.1\ServeIt.Data.Common.csproj.CoreCompileInputs.cache
+D:\ServeIt\ServeIt\Data\ServeIt.Data.Common\obj\Debug\netstandard2.1\ServeIt.Data.Common.dll
+D:\ServeIt\ServeIt\Data\ServeIt.Data.Common\obj\Debug\netstandard2.1\ServeIt.Data.Common.pdb

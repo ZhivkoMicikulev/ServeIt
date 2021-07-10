@@ -10,8 +10,8 @@ using ServeIt.Data;
 namespace ServeIt.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210617123609_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210706152416_Innit")]
+    partial class Innit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -663,7 +663,6 @@ namespace ServeIt.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("MenuId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("ModifiedOn")
@@ -806,6 +805,9 @@ namespace ServeIt.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsItOwnerOfRestaurant")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -836,9 +838,6 @@ namespace ServeIt.Data.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<DateTime>("RegisteredAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -929,6 +928,21 @@ namespace ServeIt.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UsersReservations");
+                });
+
+            modelBuilder.Entity("ServeIt.Data.Models.UserRestaurant", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RestaurantId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RestaurantId");
+
+                    b.HasIndex("RestaurantId");
+
+                    b.ToTable("UsersRestaurants");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1147,9 +1161,7 @@ namespace ServeIt.Data.Migrations
 
                     b.HasOne("ServeIt.Data.Models.Menu", "Menu")
                         .WithMany()
-                        .HasForeignKey("MenuId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("MenuId");
 
                     b.Navigation("Address");
 
@@ -1224,6 +1236,25 @@ namespace ServeIt.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ServeIt.Data.Models.UserRestaurant", b =>
+                {
+                    b.HasOne("ServeIt.Data.Models.Restaurant", "Restaurant")
+                        .WithMany("UserRestaurants")
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ServeIt.Data.Models.User", "User")
+                        .WithMany("UserRestaurants")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Restaurant");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ServeIt.Data.Models.Category", b =>
                 {
                     b.Navigation("Dishes");
@@ -1289,6 +1320,8 @@ namespace ServeIt.Data.Migrations
                     b.Navigation("Ratings");
 
                     b.Navigation("Tables");
+
+                    b.Navigation("UserRestaurants");
                 });
 
             modelBuilder.Entity("ServeIt.Data.Models.Table", b =>
@@ -1311,6 +1344,8 @@ namespace ServeIt.Data.Migrations
                     b.Navigation("UserOrders");
 
                     b.Navigation("UserReservations");
+
+                    b.Navigation("UserRestaurants");
                 });
 #pragma warning restore 612, 618
         }

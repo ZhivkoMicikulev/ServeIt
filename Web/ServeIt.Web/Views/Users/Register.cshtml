@@ -1,0 +1,73 @@
+﻿@model ServeIt.Web.ViewModels.User.RegisterUserModel
+
+
+@{
+    this.ViewData["Title"] = "Register Page";
+
+}
+
+<br />
+<br />
+<br />
+<br />
+
+<section id="book-a-table" class="book-a-table d-flex align-items-center">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>User</h2>
+            <p>Register</p>
+        </div>
+        <form asp-action="Register" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+           
+            <div class="col">
+                <div class="col-lg-4 col-md-6 form-group">
+
+                    <input type="text" class="form-control" placeholder="Username" asp-for="Username">
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group">
+                    <input type="text" asp-for="FirstName" class="form-control" placeholder="First name">
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group">
+                    <input type="text" asp-for="LastName" class="form-control" placeholder="Last Name">
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group">
+                    <input type="text" asp-for="Phonenumber" class="form-control" placeholder="Phone Number">
+                    <span asp-validation-for="Phonenumber" class="text-danger"></span>
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <input type="email" class="form-control" asp-for="Email" placeholder="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <input type="password" class="form-control" asp-for="Password" placeholder="Password" data-rule="">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="Confirm Password" data-rule="">
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <select asp-for="IsItOwner" class="form-control" style="border-color: #625b4b; background: none; border-radius: 0; font-family: inherit; color:white">
+                        <option value="" disabled selected hidden class="form-control" style="color:#625b4b">Do you have a Restaurant</option>
+                        <option value="True" class="form-control">Yes</option>
+                        <option value="False" class="form-control">No</option>
+                    </select>
+                    <span asp-validation-for="IsItOwner" class="text-danger"></span>
+                </div>
+                <div class="text-center"><button type="submit">Register</button></div>
+            </div>
+        </form>
+
+    </div>
+</section>
+
