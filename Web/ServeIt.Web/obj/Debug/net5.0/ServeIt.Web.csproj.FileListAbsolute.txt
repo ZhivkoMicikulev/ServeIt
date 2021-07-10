@@ -933,3 +933,4 @@ D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Users\Login.csht
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Users\Register.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Restaurants\All.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Restaurants\_RestaurantPartial.cshtml.g.cs
+D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Restaurants\Add.cshtml.g.cs

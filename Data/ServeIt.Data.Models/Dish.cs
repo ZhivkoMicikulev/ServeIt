@@ -28,5 +28,9 @@
         public virtual ICollection<DishIngredient> DishIngredients { get; set; }
 
         public virtual ICollection<DishOrder> DishOrders { get; set; }
+
+        public string ImageId { get; set; }
+
+        public Image Image { get; set; }
     }
 }

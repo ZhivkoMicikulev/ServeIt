@@ -18,5 +18,7 @@
         public string CountryName { get; set; }
 
         public virtual ICollection<City> Cities { get; set; }
+        public bool IsDeleted { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public DateTime? DeletedOn { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

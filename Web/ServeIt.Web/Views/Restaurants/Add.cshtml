@@ -1,0 +1,86 @@
+﻿
+<br />
+<br />
+<br />
+<br />
+
+<section id="book-a-table" class="book-a-table d-flex align-items-center">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Add</h2>
+            <p>Restaurant</p>
+        </div>
+        <form asp-action="Add" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="col">
+                <div class="col-lg-4 col-md-6 form-group">
+
+                    <input type="text" class="form-control" name="Name" placeholder="Restaurant name..">
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <select name="CountryName" class="form-control" style="border-color: #625b4b; background: none; border-radius: 0; font-family: inherit; color:white">
+                        <option value="" disabled selected hidden class="form-control" style="color:#625b4b">Choose Country</option>
+                        @foreach (var country in Model)
+                        {
+                            <option value=@country.CountryId class="form-control">@country.CountryName</option>
+                        }
+
+                    </select>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <select name="CountryName" class="form-control" style="border-color: #625b4b; background: none; border-radius: 0; font-family: inherit; color:white">
+                        <option value="" disabled selected hidden class="form-control" style="color:#625b4b">Choose City</option>
+                        @foreach (var country in Model)
+                        {
+                            foreach (var city in country.Cities)
+                            {
+                                <option value=@city.CityId class="form-control">@city.CityName</option>
+                            }
+
+                        }
+
+                    </select>
+                </div><div class="col-lg-4 col-md-6 form-group">
+    <input type="text" name="streetName" class="form-control" placeholder="Street">
+
+
+</div>
+                <div class="col-lg-4 col-md-6 form-group">
+                    <input type="text" name="phoneNumber" class="form-control" placeholder="Phone Number">
+                    
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <input type="email" class="form-control" name="email" placeholder="Email">
+                   
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <label class="form-check-label">About </label>
+                   <textarea class="form-control" placeholder="About...">   </textarea>
+                    
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <input type="file" name="name" value="" />
+                </div>
+             
+                <div class="text-center"><button type="submit">Add Restaurant</button></div>
+            </div>
+        </form>
+
+    </div>
+</section>
+<script>
+$(document).ready( function() {
+  $('#falseinput').click(function(){
+    $("#fileinput").click();
+  });
+});
+$('#fileinput').change(function() {
+  $('#selected_filename').text($('#fileinput')[0].files[0].name);
+});
+
+</script>

@@ -12,9 +12,7 @@
         public Restaurant()
         {
             this.Id = Guid.NewGuid().ToString();
-          
-
-            this.Comments = new HashSet<Comment>();
+       this.Comments = new HashSet<Comment>();
             this.Orders = new HashSet<Order>();
             this.Tables = new HashSet<Table>();
             this.Ratings = new HashSet<Rating>();
@@ -52,13 +50,14 @@
 
         public virtual ICollection<Rating> Ratings { get; set; }
 
-
         public string MenuId { get; set; }
 
         public Menu Menu { get; set; }
 
         public virtual ICollection<UserRestaurant> UserRestaurants { get; set; }
 
+        public string ImageId { get; set; }
 
+        public Image Image { get; set; }
     }
 }
