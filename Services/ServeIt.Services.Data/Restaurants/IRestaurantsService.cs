@@ -9,7 +9,16 @@ namespace ServeIt.Services.Data.Restaurants
 {
    public interface IRestaurantsService
     {
-        Task<ICollection<CountriesAndCitiesViewModel>> GetAllCountries();
+        Task<ICollection<CountriesViewModel>> GetAllCountries();
+
+       Task <ICollection<AllRestaurantViewModel>> GetAllRestaurants();
+
+        Task<ICollection<AllRestaurantViewModel>> GetAllOwnedRestaurants(string id);
+
+
+        Task AddRestaurant(AddRestaurantInputModel model,string ownerId);
+
+   
 
     }
 }

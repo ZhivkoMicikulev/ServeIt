@@ -508,7 +508,6 @@ D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Ht
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Http.Connections.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Http.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Http.Extensions.dll
-D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Http.Features.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.HttpOverrides.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.HttpsPolicy.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Identity.dll
@@ -588,7 +587,6 @@ D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.Extensions.Ob
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.DataAnnotations.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.dll
-D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.Extensions.Primitives.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.Extensions.WebEncoders.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.JSInterop.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\Microsoft.Net.Http.Headers.dll
@@ -646,7 +644,6 @@ D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\System.IO.FileSystem.Pr
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\System.IO.FileSystem.Watcher.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\System.IO.IsolatedStorage.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\System.IO.MemoryMappedFiles.dll
-D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\System.IO.Pipelines.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\System.IO.Pipes.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\System.IO.UnmanagedMemoryStream.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\refs\System.Linq.dll
@@ -932,5 +929,10 @@ D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\ServeIt.Web.genruntimeconfig
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Users\Login.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Users\Register.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Restaurants\All.cshtml.g.cs
-D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Restaurants\_RestaurantPartial.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Restaurants\Add.cshtml.g.cs
+D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\Firebase.Auth.dll
+D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\Firebase.Storage.dll
+D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
+D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\System.ServiceModel.dll
+D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\System.IO.Pipelines.dll

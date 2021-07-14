@@ -27,7 +27,7 @@
                           {
                               new RolesSeeder(),
                               new CountrySeeder(),
-                              new CitySeeder(),
+                           
                               new SettingsSeeder(),
                           };
 

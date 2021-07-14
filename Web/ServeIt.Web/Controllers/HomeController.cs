@@ -12,6 +12,10 @@
         [HttpGet("/")]
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return this.RedirectToAction("All","Restaurants");
+            }
             return this.View();
         }
 

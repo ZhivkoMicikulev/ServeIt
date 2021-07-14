@@ -11,6 +11,13 @@
 
         public const string ErrorMsgForField = "This field is required.";
 
+        // Firebase authentication storage
+        public const string FirebaseApiKey = "AIzaSyDufhGMTBYiXoknx-YtAuVaMLP8iKXZzQs";
+        public const string Bucket = "serveit-18148.appspot.com";
+        public const string AuthEmail = "admin@abv.bg";
+        public const string AuthPassword ="asdasd";
+
+
 
 
     }

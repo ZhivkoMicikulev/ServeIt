@@ -17,21 +17,54 @@
                 return;
             }
 
-            var countries = new List<string>
+            var countries = new List<(string countryName,string city)>
             {
-                "Bulgaria",
-                "Greece",
-                "Romania",
-                "Serbia",
-                "Turkey",
+               ( "Bulgaria","Sofiq"),
+                ("Bulgaria","Plovdiv"),
+                ("Bulgaria","Varna"),
+                ("Bulgaria","Burgas"),
+                ("Bulgaria","Ruse"),
+                ( "Romania","Bucharest "),
+                ( "Romania","Cluj-Napoca"),
+                ( "Romania","Timisoara"),
+                ("Greece","Athens"),
+                ("Greece","Thessaloniki"),
+                ("Greece","Patras "),
+                ("Turkey","Istanbul"),
+                ("Turkey","Ankara"),
+                ( "Serbia","Belgrade"),
+                ( "Serbia","Niš"),
+                
+               
+               
+                
             };
 
             foreach (var country in countries)
             {
-                await dbContext.Countries.AddAsync(new Country
+                if (dbContext.Countries.Any(x=>x.CountryName==country.countryName))
                 {
-                    CountryName = country,
-                });
+                    var thisCountry = dbContext.Countries.Where(x => x.CountryName == country.countryName).FirstOrDefault();
+                    await dbContext.Cities.AddAsync(new City
+                    {
+                        Country = thisCountry,
+                        CityName = country.city,
+                    });
+                }
+                else
+                {
+                    var newCountry = new Country
+                    {
+                        CountryName = country.countryName,
+                    };
+                    await dbContext.Countries.AddAsync(newCountry);
+                    await dbContext.Cities.AddAsync(new City
+                    {
+                        Country = newCountry,
+                        CityName = country.city,
+                    });
+                }
+               
             }
         }
     }

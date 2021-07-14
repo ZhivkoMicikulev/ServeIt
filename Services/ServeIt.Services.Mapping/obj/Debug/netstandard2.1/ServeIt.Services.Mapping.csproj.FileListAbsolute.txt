@@ -7,3 +7,12 @@ D:\ServeIt\Services\ServeIt.Services.Mapping\obj\Debug\netstandard2.1\ServeIt.Se
 D:\ServeIt\Services\ServeIt.Services.Mapping\obj\Debug\netstandard2.1\ServeIt.Services.Mapping.csproj.CoreCompileInputs.cache
 D:\ServeIt\Services\ServeIt.Services.Mapping\obj\Debug\netstandard2.1\ServeIt.Services.Mapping.dll
 D:\ServeIt\Services\ServeIt.Services.Mapping\obj\Debug\netstandard2.1\ServeIt.Services.Mapping.pdb
+D:\ServeIt\ServeIt\Services\ServeIt.Services.Mapping\bin\Debug\netstandard2.1\ServeIt.Services.Mapping.deps.json
+D:\ServeIt\ServeIt\Services\ServeIt.Services.Mapping\bin\Debug\netstandard2.1\ServeIt.Services.Mapping.dll
+D:\ServeIt\ServeIt\Services\ServeIt.Services.Mapping\bin\Debug\netstandard2.1\ServeIt.Services.Mapping.pdb
+D:\ServeIt\ServeIt\Services\ServeIt.Services.Mapping\obj\Debug\netstandard2.1\ServeIt.Services.Mapping.csproj.AssemblyReference.cache
+D:\ServeIt\ServeIt\Services\ServeIt.Services.Mapping\obj\Debug\netstandard2.1\ServeIt.Services.Mapping.AssemblyInfoInputs.cache
+D:\ServeIt\ServeIt\Services\ServeIt.Services.Mapping\obj\Debug\netstandard2.1\ServeIt.Services.Mapping.AssemblyInfo.cs
+D:\ServeIt\ServeIt\Services\ServeIt.Services.Mapping\obj\Debug\netstandard2.1\ServeIt.Services.Mapping.csproj.CoreCompileInputs.cache
+D:\ServeIt\ServeIt\Services\ServeIt.Services.Mapping\obj\Debug\netstandard2.1\ServeIt.Services.Mapping.dll
+D:\ServeIt\ServeIt\Services\ServeIt.Services.Mapping\obj\Debug\netstandard2.1\ServeIt.Services.Mapping.pdb

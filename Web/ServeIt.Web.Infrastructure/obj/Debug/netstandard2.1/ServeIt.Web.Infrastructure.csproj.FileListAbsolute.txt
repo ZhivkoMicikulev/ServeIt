@@ -6,3 +6,12 @@ D:\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.I
 D:\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.Infrastructure.csproj.CoreCompileInputs.cache
 D:\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.Infrastructure.dll
 D:\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.Infrastructure.pdb
+D:\ServeIt\ServeIt\Web\ServeIt.Web.Infrastructure\bin\Debug\netstandard2.1\ServeIt.Web.Infrastructure.deps.json
+D:\ServeIt\ServeIt\Web\ServeIt.Web.Infrastructure\bin\Debug\netstandard2.1\ServeIt.Web.Infrastructure.dll
+D:\ServeIt\ServeIt\Web\ServeIt.Web.Infrastructure\bin\Debug\netstandard2.1\ServeIt.Web.Infrastructure.pdb
+D:\ServeIt\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.Infrastructure.csproj.AssemblyReference.cache
+D:\ServeIt\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.Infrastructure.AssemblyInfoInputs.cache
+D:\ServeIt\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.Infrastructure.AssemblyInfo.cs
+D:\ServeIt\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.Infrastructure.csproj.CoreCompileInputs.cache
+D:\ServeIt\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.Infrastructure.dll
+D:\ServeIt\ServeIt\Web\ServeIt.Web.Infrastructure\obj\Debug\netstandard2.1\ServeIt.Web.Infrastructure.pdb

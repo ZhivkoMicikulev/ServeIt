@@ -23,7 +23,7 @@
         public string Name { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        public string OwnerId { get; set; }
 
         [Required]
         public Address Address { get; set; }
@@ -56,8 +56,6 @@
 
         public virtual ICollection<UserRestaurant> UserRestaurants { get; set; }
 
-        public string ImageId { get; set; }
-
-        public Image Image { get; set; }
+   
     }
 }
