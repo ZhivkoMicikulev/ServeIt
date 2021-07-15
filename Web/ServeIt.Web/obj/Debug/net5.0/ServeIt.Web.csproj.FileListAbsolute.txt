@@ -936,3 +936,9 @@ D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Fe
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\System.ServiceModel.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\System.IO.Pipelines.dll
+D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Restaurants\Info.cshtml.g.cs
+D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\wwwroot\assets\js\main.js
+D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\wwwroot\js\main.js
+D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Restaurants\Edit.cshtml.g.cs
+D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Restaurants\OwnedRestaurants.cshtml.g.cs
+D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Menu\_MenuPartial.cshtml.g.cs

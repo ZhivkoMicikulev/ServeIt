@@ -28,13 +28,24 @@
             return this.View(model);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> All(string id)
+       
+        public async Task<IActionResult> OwnedRestaurants(string id)
         {
             var model = await restaurantService.GetAllOwnedRestaurants(id);
 
 
             return this.View(model);
+        }
+
+        public async Task<IActionResult> Edit(string id)
+        {
+            var ownerId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!await restaurantService.AreYouTheOwner(id,ownerId))
+            {
+                return this.Redirect($"/Restaurants/Info/{id}");
+            }
+
+            return this.View();
         }
 
         public async Task<IActionResult> Add()
@@ -67,6 +78,12 @@
 
         }
 
+        public async Task<IActionResult> Info(string id)
+        {
+
+            return this.View();
+        
+        }
 
 
         private async Task FillCountryAndCitiesSugestion() {
@@ -75,6 +92,9 @@
             this.ViewData["Countries"] = countries;
             
         }
+
+
+
 
     }
 }

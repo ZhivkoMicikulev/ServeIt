@@ -9,8 +9,20 @@
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\js\main.js" />
+  </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\assets\js\main.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\js\main.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -37,9 +49,5 @@
     <ProjectReference Include="..\..\Services\ServeIt.Services\ServeIt.Services.csproj" />
     <ProjectReference Include="..\ServeIt.Web.Infrastructure\ServeIt.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\ServeIt.Web.ViewModels\ServeIt.Web.ViewModels.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\assets\js\main.js" />
   </ItemGroup>
 </Project>

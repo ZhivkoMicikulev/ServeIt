@@ -13,21 +13,22 @@
         </div>
 
         <div class="row">
-            @foreach (var restaurant in Model as IEnumerable<AllRestaurantViewModel>)
-            {
-                <div class="col-lg-4 mt-4 mt-lg-0" onclick="location.href = '/Restaurants/Info/@restaurant.RestaurantId'" style="cursor: pointer;">
+            
+                @foreach (var restaurant in Model as IEnumerable<AllRestaurantViewModel>)
+                {
+                    <div class="col-lg-4 mt-4 mt-lg-0" onclick="location.href = '/Restaurants/Info/@restaurant.RestaurantId'" style="cursor: pointer;">
 
-                    <div class="box" data-aos="zoom-in" data-aos-delay="200">
-                        <span>Rating: @restaurant.Rating</span>
-                        <h4>@restaurant.Name </h4>
-                        <p>
-                            Address: @restaurant.Country , @restaurant.City , @restaurant.Street.
-                        </p>
+                        <div class="box" data-aos="zoom-in" data-aos-delay="200">
+                            <span>Rating: @restaurant.Rating</span>
+                            <h4>@restaurant.Name </h4>
+                            <p>
+                                Address: @restaurant.Country , @restaurant.City , @restaurant.Street.
+                            </p>
+                        </div>
                     </div>
-                </div>
-            }
+                }
 
-
+                
 
 
         </div>

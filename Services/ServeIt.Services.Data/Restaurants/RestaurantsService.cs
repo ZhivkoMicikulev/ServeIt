@@ -48,7 +48,13 @@ namespace ServeIt.Services.Data.Restaurants
 
         }
 
-  
+        public async Task<bool> AreYouTheOwner(string restaurantId,string ownerId)
+        {
+            var result = restaurantRepository.All().Where(x => x.Id == restaurantId).Any(x => x.OwnerId == ownerId);
+
+            return result;
+        }
+
         public async Task<ICollection<CountriesViewModel>> GetAllCountries()
         {
             var result = countriesRepository.All()
