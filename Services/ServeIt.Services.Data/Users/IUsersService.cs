@@ -16,6 +16,17 @@
 
         Task<User> IsThereAnyUser(LoginUserInputModel model);
 
+        Task EditUsername(EditProfileInputModel model,string userId);
+
+        Task EditEmail(EditProfileInputModel model, string userId);
+
+        Task EditPhoneNumber(EditProfileInputModel model, string userId);
+
+        Task EditPassword(EditProfileInputModel model, string userId);
+
+        Task<EditProfileViewModel> GetUserInfo(string id);
+
+
         Task LogoutUser();
     }
 }

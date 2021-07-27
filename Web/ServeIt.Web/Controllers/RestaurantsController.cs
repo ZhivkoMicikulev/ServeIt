@@ -19,6 +19,10 @@
             this.restaurantService = restaurantService;
             this.menusService = menusService;
         }
+
+      
+
+
         public async Task<IActionResult> EditInfo(string id)
         {
             var Info = await this.restaurantService.RestaurantInfo(id);

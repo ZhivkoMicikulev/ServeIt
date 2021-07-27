@@ -96,7 +96,7 @@
                                 <li class="dropdown">
                                     <a asp-controller="Restaurants" asp-action="OwnedRestaurants" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Restaurants</a>
                                 </li>
-                                <li><a href="#">Profile</a></li>
+                                <li><a asp-controller="Users" asp-action="Profile" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Profile</a></li>
 
 
                             </ul>
