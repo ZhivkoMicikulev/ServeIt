@@ -132,8 +132,27 @@
 
         public async Task<IActionResult> Info(string id)
         {
+            var menuId = await this.menusService.RestaurantMenu(id);
+            var menu = await this.menusService.TakeAllDishes(menuId);
 
-            return this.View();
+
+            var restaurantInfo = await restaurantService.RestaurantInfo(id);
+            var categories = await menusService.TakeAllCategoriesByMenu(menuId);
+
+            var model = new EditRestaurantViewModel
+            {
+                RestaurantId = id,
+                Dishes = menu,
+                MenuCategories = categories,
+                RestaurantInfo = restaurantInfo,
+
+            };
+
+
+
+            return this.View(model);
+
+           
         
         }
 

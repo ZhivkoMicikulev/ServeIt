@@ -938,7 +938,7 @@ section {
 }
 
 .menu .menu-content::after {
-  content: "......................................................................" "...................................................................." "....................................................................";
+ 
   position: absolute;
   left: 20px;
   right: 0;
@@ -946,6 +946,11 @@ section {
   z-index: 1;
   color: #bab3a6;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+ .menu-order {
+   position:relative;
+   right:50px;
+  background-color:red;
 }
 
 .menu .menu-content a {
@@ -970,6 +975,8 @@ section {
   font-weight: 600;
   color: #cda45e;
 }
+
+
 
 .menu .menu-ingredients {
   margin-left: 85px;
