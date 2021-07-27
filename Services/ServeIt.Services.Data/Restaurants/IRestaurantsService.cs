@@ -28,6 +28,8 @@ namespace ServeIt.Services.Data.Restaurants
 
         Task<string> TakeCityId(string cityName);
 
+        Task<bool> isTheAddressChanged(string cityId, string streetName);
+
 
 
 

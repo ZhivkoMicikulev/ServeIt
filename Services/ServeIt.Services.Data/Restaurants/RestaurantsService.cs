@@ -15,13 +15,18 @@ namespace ServeIt.Services.Data.Restaurants
         private readonly IRepository<Country> countriesRepository;
         private readonly IDeletableEntityRepository<Restaurant> restaurantRepository;
         private readonly IRepository<City> citiesRepository;
+        private readonly IRepository<Address> addresseRepository;
 
         public RestaurantsService(IRepository<Country> countriesRepository,IDeletableEntityRepository<Restaurant> restaurantRepository,
-            IRepository<City> citiesRepository)
+            IRepository<City> citiesRepository,
+            IRepository<Address> addresseRepository
+
+            )
         {
             this.countriesRepository = countriesRepository;
             this.restaurantRepository = restaurantRepository;
             this.citiesRepository = citiesRepository;
+            this.addresseRepository = addresseRepository;
         }
 
         public async Task AddRestaurant(AddRestaurantInputModel model,string ownerId)
@@ -34,7 +39,7 @@ namespace ServeIt.Services.Data.Restaurants
             var restaurant = new Restaurant
             {
                 Name = model.Name,
-                Address = adress,
+                AddressId = adress.Id,
                 Email = model.Email,
                 Phone = model.Phone,
                 OwnerId = ownerId,
@@ -62,21 +67,17 @@ namespace ServeIt.Services.Data.Restaurants
                 .FirstOrDefault();
 
             restaurant.Name = model.Name;
-            if (restaurant.Address.City.Id!=model.CityId)
+            if ( !await isTheAddressChanged(model.CityId,model.StreetName))
             {
-                restaurant.Address = new Address
+                var address = new Address
                 {
                     CityId = model.CityId,
                     StreetName = model.StreetName
                 };
+
+                restaurant.Address = address;
             }
-            else
-            {
-                if (restaurant.Address.StreetName!=model.StreetName)
-                {
-                    restaurant.Address.StreetName = model.StreetName;
-                }
-            }
+            
 
             restaurant.About = model.About;
 
@@ -139,6 +140,14 @@ namespace ServeIt.Services.Data.Restaurants
                 }).OrderBy(x => x.Rating).ToList();
 
             return restaurants;
+        }
+
+        public async Task<bool> isTheAddressChanged(string cityId, string streetName)
+        {
+            var result = this.addresseRepository.All().Any(x => x.CityId == cityId && x.StreetName == streetName);
+
+            return result;
+
         }
 
         public async Task<RestaurantInfoViewModel> RestaurantInfo(string restaurantId)

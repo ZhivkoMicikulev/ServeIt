@@ -36,7 +36,6 @@
 
                 <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
                     <select asp-for="CityId" id="selectCity" class="form-control" style="border-color: #625b4b; background: none; border-radius: 0; font-family: inherit; color:white">
-                        <option value="" disabled selected hidden class="form-control" style="color:#625b4b">Choose City</option>
                         @foreach (var country in (ViewData["Countries"]) as IEnumerable<CountriesViewModel>)
                         {
                         @foreach (var city in country.Cities)

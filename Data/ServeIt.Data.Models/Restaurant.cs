@@ -25,9 +25,11 @@
 
         [Required]
         public string OwnerId { get; set; }
+        public string AddressId { get; set; }
 
         [Required]
         public Address Address { get; set; }
+
 
         [Required]
         [MaxLength(15)]

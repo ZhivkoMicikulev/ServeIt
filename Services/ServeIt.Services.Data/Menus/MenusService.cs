@@ -113,11 +113,6 @@ namespace ServeIt.Services.Data.Menus
                 
             };
 
-
-           
-
-          
-          
             var menuId = dish.MenuId;
 
             var restaurantId = this.restaurantRepository.All().Where(x => x.MenuId == menuId).Select(x => x.Id).FirstOrDefault();

@@ -37,6 +37,21 @@
             return this.View(model);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> EditInfo(string id,AddRestaurantInputModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                await FillCountryAndCitiesSugestion();
+                this.ViewData["RestaurantId"] = id;
+                return this.View(model);
+            }
+
+           await this.restaurantService.EditRestaurantInfo(id, model);
+
+            return this.Redirect($"/Restaurants/Edit/{id}");
+        }
+
 
 
         public async Task<IActionResult> All()
