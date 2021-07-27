@@ -23,6 +23,8 @@
     using Microsoft.Extensions.Hosting;
     using ServeIt.Services.Data.Users;
     using ServeIt.Services.Data.Restaurants;
+    using ServeIt.Services.Data.Menus;
+    using ServeIt.Services.Data.Helper;
 
     public class Startup
     {
@@ -69,6 +71,11 @@
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IRestaurantsService, RestaurantsService>();
+            services.AddTransient<IMenusService, MenusService>();
+            services.AddTransient<IHelperService, HelperService>();
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,19 +4,20 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
+    using ServeIt.Services.Data.Menus;
     using ServeIt.Services.Data.Restaurants;
     using ServeIt.Web.ViewModels.Restaurants;
 
     public class RestaurantsController : BaseController
     {
         private readonly IRestaurantsService restaurantService;
+        private readonly IMenusService menusService;
 
-
-
-
-        public RestaurantsController(IRestaurantsService restaurantService)
+        public RestaurantsController(IRestaurantsService restaurantService,
+            IMenusService menusService)
         {
             this.restaurantService = restaurantService;
+            this.menusService = menusService;
         }
 
 
@@ -40,12 +41,30 @@
         public async Task<IActionResult> Edit(string id)
         {
             var ownerId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (!await restaurantService.AreYouTheOwner(id,ownerId))
+            if (!await restaurantService.AreYouTheOwner(id, ownerId))
             {
                 return this.Redirect($"/Restaurants/Info/{id}");
             }
 
-            return this.View();
+            var menuId = await this.menusService.RestaurantMenu(id);
+            var menu = await menusService.TakeAllDishes(menuId);
+
+          
+
+            var categories = await menusService.TakeAllCategoriesByMenu(menuId);
+
+            var model = new EditRestaurantViewModel
+            {
+                RestaurantId = id,
+                Dishes = menu,
+                MenuCategories = categories,
+
+
+            };
+           
+
+
+            return this.View(model);
         }
 
         public async Task<IActionResult> Add()

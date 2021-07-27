@@ -1,4 +1,8 @@
 ﻿
+@model ServeIt.Web.ViewModels.Restaurants.EditRestaurantViewModel
+
+
+@using ServeIt.Web.ViewModels.Restaurants
 <br />
 <br />
 
@@ -10,8 +14,8 @@
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-            <h2>Specials</h2>
-            <p>Check Our Specials</p>
+            <h2>Restaurant </h2>
+            <p>Properties</p>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -36,112 +40,125 @@
 
 
             <div class="col-lg-9 mt-4 mt-lg-0">
-                    <div class="tab-content">
-                        <div class="tab-pane active show" id="tab-1">
-                            <div class="row">
-                                <div class="col-lg-8 details order-2 order-lg-1">
-                                    <section id="menu" class="menu section-bg">
+                <div class="tab-content">
+                    <div class="tab-pane active show" id="tab-1">
+                        <div class="row">
+                            
+                                <section id="menu" class="menu section-bg">
 
+                                    <div class="row" data-aos="fade-up" data-aos-delay="100">
+                                        <div class="col-lg-12 d-flex justify-content-center">
 
-                                        <div class="row" data-aos="fade-up" data-aos-delay="100">
-                                            <div class="col-lg-12 d-flex justify-content-center">
-                                               
-                                                <a  style="font-family:Playfair Display , serif;" asp-action="Add" asp-controller="Menu" asp-route-id="">Add</a>  
-                                                
-                                               
-                                            </div>
+                                            <a style="font-family:Playfair Display , serif;" asp-action="Add" asp-controller="Menus" asp-route-id="@Model.RestaurantId">Add Dish</a>
+
                                         </div>
-                                        <br />  
-                                        <br />  
+                                    </div>
+                                    <br />
+                                    <br />
 
-                                        <div class="row" data-aos="fade-up" data-aos-delay="100">
-                                            <div class="col-lg-12 d-flex justify-content-center">
-                                                <ul id="menu-flters">
-                                                    <li data-filter="*" class="filter-active">All</li>
-                                                    <li data-filter=".filter-starters">Starters</li>
-                                                    <li data-filter=".filter-salads">Salads</li>
-                                                    <li data-filter=".filter-specialty">Specialty</li>
-                                                </ul>
-                                            </div>
+                                    <div class="row" data-aos="fade-up" data-aos-delay="100">
+                                        <div class="col-lg-12 d-flex justify-content-center">
+                                            <ul id="menu-flters">
+                                                <li data-filter="*" class="filter-active">All</li>
+                                                @foreach (var category in Model.MenuCategories)
+                                                {
+                                                    <li data-filter=".filter-@category">@category</li>
+
+                                                }
+
+                                            </ul>
                                         </div>
+                                    </div>
 
-                                        <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-                                          
-                                           
-                                            <div class="col-lg-6 menu-item filter-starters">
+                                    <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+                                        @foreach (var dish in Model.Dishes)
+                                        {
+                                            <div class="col-lg-6 menu-item filter-@dish.CategoryName">
                                                 <div class="menu-content">
-                                                    <a href="#">Lobster Bisque</a><span>$5.95</span>
-                                                   
-                                                        <a style="font-family:Playfair Display , serif;" asp-action="Edit" asp-controller="Menu" asp-route-id="">Edit</a>
+                                                    <a asp-action="Edit" asp-controller="Menus" asp-route-id=@dish.Id>@dish.Name</a><span>$@dish.Price</span>
 
-
-                                                    
                                                 </div>
+
                                                 <div class="menu-ingredients">
-                                                    Lorem, deren, trataro, filede, nerada
+
+                                                    @dish.Ingredients
                                                 </div>
 
                                             </div>
 
 
+                                        }
+                                    </div>
+
+
+                                </section>
+
+
+                        </div>
+                    </div>
+                    <div class="tab-pane active show" id="tab-3">
+                        <div class="row">
+                            <section id="contact" class="contact">
+                                <div class="container" data-aos="fade-up">
+
+                                    <div class="section-title">
+                                        <h2>Restaurant Name</h2>
+                                        <p>Contact Us</p>
+                                    </div>
+                                </div>
+
+                               
+                                <div class="container" data-aos="fade-up">
+
+                                    <div class="row mt-5">
+
+                                        <div class="col-lg-4">
+                                            <div class="info">
+                                                <div class="address">
+                                                    <i class="bi bi-geo-alt"></i>
+                                                    <h4>Location:</h4>
+                                                    <p>Restaurant Adress</p>
+                                                </div>
+
+                                                <div class="open-hours">
+                                                    <i class="bi bi-info"></i>
+                                                    <h4>About us:</h4>
+                                                    <p>
+                                                      Information restaurant
+                                                    </p>
+                                                </div>
+
+                                                <div class="email">
+                                                    <i class="bi bi-envelope"></i>
+                                                    <h4>Email:</h4>
+                                                    <p>info@example.com</p>
+                                                </div>
+
+                                                <div class="phone">
+                                                    <i class="bi bi-phone"></i>
+                                                    <h4>Call:</h4>
+                                                    <p>+1 5589 55488 55s</p>
+                                                </div>
+
+                                            </div>
+
                                         </div>
 
-</div>
-                                    </section>
+
+                                    </div>
+
                                 </div>
-                            </div>
+                            </section>
+
+
+
                         </div>
-                        @*<div class="tab-pane" id="tab-2">
-                            <div class="row">
-                                <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Et blanditiis nemo veritatis excepturi</h3>
-                                    <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
-                                    <p>Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis sunt sunt est. Non aliquid repellendus itaque accusamus eius et velit ipsa voluptates. Optio nesciunt eaque beatae accusamus lerode pakto madirna desera vafle de nideran pal</p>
-                                </div>
-                                <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="assets/img/specials-2.png" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tab-3">
-                            <div class="row">
-                                <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Impedit facilis occaecati odio neque aperiam sit</h3>
-                                    <p class="fst-italic">Eos voluptatibus quo. Odio similique illum id quidem non enim fuga. Qui natus non sunt dicta dolor et. In asperiores velit quaerat perferendis aut</p>
-                                    <p>Iure officiis odit rerum. Harum sequi eum illum corrupti culpa veritatis quisquam. Neque necessitatibus illo rerum eum ut. Commodi ipsam minima molestiae sed laboriosam a iste odio. Earum odit nesciunt fugiat sit ullam. Soluta et harum voluptatem optio quae</p>
-                                </div>
-                                <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="assets/img/specials-3.png" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tab-4">
-                            <div class="row">
-                                <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Fuga dolores inventore laboriosam ut est accusamus laboriosam dolore</h3>
-                                    <p class="fst-italic">Totam aperiam accusamus. Repellat consequuntur iure voluptas iure porro quis delectus</p>
-                                    <p>Eaque consequuntur consequuntur libero expedita in voluptas. Nostrum ipsam necessitatibus aliquam fugiat debitis quis velit. Eum ex maxime error in consequatur corporis atque. Eligendi asperiores sed qui veritatis aperiam quia a laborum inventore</p>
-                                </div>
-                                <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="assets/img/specials-4.png" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tab-5">
-                            <div class="row">
-                                <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Est eveniet ipsam sindera pad rone matrelat sando reda</h3>
-                                    <p class="fst-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
-                                    <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
-                                </div>
-                                <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="assets/img/specials-5.png" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                        </div>*@
                     </div>
                 </div>
+
+            </div>
         </div>
 
     </div>
+
 </section>

@@ -22,7 +22,7 @@
             : base(options)
         {
         }
-
+     
         public DbSet<Setting> Settings { get; set; }
 
         public DbSet<Address> Addresses { get; set; }
@@ -37,13 +37,12 @@
 
         public DbSet<Dish> Dishes { get; set; }
 
-        public DbSet<DishIngredient> DishIngredients { get; set; }
+
 
         public DbSet<DishOrder> DishOrders { get; set; }
 
         public DbSet<FoodStyle> FoodStyles { get; set; }
 
-        public DbSet<Ingredient> Ingredients { get; set; }
 
         public DbSet<Menu> Menus { get; set; }
 
@@ -122,8 +121,9 @@
 
             builder.Entity<RatingUser>().HasKey(x => new { x.UserId, x.RatingId });
 
-            builder.Entity<DishIngredient>().HasKey(x => new { x.DishId, x.IngredientId });
             builder.Entity<UserRestaurant>().HasKey(x => new { x.UserId, x.RestaurantId });
+       
+
 
 
 

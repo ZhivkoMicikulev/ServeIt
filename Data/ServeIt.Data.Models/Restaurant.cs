@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Text;
     using Microsoft.AspNetCore.Identity;
     using ServeIt.Data.Common.Models;
@@ -42,6 +43,7 @@
         [MaxLength(200)]
         public string About { get; set; }
 
+
         public virtual ICollection<Table> Tables { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
@@ -50,12 +52,11 @@
 
         public virtual ICollection<Rating> Ratings { get; set; }
 
+        
         public string MenuId { get; set; }
 
-        public Menu Menu { get; set; }
+        public  Menu Menu { get; set; }
 
-        public virtual ICollection<UserRestaurant> UserRestaurants { get; set; }
 
-   
     }
 }

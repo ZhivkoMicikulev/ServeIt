@@ -19,6 +19,21 @@ namespace ServeIt.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("FoodStyleMenu", b =>
+                {
+                    b.Property<string>("FoodStylesId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("MenusId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("FoodStylesId", "MenusId");
+
+                    b.HasIndex("MenusId");
+
+                    b.ToTable("FoodStyleMenu");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -318,6 +333,9 @@ namespace ServeIt.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Ingredients")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -344,21 +362,6 @@ namespace ServeIt.Data.Migrations
                     b.HasIndex("MenuId");
 
                     b.ToTable("Dishes");
-                });
-
-            modelBuilder.Entity("ServeIt.Data.Models.DishIngredient", b =>
-                {
-                    b.Property<string>("DishId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IngredientId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("DishId", "IngredientId");
-
-                    b.HasIndex("IngredientId");
-
-                    b.ToTable("DishIngredients");
                 });
 
             modelBuilder.Entity("ServeIt.Data.Models.DishOrder", b =>
@@ -417,9 +420,6 @@ namespace ServeIt.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("MenuId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
@@ -432,38 +432,7 @@ namespace ServeIt.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.HasIndex("MenuId");
-
                     b.ToTable("FoodStyles");
-                });
-
-            modelBuilder.Entity("ServeIt.Data.Models.Ingredient", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("ServeIt.Data.Models.Menu", b =>
@@ -943,6 +912,21 @@ namespace ServeIt.Data.Migrations
                     b.ToTable("UsersRestaurants");
                 });
 
+            modelBuilder.Entity("FoodStyleMenu", b =>
+                {
+                    b.HasOne("ServeIt.Data.Models.FoodStyle", null)
+                        .WithMany()
+                        .HasForeignKey("FoodStylesId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ServeIt.Data.Models.Menu", null)
+                        .WithMany()
+                        .HasForeignKey("MenusId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("ServeIt.Data.Models.ApplicationRole", null)
@@ -1031,30 +1015,13 @@ namespace ServeIt.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ServeIt.Data.Models.Menu", null)
+                    b.HasOne("ServeIt.Data.Models.Menu", "Menu")
                         .WithMany("Dishes")
                         .HasForeignKey("MenuId");
 
                     b.Navigation("Category");
-                });
 
-            modelBuilder.Entity("ServeIt.Data.Models.DishIngredient", b =>
-                {
-                    b.HasOne("ServeIt.Data.Models.Dish", "Dish")
-                        .WithMany("DishIngredients")
-                        .HasForeignKey("DishId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ServeIt.Data.Models.Ingredient", "Ingredient")
-                        .WithMany("DishIngredients")
-                        .HasForeignKey("IngredientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Dish");
-
-                    b.Navigation("Ingredient");
+                    b.Navigation("Menu");
                 });
 
             modelBuilder.Entity("ServeIt.Data.Models.DishOrder", b =>
@@ -1074,13 +1041,6 @@ namespace ServeIt.Data.Migrations
                     b.Navigation("Dish");
 
                     b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("ServeIt.Data.Models.FoodStyle", b =>
-                {
-                    b.HasOne("ServeIt.Data.Models.Menu", null)
-                        .WithMany("FoodStyles")
-                        .HasForeignKey("MenuId");
                 });
 
             modelBuilder.Entity("ServeIt.Data.Models.Order", b =>
@@ -1237,7 +1197,7 @@ namespace ServeIt.Data.Migrations
             modelBuilder.Entity("ServeIt.Data.Models.UserRestaurant", b =>
                 {
                     b.HasOne("ServeIt.Data.Models.Restaurant", "Restaurant")
-                        .WithMany("UserRestaurants")
+                        .WithMany()
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1275,21 +1235,12 @@ namespace ServeIt.Data.Migrations
 
             modelBuilder.Entity("ServeIt.Data.Models.Dish", b =>
                 {
-                    b.Navigation("DishIngredients");
-
                     b.Navigation("DishOrders");
-                });
-
-            modelBuilder.Entity("ServeIt.Data.Models.Ingredient", b =>
-                {
-                    b.Navigation("DishIngredients");
                 });
 
             modelBuilder.Entity("ServeIt.Data.Models.Menu", b =>
                 {
                     b.Navigation("Dishes");
-
-                    b.Navigation("FoodStyles");
                 });
 
             modelBuilder.Entity("ServeIt.Data.Models.Order", b =>
@@ -1318,8 +1269,6 @@ namespace ServeIt.Data.Migrations
                     b.Navigation("Ratings");
 
                     b.Navigation("Tables");
-
-                    b.Navigation("UserRestaurants");
                 });
 
             modelBuilder.Entity("ServeIt.Data.Models.Table", b =>

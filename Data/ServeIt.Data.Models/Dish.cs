@@ -11,8 +11,10 @@
         public Dish()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.DishIngredients = new HashSet<DishIngredient>();
+         
             this.DishOrders = new HashSet<DishOrder>();
+          
+
         }
 
         [Required]
@@ -25,9 +27,13 @@
         [Required]
         public Category Category { get; set; }
 
-        public virtual ICollection<DishIngredient> DishIngredients { get; set; }
+        public string Ingredients { get; set; }
 
-        public virtual ICollection<DishOrder> DishOrders { get; set; }
+        public  ICollection<DishOrder> DishOrders { get; set; }
+
+        public string MenuId { get; set; }
+
+        public Menu Menu { get; set; }
 
 
     }

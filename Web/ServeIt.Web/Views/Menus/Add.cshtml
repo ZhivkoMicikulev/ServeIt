@@ -1,0 +1,59 @@
+﻿@model ServeIt.Web.ViewModels.Menu.AddDishInputModel
+
+
+@{
+    this.ViewData["Title"] = "Add Dish";
+
+}
+
+<br />
+<br />
+<br />
+<br />
+
+<section id="book-a-table" class="book-a-table d-flex align-items-center">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Add</h2>
+            <p>Dish</p>
+        </div>
+        <form asp-action="Add" asp-controller="Menus" asp-route-id=@ViewData["RestaurantId"] method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="col">
+                <div class="col-lg-4 col-md-6 form-group">
+
+                    <input type="text" class="form-control" placeholder="Dish name..." asp-for="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group">
+                    <input type="text" asp-for="Price" class="form-control" placeholder="Price...">
+                    <span asp-validation-for="Price" class="text-danger"></span>
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group">
+                    <div class="autocomplete">
+                        <input id="category" type="text" asp-for="CategoryName" class="form-control" placeholder="Category...">
+                        <span asp-validation-for="CategoryName" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group">
+                    <textarea asp-for="Ingredients" class="form-control" placeholder="Ingredients...">  </textarea>
+                    <span asp-validation-for="Ingredients" class="text-danger"></span>
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <div class="autocomplete">
+                        <input id="foodStyles" type="text" class="form-control" asp-for="FoodStyle" placeholder="Food style...">
+                        <span asp-validation-for="FoodStyle" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="text-center"><button type="submit">Add Dish</button></div>
+            </div>
+        </form>
+
+    </div>
+</section>
