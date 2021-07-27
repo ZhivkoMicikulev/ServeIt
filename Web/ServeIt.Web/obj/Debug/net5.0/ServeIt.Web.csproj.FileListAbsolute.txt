@@ -944,3 +944,4 @@ D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Restaurants\Owne
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Menus\Add.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Menus\_MenuPartial.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Menus\Edit.cshtml.g.cs
+D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Restaurants\EditInfo.cshtml.g.cs

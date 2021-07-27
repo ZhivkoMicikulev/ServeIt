@@ -19,6 +19,14 @@ namespace ServeIt.Services.Data.Restaurants
         Task AddRestaurant(AddRestaurantInputModel model,string ownerId);
 
         Task <bool> AreYouTheOwner(string restaurantId,string ownerId);
+        
+        Task <RestaurantInfoViewModel> RestaurantInfo(string restaurantId);
+
+        Task EditRestaurantInfo(string restaurantId, AddRestaurantInputModel model);
+
+        Task<string> TakeCountryId(string countryName);
+
+        Task<string> TakeCityId(string cityName);
 
 
 

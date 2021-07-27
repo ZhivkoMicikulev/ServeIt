@@ -12,5 +12,7 @@ namespace ServeIt.Web.ViewModels.Restaurants
         public ICollection<DishViewModel> Dishes { get; set; }
 
         public ICollection<string> MenuCategories { get; set; }
+
+        public RestaurantInfoViewModel  RestaurantInfo { get; set; }
     }
 }

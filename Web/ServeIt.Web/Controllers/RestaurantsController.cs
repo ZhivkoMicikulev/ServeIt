@@ -19,6 +19,24 @@
             this.restaurantService = restaurantService;
             this.menusService = menusService;
         }
+        public async Task<IActionResult> EditInfo(string id)
+        {
+            var Info = await this.restaurantService.RestaurantInfo(id);
+            var model = new AddRestaurantInputModel
+            {
+                Name = Info.RestaurantName,
+                About = Info.About,
+                CountryId = await this.restaurantService.TakeCountryId(Info.Address.Split(", ")[0]),
+                CityId = await this.restaurantService.TakeCityId(Info.Address.Split(", ")[1]),
+                Email = Info.Email,
+                Phone = Info.PhoneNumber,
+                StreetName= Info.Address.Split(", ")[2],
+            };
+                 await FillCountryAndCitiesSugestion();
+            this.ViewData["RestaurantId"] = id;
+            return this.View(model);
+        }
+
 
 
         public async Task<IActionResult> All()
@@ -49,8 +67,8 @@
             var menuId = await this.menusService.RestaurantMenu(id);
             var menu = await menusService.TakeAllDishes(menuId);
 
-          
 
+            var restaurantInfo = await restaurantService.RestaurantInfo(id);
             var categories = await menusService.TakeAllCategoriesByMenu(menuId);
 
             var model = new EditRestaurantViewModel
@@ -58,7 +76,7 @@
                 RestaurantId = id,
                 Dishes = menu,
                 MenuCategories = categories,
-
+                RestaurantInfo=restaurantInfo,
 
             };
            

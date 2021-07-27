@@ -14,13 +14,14 @@ namespace ServeIt.Services.Data.Restaurants
     {
         private readonly IRepository<Country> countriesRepository;
         private readonly IDeletableEntityRepository<Restaurant> restaurantRepository;
-        
+        private readonly IRepository<City> citiesRepository;
 
-        public RestaurantsService(IRepository<Country> countriesRepository,IDeletableEntityRepository<Restaurant> restaurantRepository)
+        public RestaurantsService(IRepository<Country> countriesRepository,IDeletableEntityRepository<Restaurant> restaurantRepository,
+            IRepository<City> citiesRepository)
         {
             this.countriesRepository = countriesRepository;
             this.restaurantRepository = restaurantRepository;
-    
+            this.citiesRepository = citiesRepository;
         }
 
         public async Task AddRestaurant(AddRestaurantInputModel model,string ownerId)
@@ -53,6 +54,37 @@ namespace ServeIt.Services.Data.Restaurants
             var result = restaurantRepository.All().Where(x => x.Id == restaurantId).Any(x => x.OwnerId == ownerId);
 
             return result;
+        }
+
+        public async Task EditRestaurantInfo(string restaurantId, AddRestaurantInputModel model)
+        {
+            var restaurant = restaurantRepository.All().Where(x => x.Id == restaurantId)
+                .FirstOrDefault();
+
+            restaurant.Name = model.Name;
+            if (restaurant.Address.City.Id!=model.CityId)
+            {
+                restaurant.Address = new Address
+                {
+                    CityId = model.CityId,
+                    StreetName = model.StreetName
+                };
+            }
+            else
+            {
+                if (restaurant.Address.StreetName!=model.StreetName)
+                {
+                    restaurant.Address.StreetName = model.StreetName;
+                }
+            }
+
+            restaurant.About = model.About;
+
+            restaurant.Email = model.Email;
+
+            restaurant.Phone = model.Phone;
+
+             await this.restaurantRepository.SaveChangesAsync();
         }
 
         public async Task<ICollection<CountriesViewModel>> GetAllCountries()
@@ -109,7 +141,35 @@ namespace ServeIt.Services.Data.Restaurants
             return restaurants;
         }
 
-     
+        public async Task<RestaurantInfoViewModel> RestaurantInfo(string restaurantId)
+        {
+            var result = restaurantRepository.All().Where(x => x.Id == restaurantId)
+                 .Select(x => new RestaurantInfoViewModel
+                 {
+                     
+                     RestaurantName = x.Name,
+                     Address = x.Address.City.Country.CountryName + ", " + x.Address.City.CityName + ", " + x.Address.StreetName,
+                     About = x.About,
+                     Email = x.Email,
+                     PhoneNumber = x.Phone,
+                 
+
+                 }).FirstOrDefault();
+
+            return result;
+        }
+
+        public async Task<string> TakeCityId(string cityName)
+        {
+            var result = citiesRepository.All().Where(x => x.CityName == cityName).Select(x => x.Id).FirstOrDefault();
+            return result;
+        }
+
+        public async Task<string> TakeCountryId(string countryName)
+        {
+            var result = countriesRepository.All().Where(x => x.CountryName == countryName).Select(x => x.Id).FirstOrDefault();
+            return result;
+        }
     }
 
         

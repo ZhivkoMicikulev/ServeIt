@@ -1,0 +1,107 @@
+﻿@model ServeIt.Web.ViewModels.Restaurants.AddRestaurantInputModel
+@using ServeIt.Web.ViewModels.Restaurants
+<br />
+<br />
+<br />
+<br />
+
+<section id="book-a-table" class="book-a-table d-flex align-items-center">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Add</h2>
+            <p>Restaurant</p>
+        </div>
+        <form asp-action="EditInfo" asp-route-id=@ViewData["RestaurantId"] method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+
+           
+
+            <div class="col">
+                <div class="col-lg-4 col-md-6 form-group">
+                    <input type="text" class="form-control" asp-for="Name" value="@Model.Name">
+                    <span class="text-danger" asp-validation-for="Name">  </span>
+
+                </div>
+
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <select onchange="ChangeCities()" asp-for="CountryId" id="selectCountry" class="form-control" style="border-color: #625b4b; background: none; border-radius: 0; font-family: inherit; color:white">
+                        @foreach (var country in (ViewData["Countries"]) as IEnumerable<CountriesViewModel>)
+                        {
+                        <option value="@country.CountryId" class="form-control" style="color:#625b4b">@country.CountryName</option>
+
+                        }
+                    </select>
+                    <span asp-validation-for="CountryId" class="text-danger"></span>
+                </div>
+
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <select asp-for="CityId" id="selectCity" class="form-control" style="border-color: #625b4b; background: none; border-radius: 0; font-family: inherit; color:white">
+                        <option value="" disabled selected hidden class="form-control" style="color:#625b4b">Choose City</option>
+                        @foreach (var country in (ViewData["Countries"]) as IEnumerable<CountriesViewModel>)
+                        {
+                        @foreach (var city in country.Cities)
+                            {
+                        <option value="@city.CityId" class="form-control @country.CountryId" style="color:#625b4b">@city.CityName</option>
+
+                            }
+
+                        }
+                    </select>
+                    <span asp-validation-for="CityId" class="text-danger"></span>
+                </div>
+
+                <div class="col-lg-4 col-md-6 form-group">
+                    <input type="text" asp-for="StreetName" class="form-control" placeholder="Street" value=@Model.StreetName>
+                    <span class="text-danger" asp-validation-for="StreetName">  </span>
+
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group">
+                    <input type="text" asp-for="Phone" class="form-control" placeholder="Phone Number" value=@Model.Phone>
+                    <span class="text-danger" asp-validation-for="Phone">  </span>
+
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <input type="email" class="form-control" asp-for="Email" placeholder="Email" value=@Model.Email>
+                    <span class="text-danger" asp-validation-for="Email">  </span>
+
+
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <label class="form-check-label">About </label>
+                    <textarea class="form-control" asp-for="About" >@Model.About</textarea>
+                    <span class="text-danger" asp-validation-for="About">  </span>
+
+
+
+                </div>
+
+
+                <div class="text-center"><button type="submit">Edit Restaurant</button></div>
+            </div>
+        </form>
+
+    </div>
+</section>
+
+
+
+
+<script>
+    function ChangeCities() {
+        var x = document.getElementById("selectCountry").value;
+
+        var options = document.getElementById("selectCity").getElementsByTagName("option");
+        for (var i = 0; i < options.length; i++) {
+            if (!options[i].classList.contains(x)) {
+                options[i].style.display = "none";
+            }
+            else {
+                options[i].style.display = "block";
+
+            }
+        }
+
+    }
+</script>

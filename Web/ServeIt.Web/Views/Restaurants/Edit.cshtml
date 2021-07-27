@@ -102,12 +102,12 @@
                                 <div class="container" data-aos="fade-up">
 
                                     <div class="section-title">
-                                        <h2>Restaurant Name</h2>
+                                        <h2>@Model.RestaurantInfo.RestaurantName</h2>
                                         <p>Contact Us</p>
                                     </div>
                                 </div>
 
-                               
+
                                 <div class="container" data-aos="fade-up">
 
                                     <div class="row mt-5">
@@ -117,27 +117,27 @@
                                                 <div class="address">
                                                     <i class="bi bi-geo-alt"></i>
                                                     <h4>Location:</h4>
-                                                    <p>Restaurant Adress</p>
+                                                    <p>@Model.RestaurantInfo.Address</p>
                                                 </div>
 
                                                 <div class="open-hours">
                                                     <i class="bi bi-info"></i>
                                                     <h4>About us:</h4>
                                                     <p>
-                                                      Information restaurant
+                                                        @Model.RestaurantInfo.About
                                                     </p>
                                                 </div>
 
                                                 <div class="email">
                                                     <i class="bi bi-envelope"></i>
                                                     <h4>Email:</h4>
-                                                    <p>info@example.com</p>
+                                                    <p>@Model.RestaurantInfo.Email</p>
                                                 </div>
 
                                                 <div class="phone">
                                                     <i class="bi bi-phone"></i>
                                                     <h4>Call:</h4>
-                                                    <p>+1 5589 55488 55s</p>
+                                                    <p>@Model.RestaurantInfo.PhoneNumber</p>
                                                 </div>
 
                                             </div>
@@ -148,9 +148,12 @@
                                     </div>
 
                                 </div>
+                                <div class="btns">
+                                    <a asp-action="EditInfo" asp-controller="Restaurants" asp-route-id=@Model.RestaurantId class="btn-menu animated fadeInUp scrollto">Edit</a>
+                                </div>
                             </section>
 
-
+                           
 
                         </div>
                     </div>
