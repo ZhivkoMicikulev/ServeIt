@@ -59,10 +59,10 @@
             <nav id="navbar" class="navbar order-last order-lg-0 ">
 
                 <ul>
-                    <li><a class="nav-link scrollto active" asp-action="Index" asp-controller="Home">Home</a></li>
-                    <li><a class="nav-link scrollto" asp-action="All" asp-controller="Restaurants" asp-route-id="">Restaurants</a></li>
+                    <li><a class="nav-link scrollto active" asp-action="Index" asp-controller="Home">Home <i class="bi bi-house-door"></i></a></li>
+                    <li><a class="nav-link scrollto" asp-action="All" asp-controller="Restaurants" asp-route-id="">Restaurants <i class="bi bi-shop"></i></a></li>
                     <li><a class="nav-link scrollto" href="#about">For you</a></li>
-                    <li><a class="nav-link scrollto" href="#specials">Help</a></li>
+                    <li><a class="nav-link scrollto" href="#specials">Help <i class="bi bi-info-circle"></i></a></li>
                     @if (User.IsInRole("User"))
                     {
                         <li class="dropdown scrollto">
@@ -77,12 +77,10 @@
                                         <li><a href="#">Deep Drop Down 2</a></li>
                                         <li><a href="#">Deep Drop Down 3</a></li>
                                         <li><a href="#">Deep Drop Down 4</a></li>
-                                        <li><a href="#">Deep Drop Down 5</a></li>
+                                        <li><a asp-controller="Users" asp-action="Profile" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Profile</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">Drop Down 2</a></li>
-                                <li><a href="#">Drop Down 3</a></li>
-                                <li><a href="#">Drop Down 4</a></li>
+
                             </ul>
                         </li>
                     }
@@ -92,11 +90,11 @@
                         <li class="dropdown">
                             <a class="inactiveLink"><span>Restaurant Profile</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
-                                <li><a asp-action="Add" asp-controller="Restaurants">Add Restaurant</a></li>
+                                <li><a asp-action="Add" asp-controller="Restaurants">Add Restaurant <i class="bi bi-patch-plus"></i></a></li>
                                 <li class="dropdown">
                                     <a asp-controller="Restaurants" asp-action="OwnedRestaurants" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Restaurants</a>
                                 </li>
-                                <li><a asp-controller="Users" asp-action="Profile" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Profile</a></li>
+                                <li><a asp-controller="Users" asp-action="Profile" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Profile <i class="bi bi-person-bounding-box"></i></a></li>
 
 
                             </ul>
@@ -126,6 +124,9 @@
                             </ul>
                         </li>
                     }
+                    <li><a class="nav-link scrollto " asp-action="Orders" asp-controller="Cart" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Cart<i class="bi bi-cart-check"></i>
+</a></li>
+
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -166,6 +167,8 @@
     <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+   
+
     <script src="/assets/vendor/aos/aos.js"></script>
 
 

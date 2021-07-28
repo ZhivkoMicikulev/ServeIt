@@ -25,6 +25,7 @@
     using ServeIt.Services.Data.Restaurants;
     using ServeIt.Services.Data.Menus;
     using ServeIt.Services.Data.Helper;
+    using ServeIt.Services.Data.Orders;
 
     public class Startup
     {
@@ -73,6 +74,7 @@
             services.AddTransient<IRestaurantsService, RestaurantsService>();
             services.AddTransient<IMenusService, MenusService>();
             services.AddTransient<IHelperService, HelperService>();
+            services.AddTransient<ICartService, CartService>();
 
 
 
@@ -114,6 +116,7 @@
             app.UseEndpoints(
                 endpoints =>
                     {
+                  
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();

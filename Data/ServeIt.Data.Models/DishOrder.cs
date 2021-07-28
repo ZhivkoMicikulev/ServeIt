@@ -11,6 +11,9 @@
         {
             this.Id = Guid.NewGuid().ToString();
         }
+        [Required]
+        public string OwnerId { get; set; }
+        public User User { get; set; }
 
         [Required]
         public string DishId { get; set; }
@@ -23,9 +26,10 @@
         [Required]
         public decimal Amount { get; set; }
 
-        [Required]
-        public string OrderId { get; set; }
+        public bool Status { get; set; }
+      
+        public string RestaurantId { get; set; }
+        public Restaurant Restaurant { get; set; }
 
-        public Order Order { get; set; }
     }
 }

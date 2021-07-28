@@ -35,6 +35,7 @@
         "dist/jquery.validate.unobtrusive.js",
         "dist/jquery.validate.unobtrusive.min.js"
       ]
-    }
+    },
+
   ]
 }

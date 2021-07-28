@@ -1,0 +1,48 @@
+﻿@model ServeIt.Web.ViewModels.Cart.CartItemsViewModel
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<section id="menu" class="menu section-bg">
+    <div class="container" data-aos="fade-up">
+
+        @foreach (var restaurant in Model.Restaurants)
+        {
+            <div class="section-title">
+                <h2>@restaurant.RestaurantName</h2>
+
+            </div>
+
+
+            <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+
+                @foreach (var item in restaurant.Dishes)
+	{
+                <div class="col-lg-6 menu-item ">
+
+                    <div class="menu-content">
+                        <a>@item.Quantity x @item.Name</a><span>$@item.Amount</span>
+                    </div>
+                    <div class="menu-ingredients">
+                        <a class="bi bi-trash">Remove</a>
+                    </div>
+                </div>
+	}
+                
+
+                
+            </div>
+            <div class="col-lg-6 menu-item >
+                <div class="menu-content">
+                    <span> total price  @restaurant.TotalAmount$</span>
+                </div>
+                <br />
+                <br />
+
+
+            }
+
+    </div>
+</section>

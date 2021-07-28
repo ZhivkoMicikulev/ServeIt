@@ -389,11 +389,23 @@ namespace ServeIt.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("OrderId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("OwnerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
+
+                    b.Property<string>("RestaurantId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -402,6 +414,10 @@ namespace ServeIt.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("RestaurantId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("DishOrders");
                 });
@@ -1033,15 +1049,23 @@ namespace ServeIt.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ServeIt.Data.Models.Order", "Order")
+                    b.HasOne("ServeIt.Data.Models.Order", null)
                         .WithMany("DishOrders")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
+
+                    b.HasOne("ServeIt.Data.Models.Restaurant", "Restaurant")
+                        .WithMany()
+                        .HasForeignKey("RestaurantId");
+
+                    b.HasOne("ServeIt.Data.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Dish");
 
-                    b.Navigation("Order");
+                    b.Navigation("Restaurant");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ServeIt.Data.Models.Order", b =>
