@@ -40,6 +40,12 @@ namespace ServeIt.Web.Controllers
             return this.View(model);
         }
 
+        public async Task<IActionResult> RemoveItem(string id)
+        {
+            await this.cartService.RemoveItemFromCart(id);
+
+            return this.Redirect($"/Cart/Orders/{UserId()}");
+        }
 
 
 

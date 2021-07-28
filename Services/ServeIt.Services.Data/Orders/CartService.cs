@@ -74,7 +74,7 @@ namespace ServeIt.Services.Data
                     Name = dishName,
                     Amount = dish.Amount,
                     Quantity = dish.Quantity,
-                    id = dish.Id
+                    Id = dish.Id
                 };
               var currentRestaurant = result.Restaurants.Where(x => x.RestaurantName == restaurantName)
                     .FirstOrDefault();
@@ -86,6 +86,14 @@ namespace ServeIt.Services.Data
 
 
             return result;
+        }
+
+        public async Task RemoveItemFromCart(string itemId)
+        {
+            var itemToRemove = this.dishOrderRepository.All().Where(x => x.Id == itemId).FirstOrDefault();
+
+            this.dishOrderRepository.Delete(itemToRemove);
+            await this.dishOrderRepository.SaveChangesAsync();
         }
     }
 }

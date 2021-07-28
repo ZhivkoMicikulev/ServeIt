@@ -26,7 +26,7 @@
                         <a>@item.Quantity x @item.Name</a><span>$@item.Amount</span>
                     </div>
                     <div class="menu-ingredients">
-                        <a class="bi bi-trash">Remove</a>
+                        <a class="bi bi-trash" asp-action="RemoveItem" asp-controller="Cart" asp-route-id=@item.Id>Remove</a>
                     </div>
                 </div>
 	}
