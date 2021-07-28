@@ -127,6 +127,18 @@ namespace ServeIt.Services.Data.Menus
             return restaurantId;
 
         }
+
+        public async Task<string> RemoveDish(string dishId)
+        {
+            var dish = this.dishesRepostory.All().Where(x => x.Id == dishId).FirstOrDefault();
+
+            this.dishesRepostory.Delete(dish);
+            await this.dishesRepostory.SaveChangesAsync();
+            var restaurantId = this.restaurantRepository.All().Where(x => x.MenuId == dish.MenuId).Select(x => x.Id).FirstOrDefault();
+
+            return restaurantId;
+        }
+
         public async Task<string> RestaurantMenu(string restaurantId)
         {
             var menuId = restaurantRepository.All().Where(x => x.Id == restaurantId).Select(x=>x.MenuId).FirstOrDefault();

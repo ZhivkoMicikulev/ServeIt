@@ -24,6 +24,7 @@ namespace ServeIt.Services.Data.Menus
 
         Task<AddDishInputModel> TakeDish(string dishId);
 
+        Task <string> RemoveDish(string dishId);
 
 
 

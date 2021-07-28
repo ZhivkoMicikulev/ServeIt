@@ -19,7 +19,6 @@
             <p>Dish</p>
         </div>
         <form asp-action="Edit" asp-controller="Menus" asp-route-id=@ViewData["DishId"] method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-
             <div class="col">
                 <div class="col-lg-4 col-md-6 form-group">
 
@@ -46,9 +45,14 @@
 
 
                 <div class="text-center"><button type="submit">Edit Dish</button></div>
+                <br />   
+                <div class="text-center">
+                    <a class="bi bi-trash" asp-action="RemoveDish" asp-controller="Menus" asp-route-id=@ViewData["DishId"]>Remove</a>
+
+                </div>
+
             </div>
         </form>
-
     </div>
 </section>
 

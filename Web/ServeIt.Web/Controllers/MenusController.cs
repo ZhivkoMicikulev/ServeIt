@@ -55,6 +55,16 @@ namespace ServeIt.Web.Controllers
 
         }
 
+        public async Task<IActionResult> RemoveDish(string id)
+        {
+           var restaurantId= await this.menusServices.RemoveDish(id);
+
+            this.ViewData["DishId"] = id;
+
+            return this.Redirect($"/Restaurants/Edit/{restaurantId}");
+
+        }
+
 
         public async Task<IActionResult> Edit(string id)
         {
