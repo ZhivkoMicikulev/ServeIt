@@ -75,6 +75,8 @@
             services.AddTransient<IMenusService, MenusService>();
             services.AddTransient<IHelperService, HelperService>();
             services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IOrdersService, OrdersService>();
+
 
 
 

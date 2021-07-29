@@ -13,9 +13,6 @@ namespace ServeIt.Services.Data.Orders
 
         Task RemoveItemFromCart(string itemId);
 
-        Task<FinishOrderViewModel> GetAllInfoAboutOrder(User user);
-
-        Task FinishOrder(string userId, FinishOrderInputModel model);
-      
+    
     }
 }

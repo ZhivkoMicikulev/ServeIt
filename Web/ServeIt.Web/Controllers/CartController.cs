@@ -33,17 +33,9 @@ namespace ServeIt.Web.Controllers
             }
            return this.Redirect($"/Restaurants/Info/{model.RestaurantId}");
         }
-        public async Task<IActionResult> ConfirmOrder(string id)
-        {
-            var user =await this.usersService.GetUser(UserId());
+       
 
-            var model = await this.cartService.GetAllInfoAboutOrder(user);
-            this.ViewData["UserId"] = UserId();
-
-            return this.View(model);
-        }
-
-        public async Task<IActionResult> Orders(string id)
+        public async Task<IActionResult> Items(string id)
         {
      var model=   await cartService.GetAllItemsForOrder(id);
 
@@ -57,17 +49,7 @@ namespace ServeIt.Web.Controllers
             return this.Redirect($"/Cart/Orders/{UserId()}");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> FinishOrder(string id, FinishOrderInputModel model)
-        {
-            if (string.IsNullOrEmpty(model.StreetName))
-            {
-                return this.Redirect("/Cart/ConfirmOrder");
-            }
-            await this.cartService.FinishOrder(id, model);
-
-            return this.Redirect($"/");
-        }
+      
 
 
         private string UserId()

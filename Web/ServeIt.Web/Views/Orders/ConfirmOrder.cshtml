@@ -60,7 +60,7 @@
                             <i class="bi bi-geo-alt"></i>
                             <h4>To:</h4>
                             <div class="row">
-                                <form asp-action="FinishOrder" asp-controller="Cart" asp-route-id=@ViewData["UserId"]  method="post" role="form" class="php-email-form " data-aos="fade-up" data-aos-delay="100">
+                                <form asp-action="FinishOrder" asp-controller="Orders" asp-route-id=@ViewData["UserId"]  method="post" role="form" class="php-email-form " data-aos="fade-up" data-aos-delay="100">
                                     <div class="col-lg-10 col-md-20 form-group">
                                         <input type="text" class="form-control" placeholder="Street Name..." name="StreetName">
                                     </div>

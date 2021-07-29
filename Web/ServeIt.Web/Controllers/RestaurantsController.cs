@@ -5,6 +5,7 @@
 
     using Microsoft.AspNetCore.Mvc;
     using ServeIt.Services.Data.Menus;
+    using ServeIt.Services.Data.Orders;
     using ServeIt.Services.Data.Restaurants;
     using ServeIt.Web.ViewModels.Restaurants;
 
@@ -12,16 +13,48 @@
     {
         private readonly IRestaurantsService restaurantService;
         private readonly IMenusService menusService;
+        private readonly IOrdersService ordersService;
 
         public RestaurantsController(IRestaurantsService restaurantService,
-            IMenusService menusService)
+            IMenusService menusService,
+            IOrdersService ordersService)
         {
             this.restaurantService = restaurantService;
             this.menusService = menusService;
+            this.ordersService = ordersService;
         }
 
-      
 
+
+        public async Task<IActionResult> Edit(string id)
+        {
+            var ownerId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!await restaurantService.AreYouTheOwner(id, ownerId))
+            {
+                return this.Redirect($"/Restaurants/Info/{id}");
+            }
+
+            var menuId = await this.menusService.RestaurantMenu(id);
+            var menu = await menusService.TakeAllDishes(menuId);
+
+
+            var restaurantInfo = await restaurantService.RestaurantInfo(id);
+            var categories = await menusService.TakeAllCategoriesByMenu(menuId);
+            var orders = await this.ordersService.TakeAllOrders(id);
+            var model = new EditRestaurantViewModel
+            {
+                RestaurantId = id,
+                Dishes = menu,
+                MenuCategories = categories,
+                RestaurantInfo = restaurantInfo,
+                Orders=orders,
+                
+            };
+
+
+
+            return this.View(model);
+        }
 
         public async Task<IActionResult> EditInfo(string id)
         {
@@ -75,35 +108,7 @@
             return this.View(model);
         }
 
-        public async Task<IActionResult> Edit(string id)
-        {
-            var ownerId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (!await restaurantService.AreYouTheOwner(id, ownerId))
-            {
-                return this.Redirect($"/Restaurants/Info/{id}");
-            }
-
-            var menuId = await this.menusService.RestaurantMenu(id);
-            var menu = await menusService.TakeAllDishes(menuId);
-
-
-            var restaurantInfo = await restaurantService.RestaurantInfo(id);
-            var categories = await menusService.TakeAllCategoriesByMenu(menuId);
-
-            var model = new EditRestaurantViewModel
-            {
-                RestaurantId = id,
-                Dishes = menu,
-                MenuCategories = categories,
-                RestaurantInfo=restaurantInfo,
-
-            };
-           
-
-
-            return this.View(model);
-        }
-
+       
         public async Task<IActionResult> Add()
         {
          

@@ -29,7 +29,48 @@ namespace ServeIt.Services.Data
             this.restaurantRepository = restaurantRepository;
             this.ordersRepository = ordersRepository;
         }
+        public async Task<CartItemsViewModel> GetAllItemsForOrder(string userId)
+        {
+            var result = new CartItemsViewModel();
 
+            var disheOrders = dishOrderRepository.All().Where(x => x.OwnerId == userId && x.Status == false)
+                .ToArray();
+
+            foreach (var dish in disheOrders)
+            {
+                var restaurantName = restaurantRepository.All().Where(x => x.Id == dish.RestaurantId).Select(x => x.Name).FirstOrDefault();
+                var dishName = dishesRepository.All().Where(x => x.Id == dish.DishId).Select(x => x.Name).FirstOrDefault();
+                if (!result.Restaurants.Any(x => x.RestaurantName == restaurantName))
+                {
+                    var restaurant = new RestaurantOrders
+                    {
+                        RestaurantName = restaurantName,
+                        TotalAmount = 0,
+
+
+                    };
+                    result.Restaurants.Add(restaurant);
+                }
+                var item = new CartItems
+                {
+                    Name = dishName,
+                    Amount = dish.Amount,
+                    Quantity = dish.Quantity,
+                    Id = dish.Id
+                };
+                var currentRestaurant = result.Restaurants.Where(x => x.RestaurantName == restaurantName)
+                      .FirstOrDefault();
+                currentRestaurant.Dishes.Add(item);
+
+                currentRestaurant.TotalAmount += dish.Amount;
+
+                result.TotalAmount += dish.Amount; ;
+
+            }
+
+
+            return result;
+        }
 
         public async Task AddToCart(string dishId, string userId,AddToCartInputModel model)
         {
@@ -51,126 +92,6 @@ namespace ServeIt.Services.Data
 
         }
 
-        public async Task FinishOrder(string userId, FinishOrderInputModel model)
-        {
-            var orderList = new List<Order>();
-            var items = this.dishOrderRepository.All().Where(x => x.OwnerId == userId && x.Status==false)
-                .Include(x=>x.Restaurant)
-                .Include(x=>x.Restaurant.Address)
-                .ToArray();
-
-            foreach (var item in items)
-            {
-                if (!orderList.Any(x=>x.restaurantId==item.RestaurantId))
-                {
-                    var newOrder = new Order
-                    {
-                        restaurantId = item.RestaurantId,
-                        CityId = item.Restaurant.Address.CityId,
-                        StreetName = model.StreetName,
-                        TotalAmount = 0,
-                        UserId=userId,
-                        IsItPayed=false,
-
-                    };
-
-                    orderList.Add(newOrder);
-                }
-
-                var order = orderList.Where(x => x.restaurantId == item.RestaurantId).FirstOrDefault();
-                order.TotalAmount += item.Amount;
-                item.Status = true;
-                order.DishOrders.Add(item);
-            }
-
-            foreach (var order in orderList)
-            {
-              await  this.ordersRepository.AddAsync(order);
-            }
-
-            await this.ordersRepository.SaveChangesAsync();
-
-        }
-
-        public async Task<FinishOrderViewModel> GetAllInfoAboutOrder(User user)
-        {
-            var items = this.dishOrderRepository.All().Where(x => x.OwnerId == user.Id && x.Status == false).ToArray();
-
-            var model = new FinishOrderViewModel
-            {
-                FullName = user.FirstName + " " + user.LastName,
-                Email = user.Email,
-                Phone = user.PhoneNumber,
-                TotalAmount = items.Sum(x => x.Amount),
-            };
-
-            foreach (var item in items )
-            {
-                var restaurant = restaurantRepository.All()
-                    .Where(x => x.Id == item.RestaurantId)
-                    .Include(x=>x.Address)
-                    .Include(x=>x.Address.City)
-                    .Include(x=>x.Address.City.Country)
-                    .FirstOrDefault();
-                var address = restaurant.Address.City.Country.CountryName + ", " + restaurant.Address.City.CityName + ", " + restaurant.Address.StreetName;
-                if (!model.Restaurants.Any(x => x.Name == restaurant.Name))
-                {
-                    var newRestaurant = new FinishOrderRestaurantViewModel
-                    {
-                        Name = restaurant.Name,
-                        Address = address,
-                    };
-                    model.Restaurants.Add(newRestaurant);
-                }
-
-            }
-
-            return model;
-
-        }
-
-        public async Task<CartItemsViewModel> GetAllItemsForOrder(string userId)
-        {
-            var result = new CartItemsViewModel();
-
-            var disheOrders = dishOrderRepository.All().Where(x => x.OwnerId == userId && x.Status == false)
-                .ToArray();
-
-            foreach (var dish in disheOrders)
-            {
-                var restaurantName = restaurantRepository.All().Where(x => x.Id == dish.RestaurantId).Select(x => x.Name).FirstOrDefault();
-                var dishName=dishesRepository.All().Where(x => x.Id == dish.DishId).Select(x => x.Name).FirstOrDefault();
-                if (!result.Restaurants.Any(x=>x.RestaurantName==restaurantName))
-                {
-                    var restaurant = new RestaurantOrders
-                    {
-                        RestaurantName=restaurantName,
-                        TotalAmount=0,
-
-
-                    };
-                    result.Restaurants.Add(restaurant);
-                }
-                var item = new CartItems
-                {
-                    Name = dishName,
-                    Amount = dish.Amount,
-                    Quantity = dish.Quantity,
-                    Id = dish.Id
-                };
-              var currentRestaurant = result.Restaurants.Where(x => x.RestaurantName == restaurantName)
-                    .FirstOrDefault();
-                currentRestaurant.Dishes.Add(item);
-
-                currentRestaurant.TotalAmount += dish.Amount;
-
-                result.TotalAmount+= dish.Amount; ;
-
-            }
-
-
-            return result;
-        }
 
         public async Task RemoveItemFromCart(string itemId)
         {
