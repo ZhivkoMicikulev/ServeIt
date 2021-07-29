@@ -938,7 +938,6 @@ D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\wwwroot\js\main.js
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Restaurants\Edit.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Restaurants\OwnedRestaurants.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Menus\Add.cshtml.g.cs
-D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Menus\_MenuPartial.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Menus\Edit.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Restaurants\EditInfo.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Users\Profile.cshtml.g.cs
@@ -950,3 +949,4 @@ D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\Microsoft.AspNetCore.SignalR
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\Microsoft.AspNetCore.SignalR.Common.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Cart\Orders.cshtml.g.cs
+D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Cart\ConfirmOrder.cshtml.g.cs

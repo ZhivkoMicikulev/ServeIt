@@ -63,6 +63,12 @@
             await userManager.UpdateAsync(user);
         }
 
+        public  async Task<User> GetUser(string userId)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+            return user;
+        }
+
         public async Task<EditProfileViewModel> GetUserInfo(string id)
         {
             var user = await userManager.FindByIdAsync(id);

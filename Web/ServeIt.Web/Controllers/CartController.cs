@@ -2,6 +2,7 @@
 using ServeIt.Services.Data.Menus;
 using ServeIt.Services.Data.Orders;
 using ServeIt.Services.Data.Restaurants;
+using ServeIt.Services.Data.Users;
 using ServeIt.Web.ViewModels.Orders;
 
 using System.Security.Claims;
@@ -13,12 +14,12 @@ namespace ServeIt.Web.Controllers
     {
     
         private readonly ICartService cartService;
-    
+        private readonly IUsersService usersService;
 
-        public CartController(ICartService cartService,IMenusService menusService)
+        public CartController(ICartService cartService,IUsersService usersService)
         {
             this.cartService = cartService;
-           
+            this.usersService = usersService;
         }
 
         [HttpPost]
@@ -31,7 +32,14 @@ namespace ServeIt.Web.Controllers
             }
            return this.Redirect($"/Restaurants/Info/{model.RestaurantId}");
         }
+        public async Task<IActionResult> ConfirmOrder(string id)
+        {
+            var user =await this.usersService.GetUser(UserId());
 
+            var model = await this.cartService.GetAllInfoAboutOrder(user);
+
+            return this.View(model);
+        }
 
         public async Task<IActionResult> Orders(string id)
         {

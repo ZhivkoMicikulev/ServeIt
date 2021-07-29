@@ -23,6 +23,12 @@
         [Required]
         public PlaceToGet PlaceToGet { get; set; }
 
+        public string CityId { get; set; }
+        public City City { get; set; }
+
+        public string StreetName { get; set; }
+
+
         [Required]
         public decimal TotalAmount { get; set; }
 

@@ -26,7 +26,7 @@
 
         Task<EditProfileViewModel> GetUserInfo(string id);
 
-
+        Task<User> GetUser(string userId);
         Task LogoutUser();
     }
 }

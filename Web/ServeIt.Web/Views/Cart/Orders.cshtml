@@ -19,30 +19,39 @@
             <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
 
                 @foreach (var item in restaurant.Dishes)
-	{
-                <div class="col-lg-6 menu-item ">
+                {
+                    <div class="col-lg-6 menu-item ">
 
-                    <div class="menu-content">
-                        <a>@item.Quantity x @item.Name</a><span>$@item.Amount</span>
+                        <div class="menu-content">
+                            <a>@item.Quantity x @item.Name</a><span>$@item.Amount</span>
+                        </div>
+                        <div class="menu-ingredients">
+                            <a class="bi bi-trash" asp-action="RemoveItem" asp-controller="Cart" asp-route-id=@item.Id>Remove</a>
+                        </div>
                     </div>
-                    <div class="menu-ingredients">
-                        <a class="bi bi-trash" asp-action="RemoveItem" asp-controller="Cart" asp-route-id=@item.Id>Remove</a>
-                    </div>
-                </div>
-	}
-                
+                }
 
-                
+
+
             </div>
             <div class="col-lg-6 menu-item >
-                <div class="menu-content">
-                    <span> total price  @restaurant.TotalAmount$</span>
+                <div class=" menu menu-content">
+                    <a>Total Price: </a> <span>  @restaurant.TotalAmount$</span>
                 </div>
+
                 <br />
                 <br />
 
 
             }
+        
 
-    </div>
+        <div class="col-lg-6 menu-item  ">
+            <div class="menu menu-content">
+
+                <span class="text-center">Final Price:  @Model.TotalAmount$ </span>
+                <a asp-action="ConfirmOrder" asp-controller="Cart" class="book-a-table-btn" style="width:auto;text-align:center">Order</a>
+
+            </div>
+        </div>
 </section>

@@ -12,5 +12,7 @@ namespace ServeIt.Web.ViewModels.Cart
         }
 
         public ICollection<RestaurantOrders> Restaurants { get; set; }
+
+        public decimal TotalAmount { get; set; }
     }
 }
