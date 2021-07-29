@@ -20,14 +20,18 @@
 
         public User User { get; set; }
 
+  
         [Required]
-        public PlaceToGet PlaceToGet { get; set; }
-
         public string CityId { get; set; }
         public City City { get; set; }
 
+        [Required]
         public string StreetName { get; set; }
 
+        [Required]
+        public string restaurantId { get; set; }
+
+        public Restaurant Restaurant { get; set; }
 
         [Required]
         public decimal TotalAmount { get; set; }

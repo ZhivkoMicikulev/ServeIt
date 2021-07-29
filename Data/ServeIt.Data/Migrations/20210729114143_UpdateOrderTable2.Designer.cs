@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ServeIt.Data;
 
 namespace ServeIt.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210729114143_UpdateOrderTable2")]
+    partial class UpdateOrderTable2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -498,8 +500,13 @@ namespace ServeIt.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("PlaceToGet")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RestaurantId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("StreetName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TableId")
@@ -512,21 +519,17 @@ namespace ServeIt.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("restaurantId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
 
                     b.HasIndex("IsDeleted");
 
+                    b.HasIndex("RestaurantId");
+
                     b.HasIndex("TableId");
 
                     b.HasIndex("UserId");
-
-                    b.HasIndex("restaurantId");
 
                     b.ToTable("Orders");
                 });
@@ -1081,6 +1084,10 @@ namespace ServeIt.Data.Migrations
                         .WithMany()
                         .HasForeignKey("CityId");
 
+                    b.HasOne("ServeIt.Data.Models.Restaurant", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("RestaurantId");
+
                     b.HasOne("ServeIt.Data.Models.Table", null)
                         .WithMany("Orders")
                         .HasForeignKey("TableId");
@@ -1091,15 +1098,7 @@ namespace ServeIt.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ServeIt.Data.Models.Restaurant", "Restaurant")
-                        .WithMany("Orders")
-                        .HasForeignKey("restaurantId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("City");
-
-                    b.Navigation("Restaurant");
 
                     b.Navigation("User");
                 });

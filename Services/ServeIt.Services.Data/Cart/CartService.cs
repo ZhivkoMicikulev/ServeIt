@@ -17,14 +17,17 @@ namespace ServeIt.Services.Data
         private readonly IDeletableEntityRepository<DishOrder> dishOrderRepository;
         private readonly IDeletableEntityRepository<Dish> dishesRepository;
         private readonly IDeletableEntityRepository<Restaurant> restaurantRepository;
+        private readonly IDeletableEntityRepository<Order> ordersRepository;
 
         public CartService(IDeletableEntityRepository<DishOrder> dishOrderRepository, 
             IDeletableEntityRepository<Dish> dishesRepository,
-            IDeletableEntityRepository<Restaurant> restaurantRepository)
+            IDeletableEntityRepository<Restaurant> restaurantRepository,
+            IDeletableEntityRepository<Order> ordersRepository)
         {
             this.dishOrderRepository = dishOrderRepository;
             this.dishesRepository = dishesRepository;
             this.restaurantRepository = restaurantRepository;
+            this.ordersRepository = ordersRepository;
         }
 
 
@@ -45,6 +48,47 @@ namespace ServeIt.Services.Data
 
             await dishOrderRepository.AddAsync(dishOrder);
             await dishOrderRepository.SaveChangesAsync();
+
+        }
+
+        public async Task FinishOrder(string userId, FinishOrderInputModel model)
+        {
+            var orderList = new List<Order>();
+            var items = this.dishOrderRepository.All().Where(x => x.OwnerId == userId && x.Status==false)
+                .Include(x=>x.Restaurant)
+                .Include(x=>x.Restaurant.Address)
+                .ToArray();
+
+            foreach (var item in items)
+            {
+                if (!orderList.Any(x=>x.restaurantId==item.RestaurantId))
+                {
+                    var newOrder = new Order
+                    {
+                        restaurantId = item.RestaurantId,
+                        CityId = item.Restaurant.Address.CityId,
+                        StreetName = model.StreetName,
+                        TotalAmount = 0,
+                        UserId=userId,
+                        IsItPayed=false,
+
+                    };
+
+                    orderList.Add(newOrder);
+                }
+
+                var order = orderList.Where(x => x.restaurantId == item.RestaurantId).FirstOrDefault();
+                order.TotalAmount += item.Amount;
+                item.Status = true;
+                order.DishOrders.Add(item);
+            }
+
+            foreach (var order in orderList)
+            {
+              await  this.ordersRepository.AddAsync(order);
+            }
+
+            await this.ordersRepository.SaveChangesAsync();
 
         }
 

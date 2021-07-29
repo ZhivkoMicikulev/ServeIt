@@ -83,6 +83,11 @@
 
                             </ul>
                         </li>
+                        <li>
+                            <a class="nav-link scrollto " asp-action="Orders" asp-controller="Cart" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">
+                                Cart<i class="bi bi-cart-check"></i>
+                            </a>
+                        </li>
                     }
 
                     @if (User.IsInRole("Restaurant"))
@@ -124,8 +129,7 @@
                             </ul>
                         </li>
                     }
-                    <li><a class="nav-link scrollto " asp-action="Orders" asp-controller="Cart" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Cart<i class="bi bi-cart-check"></i>
-</a></li>
+
 
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>

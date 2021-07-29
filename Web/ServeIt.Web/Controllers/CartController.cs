@@ -3,6 +3,7 @@ using ServeIt.Services.Data.Menus;
 using ServeIt.Services.Data.Orders;
 using ServeIt.Services.Data.Restaurants;
 using ServeIt.Services.Data.Users;
+using ServeIt.Web.ViewModels.Cart;
 using ServeIt.Web.ViewModels.Orders;
 
 using System.Security.Claims;
@@ -37,6 +38,7 @@ namespace ServeIt.Web.Controllers
             var user =await this.usersService.GetUser(UserId());
 
             var model = await this.cartService.GetAllInfoAboutOrder(user);
+            this.ViewData["UserId"] = UserId();
 
             return this.View(model);
         }
@@ -55,6 +57,17 @@ namespace ServeIt.Web.Controllers
             return this.Redirect($"/Cart/Orders/{UserId()}");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> FinishOrder(string id, FinishOrderInputModel model)
+        {
+            if (string.IsNullOrEmpty(model.StreetName))
+            {
+                return this.Redirect("/Cart/ConfirmOrder");
+            }
+            await this.cartService.FinishOrder(id, model);
+
+            return this.Redirect($"/");
+        }
 
 
         private string UserId()
