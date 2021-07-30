@@ -23,13 +23,13 @@
             <div class="col-lg-3">
                 <ul class="nav nav-tabs flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Menu</a>
+                        <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Orders</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Reservations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Orders</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Menu</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Information</a>
@@ -42,6 +42,29 @@
             <div class="col-lg-9 mt-4 mt-lg-0">
                 <div class="tab-content">
                     <div class="tab-pane active show" id="tab-1">
+                        <div class="row">
+                            <section id="menu" class="menu section-bg">
+                                <div class="row" data-aos="fade-up" data-aos-delay="100">
+                                    <div class="col-lg-12 d-flex justify-content-center">
+                                        <ul id="menu-flters">
+                                            <li data-filter="*" class="filter-waiting">Waiting</li>
+                                            <li data-filter=".filter-ready">ready</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div id="orders" class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+                                  
+                                </div>
+
+
+                            </section>
+
+
+                        </div>
+                    </div>
+
+                    <div class="tab-pane " id="tab-3">
                         <div class="row">
 
                             <section id="menu" class="menu section-bg">
@@ -97,63 +120,8 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane active show" id="tab-3">
-                        <div class="row">
 
-                            <section id="menu" class="menu section-bg">
-
-
-
-                                <div class="row" data-aos="fade-up" data-aos-delay="100">
-                                    <div class="col-lg-12 d-flex justify-content-center">
-                                        <ul id="menu-flters">
-                                            <li data-filter="*" class="filter-waiting">Waiting</li>
-                                            <li data-filter=".filter-ready">ready</li>
-
-
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-                                    @foreach (var order in Model.Orders)
-                                    {
-
-                                        <div class="col-lg-6 menu-item filter-@(order.IsItPayed?"done":"waiting")">
-
-
-                                            <div class="menu-content">
-                                                <a asp-action="Items" asp-controller="Orders" asp-route-id=@order.OrderId> Order: @order.OrderId</a><span>@order.Amount$</span>
-
-                                            </div>
-
-                                            <div class="menu-ingredients">
-                                                <p class="col-sm-8">Name: @order.FullName </p>
-                                                <p class="col-sm-8">Phone: @order.Phone </p>
-                                                <p class="col-sm-8">Street: @order.Street</p>
-                                                <p class="col-sm-8">Email: @order.Email<p>
-                                                <p class="col-sm-8">Date: @order.Date</p>
-                                                <p class="col-sm-8">Hour: @order.Hour</p>
-
-
-
-                                            </div>
-
-                                        </div>
-
-
-                                    }
-                                </div>
-
-
-                            </section>
-
-
-                        </div>
-                    </div>
-
-                    <div class="tab-pane active show" id="tab-4">
+                    <div class="tab-pane " id="tab-4">
                         <div class="row">
                             <section id="contact" class="contact">
                                 <div class="container" data-aos="fade-up">
@@ -216,6 +184,9 @@
                     </div>
 
 
+
+
+
                 </div>
 
             </div>
@@ -224,3 +195,55 @@
     </div>
 
 </section>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script>
+
+         $.get('/api/getOrders/@Model.RestaurantId', (data) =>
+    {
+             var a = document.getElementById("orders");
+             console.log(a);
+        for (var i = 0; i < data.length; i++)
+        {
+            var type;
+            if (data[0].isItPayed==false) {
+                type = 'waiting';
+            }
+            else {
+                type = 'done';
+            }
+            $("#orders").append(
+                '<div class="col-lg-6 menu-item filter-' + type + '">'
+                + '<div class="menu-content">'
+                +'<a href="/Orders/OrderedItems/'+ data[i].orderId + '"  > Order: ' + data[i].orderId + '</a>'
+                + '<span>' + (data[i].amount).toFixed(2) + '$</span>'
+                + '</div>'
+                + ' <div class="menu-ingredients">'
+                + '<p class="col-sm-8">Name: ' + data[i].fullName +'</p>'
+                + '<p class="col-sm-8">Phone: '+data[i].phone+'</p>'
+                + '<p class="col-sm-8">Street: ' + data[i].street+'</p>'
+                + '<p class="col-sm-8">Email: ' + data[i].email +'<p>'
+                + '<p class="col-sm-8">Date: ' + data[i].date + '<p>'
+                + ' <p class="col-sm-8">Hour: ' + data[i].hour + '<p>'
+                + '</div>'
+                + '</div>' );
+        }
+
+    })
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+

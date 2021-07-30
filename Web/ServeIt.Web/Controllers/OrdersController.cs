@@ -22,6 +22,14 @@ namespace ServeIt.Web.Controllers
             this.usersService = usersService;
         }
 
+        public async Task<IActionResult> OrderedItems(string id)
+        {
+            var model = await this.ordersService.TakeAllItemsFromOrder(id);
+
+            return this.View(model);
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> FinishOrder(string id, FinishOrderInputModel model)
         {

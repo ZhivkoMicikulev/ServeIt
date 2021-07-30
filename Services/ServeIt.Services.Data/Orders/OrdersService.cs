@@ -112,6 +112,7 @@ namespace ServeIt.Services.Data.Orders
             var orders = this.ordersRepository.All()
                 .Where(x => x.restaurantId == restaurantId )
                 .Include(x => x.User)
+                .OrderBy(x=>x.CreatedOn)
                 .Select
                 (
                 x => new OrdersViewModel
@@ -129,6 +130,25 @@ namespace ServeIt.Services.Data.Orders
                 ).ToList();
 
             return orders;
+        }
+
+        public async Task<ICollection<ItemsViewModel>> TakeAllItemsFromOrder(string orderId)
+        {
+            var order = this.ordersRepository.All().Where(x => x.Id == orderId)
+                .Include(x=>x.DishOrders)
+                .ThenInclude(x=>x.Dish)
+                .FirstOrDefault();
+
+            var items= order.DishOrders              
+                .Select(x => new ItemsViewModel
+                {
+                    Name = x.Dish.Name,
+                    Quantity = x.Quantity
+                }).OrderBy(x=>x.Name).ToList();
+
+
+            return items;
+              
         }
     }
 }

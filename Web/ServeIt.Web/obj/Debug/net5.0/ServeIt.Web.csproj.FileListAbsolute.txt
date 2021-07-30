@@ -950,3 +950,4 @@ D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\Microsoft.AspNetCore.SignalR
 D:\ServeIt\ServeIt\Web\ServeIt.Web\bin\Debug\net5.0\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Cart\Items.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Orders\ConfirmOrder.cshtml.g.cs
+D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Orders\OrderedItems.cshtml.g.cs
