@@ -10,23 +10,30 @@
             <p>Items</p>
         </div>
 
-     
+
 
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
             @foreach (var item in Model)
-	{
-            <div class="col-lg-6 menu-item filter-starters">
-                <div class="menu-content">
-                    <a>@item.Name</a><span>@item.Quantity</span>
-                </div>
-               
-            </div>
-	}
-            
+            {
+                <div class="col-lg-6 menu-item filter-starters">
+                    <div class="menu-content">
+                        <a>@item.Name</a><span>@item.Quantity</span>
+                    </div>
 
-     
+                </div>
+            }
+
+
+
+
+        </div>
+        <br />  
+
+        <div class="text-center">
+            <a asp-action="DoneOrder" asp-controller="Orders" asp-route-id=@ViewData["OrderId"] class="book-a-table-btn" style="width:auto;text-align:center">Done</a>
 
         </div>
 
+          
     </div>
 </section>

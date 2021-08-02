@@ -2,12 +2,13 @@
 {
     using System.Security.Claims;
     using System.Threading.Tasks;
-
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using ServeIt.Services.Data.Menus;
     using ServeIt.Services.Data.Orders;
     using ServeIt.Services.Data.Restaurants;
     using ServeIt.Web.ViewModels.Restaurants;
+    [Authorize]
 
     public class RestaurantsController : BaseController
     {

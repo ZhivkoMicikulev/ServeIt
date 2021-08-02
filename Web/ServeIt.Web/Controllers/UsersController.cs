@@ -1,5 +1,6 @@
 ﻿namespace ServeIt.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using ServeIt.Services.Data.Users;
     using ServeIt.Web.ViewModels.User;
@@ -18,6 +19,7 @@
         {
             this.usersService = usersService;
         }
+        [Authorize]
 
         public async Task<IActionResult> Profile(string id)
         {
@@ -26,6 +28,7 @@
             return this.View(model);
         }
         [HttpPost]
+        [Authorize]
 
         public async Task<IActionResult> EditUsername(EditProfileInputModel model)
         {
@@ -41,6 +44,7 @@
         }
 
 
+    [Authorize]
         [HttpPost]
         public async Task<IActionResult> EditPhone(EditProfileInputModel model)
         {
@@ -55,6 +59,8 @@
             return this.Redirect($"/Users/Profile/{UserId()}");
 
         }
+        [Authorize]
+
         [HttpPost]
 
         public async Task<IActionResult> EditEmail(EditProfileInputModel model)
@@ -69,6 +75,7 @@
 
 
         }
+        [Authorize]
 
         [HttpPost]
 
@@ -139,6 +146,7 @@
             return this.Redirect("/Users/Login");
 
         }
+        [Authorize]
 
         public async Task<IActionResult> Logout()
         {

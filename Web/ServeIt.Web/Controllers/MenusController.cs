@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ServeIt.Services.Data.Menus;
 using ServeIt.Services.Data.Restaurants;
 using ServeIt.Web.ViewModels.Menu;
@@ -9,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace ServeIt.Web.Controllers
 {
+
+    [Authorize]
+
     public class MenusController:BaseController
     {
         private readonly IMenusService menusServices;

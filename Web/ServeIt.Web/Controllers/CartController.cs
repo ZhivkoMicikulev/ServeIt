@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ServeIt.Services.Data.Menus;
 using ServeIt.Services.Data.Orders;
 using ServeIt.Services.Data.Restaurants;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace ServeIt.Web.Controllers
 {
+    [Authorize]
     public class CartController:BaseController
     {
     

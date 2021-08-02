@@ -17,5 +17,7 @@ namespace ServeIt.Services.Data.Orders
         Task<ICollection<OrdersViewModel>> TakeAllOrders(string restaurantId);
 
         Task<ICollection<ItemsViewModel>> TakeAllItemsFromOrder(string orderId);
+
+        Task<string> DoneOrder(string orderId);
     }
 }

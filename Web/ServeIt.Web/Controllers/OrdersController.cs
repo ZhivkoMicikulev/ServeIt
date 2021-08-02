@@ -1,33 +1,48 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using ServeIt.Services.Data.Orders;
 using ServeIt.Services.Data.Users;
 using ServeIt.Web.ViewModels.Cart;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ServeIt.Web.Controllers
 {
+    [Authorize]
+
     public class OrdersController:BaseController
     {
         private readonly IOrdersService ordersService;
         private readonly IUsersService usersService;
+    
 
         public OrdersController(IOrdersService ordersService,
             IUsersService usersService)
+         
         {
             this.ordersService = ordersService;
             this.usersService = usersService;
+    
         }
 
         public async Task<IActionResult> OrderedItems(string id)
         {
             var model = await this.ordersService.TakeAllItemsFromOrder(id);
-
+            this.ViewData["OrderId"] = id;
             return this.View(model);
         }
+    
+        public async Task<IActionResult> DoneOrder(string id)
+        {
+            var restaurantId = await this.ordersService.DoneOrder(id);
+
+            return this.Redirect($"/Restaurants/Edit/{restaurantId}");
+
+        }
+       
+        
 
 
         [HttpPost]
@@ -37,6 +52,8 @@ namespace ServeIt.Web.Controllers
             {
                 return this.Redirect("/Cart/ConfirmOrder");
             }
+
+
 
             await this.ordersService.FinishOrder(id, model);
 
