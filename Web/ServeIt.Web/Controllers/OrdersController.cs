@@ -43,9 +43,9 @@ namespace ServeIt.Web.Controllers
         }
         public async Task<IActionResult> MyOrders(string id)
         {
-            
+            var model = await this.ordersService.TakeAllMyOrders(id);
 
-            return this.View();
+            return this.View(model);
 
         }
 

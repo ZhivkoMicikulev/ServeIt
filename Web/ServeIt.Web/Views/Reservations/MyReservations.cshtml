@@ -8,19 +8,19 @@
 
         <div class="section-title">
             <h2>My</h2>
-            <p>Orders</p>
+            <p>Reservations</p>
         </div>
 
 
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-            @foreach (var order in Model)
+            @foreach (var reservation in Model)
             {
                 <div class="col-lg-6 menu-item">
                     <div class="menu-content">
-                        <a asp-action="OrderedItems" asp-controller="Orders" asp-route-id="@order.OrderId" >@order.OrderId</a><span>$@order.Price</span>
+                        <a asp-action="OrderedItems" asp-controller="Orders" asp-route-id="@reservation.ReservationId">@reservation.ReservationId</a><span>Date:@reservation:Date </span>
                     </div>
                     <div class="menu-ingredients">
-                        Restaurant:@order.RestaurantName ,Date:@order.Date
+                        Restaurant: @reservation.RestaurantName 
                     </div>
                 </div>
             }

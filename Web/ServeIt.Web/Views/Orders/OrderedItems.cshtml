@@ -27,13 +27,14 @@
 
 
         </div>
-        <br />  
+        <br />
 
-        <div class="text-center">
-            <a asp-action="DoneOrder" asp-controller="Orders" asp-route-id=@ViewData["OrderId"] class="book-a-table-btn" style="width:auto;text-align:center">Done</a>
+        @if (User.IsInRole("Restaurant"))
+        {
+            <div class="text-center">
+                <a asp-action="DoneOrder" asp-controller="Orders" asp-route-id=@ViewData["OrderId"] class="book-a-table-btn" style="width:auto;text-align:center">Done</a>
+            </div>
+        }
 
         </div>
-
-          
-    </div>
 </section>

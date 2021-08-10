@@ -166,5 +166,22 @@ namespace ServeIt.Services.Data.Orders
             return restaurantId;
               
         }
+
+        public async Task<ICollection<MyOrdersViewModel>> TakeAllMyOrders(string id)
+        {
+            var myOrders =await this.ordersRepository.All().Where(x => x.UserId == id)
+                .Include(x => x.Restaurant)
+                .OrderByDescending(x=>x.CreatedOn)
+                .Select(x => new MyOrdersViewModel
+                {
+                    OrderId = x.Id,
+                    Price = x.TotalAmount,
+                    RestaurantName = x.Restaurant.Name,
+                    Date = x.CreatedOn.ToString("dd/MM/yyyy"),
+
+                }).ToListAsync();
+
+            return myOrders;
+        }
     }
 }

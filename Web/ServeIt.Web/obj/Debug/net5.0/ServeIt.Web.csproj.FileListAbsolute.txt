@@ -953,3 +953,4 @@ D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Orders\ConfirmOr
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Orders\OrderedItems.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Reservations\Reservation.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Orders\MyOrders.cshtml.g.cs
+D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Reservations\MyReservations.cshtml.g.cs

@@ -16,6 +16,9 @@ namespace ServeIt.Services.Data.Orders
 
         Task<ICollection<OrdersViewModel>> TakeAllOrders(string restaurantId);
 
+        Task<ICollection<MyOrdersViewModel>> TakeAllMyOrders(string id);
+
+
         Task<ICollection<ItemsViewModel>> TakeAllItemsFromOrder(string orderId);
 
         Task<string> DoneOrder(string orderId);
