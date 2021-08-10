@@ -7,6 +7,7 @@
     using ServeIt.Services.Data.Menus;
     using ServeIt.Services.Data.Orders;
     using ServeIt.Services.Data.Restaurants;
+    using ServeIt.Services.Data.Users;
     using ServeIt.Web.ViewModels.Restaurants;
     [Authorize]
 
@@ -15,14 +16,17 @@
         private readonly IRestaurantsService restaurantService;
         private readonly IMenusService menusService;
         private readonly IOrdersService ordersService;
+        private readonly IUsersService usersService;
 
         public RestaurantsController(IRestaurantsService restaurantService,
             IMenusService menusService,
-            IOrdersService ordersService)
+            IOrdersService ordersService,
+            IUsersService usersService)
         {
             this.restaurantService = restaurantService;
             this.menusService = menusService;
             this.ordersService = ordersService;
+            this.usersService = usersService;
         }
 
 
@@ -148,13 +152,18 @@
 
             var restaurantInfo = await restaurantService.RestaurantInfo(id);
             var categories = await menusService.TakeAllCategoriesByMenu(menuId);
-
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user =await usersService.GetUser(userId);
             var model = new EditRestaurantViewModel
             {
                 RestaurantId = id,
                 Dishes = menu,
                 MenuCategories = categories,
                 RestaurantInfo = restaurantInfo,
+                UserFullName=user.FirstName+" "+user.LastName,
+                UserPhone=user.PhoneNumber,
+                UserEmail=user.Email,
+                UserId=user.Id
 
             };
 

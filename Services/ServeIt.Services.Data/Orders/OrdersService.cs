@@ -3,10 +3,10 @@ using ServeIt.Data.Common.Repositories;
 using ServeIt.Data.Models;
 using ServeIt.Web.ViewModels.Cart;
 using ServeIt.Web.ViewModels.Orders;
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
 using System.Threading.Tasks;
 
 namespace ServeIt.Services.Data.Orders

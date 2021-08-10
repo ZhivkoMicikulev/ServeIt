@@ -17,5 +17,15 @@ namespace ServeIt.Web.ViewModels.Restaurants
         public RestaurantInfoViewModel  RestaurantInfo { get; set; }
 
         public ICollection<OrdersViewModel> Orders { get; set; }
+
+    
+
+        public string UserFullName { get; set; }
+
+        public string UserPhone { get; set; }
+
+        public string UserEmail { get; set; }
+
+        public string UserId { get; set; }
     }
 }

@@ -481,6 +481,7 @@ namespace ServeIt.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CityId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedOn")
@@ -595,6 +596,9 @@ namespace ServeIt.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -609,11 +613,13 @@ namespace ServeIt.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("TableId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Time")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -622,6 +628,8 @@ namespace ServeIt.Data.Migrations
                     b.HasIndex("RestaurantId");
 
                     b.HasIndex("TableId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
                 });
@@ -1079,7 +1087,9 @@ namespace ServeIt.Data.Migrations
                 {
                     b.HasOne("ServeIt.Data.Models.City", "City")
                         .WithMany()
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("ServeIt.Data.Models.Table", null)
                         .WithMany("Orders")
@@ -1142,15 +1152,17 @@ namespace ServeIt.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ServeIt.Data.Models.Table", "Table")
+                    b.HasOne("ServeIt.Data.Models.Table", null)
                         .WithMany("Reservations")
-                        .HasForeignKey("TableId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("TableId");
+
+                    b.HasOne("ServeIt.Data.Models.User", "User")
+                        .WithMany("Reservations")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Restaurant");
 
-                    b.Navigation("Table");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ServeIt.Data.Models.Restaurant", b =>
@@ -1222,13 +1234,13 @@ namespace ServeIt.Data.Migrations
             modelBuilder.Entity("ServeIt.Data.Models.UserReservation", b =>
                 {
                     b.HasOne("ServeIt.Data.Models.Reservation", "Reservation")
-                        .WithMany("UserReservations")
+                        .WithMany()
                         .HasForeignKey("ReservationId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ServeIt.Data.Models.User", "User")
-                        .WithMany("UserReservations")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1299,11 +1311,6 @@ namespace ServeIt.Data.Migrations
                     b.Navigation("RatingUsers");
                 });
 
-            modelBuilder.Entity("ServeIt.Data.Models.Reservation", b =>
-                {
-                    b.Navigation("UserReservations");
-                });
-
             modelBuilder.Entity("ServeIt.Data.Models.Restaurant", b =>
                 {
                     b.Navigation("Comments");
@@ -1330,11 +1337,11 @@ namespace ServeIt.Data.Migrations
 
                     b.Navigation("RatingUsers");
 
+                    b.Navigation("Reservations");
+
                     b.Navigation("Roles");
 
                     b.Navigation("UserOrders");
-
-                    b.Navigation("UserReservations");
 
                     b.Navigation("UserRestaurants");
                 });

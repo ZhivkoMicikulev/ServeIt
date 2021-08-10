@@ -41,8 +41,15 @@ namespace ServeIt.Web.Controllers
             return this.Redirect($"/Restaurants/Edit/{restaurantId}");
 
         }
-       
-        
+        public async Task<IActionResult> MyOrders(string id)
+        {
+            
+
+            return this.View();
+
+        }
+
+
 
 
         [HttpPost]

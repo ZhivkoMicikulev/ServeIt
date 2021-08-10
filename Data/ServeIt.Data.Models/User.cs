@@ -15,7 +15,7 @@
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
 
-            this.UserReservations = new HashSet<UserReservation>();
+         
             this.UserOrders = new HashSet<UserOrder>();
             this.RatingUsers = new HashSet<RatingUser>();
             this.UserRestaurants = new HashSet<UserRestaurant>();
@@ -32,7 +32,8 @@
         [Required]
         public bool IsItOwnerOfRestaurant { get; set; }
 
-        public virtual ICollection<UserReservation> UserReservations { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
+
 
         public virtual ICollection<UserOrder> UserOrders { get; set; }
 

@@ -26,6 +26,7 @@
     using ServeIt.Services.Data.Menus;
     using ServeIt.Services.Data.Helper;
     using ServeIt.Services.Data.Orders;
+    using ServeIt.Services.Data.Reservations;
 
     public class Startup
     {
@@ -78,6 +79,8 @@
             services.AddTransient<IHelperService, HelperService>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IOrdersService, OrdersService>();
+            services.AddTransient<IReservationsService, ReservationsService>();
+
 
 
 

@@ -12,7 +12,7 @@
         public Reservation()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.UserReservations = new HashSet<UserReservation>();
+          
         }
 
         [Required]
@@ -29,11 +29,10 @@
 
         public Restaurant Restaurant { get; set; }
 
+        public string Description { get; set; }
         [Required]
-        public string TableId { get; set; }
-
-        public Table Table { get; set; }
-
-        public virtual ICollection<UserReservation> UserReservations { get; set; }
+        public string UserId { get; set; }
+     
+        public User User { get; set; }
     }
 }
