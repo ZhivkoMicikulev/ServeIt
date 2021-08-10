@@ -17,7 +17,7 @@
             {
                 <div class="col-lg-6 menu-item">
                     <div class="menu-content">
-                        <a asp-action="OrderedItems" asp-controller="Orders" asp-route-id="@reservation.ReservationId">@reservation.ReservationId</a><span>Date:@reservation:Date </span>
+                        <a asp-action="Reservation" asp-controller="Reservations" asp-route-id="@reservation.ReservationId">Reservation: @reservation.ReservationId</a><span>Date:@reservation.Date </span>
                     </div>
                     <div class="menu-ingredients">
                         Restaurant: @reservation.RestaurantName 

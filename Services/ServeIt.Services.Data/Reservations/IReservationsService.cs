@@ -1,4 +1,5 @@
-﻿using ServeIt.Web.ViewModels.Reservations;
+﻿using ServeIt.Web.ViewModels.Orders;
+using ServeIt.Web.ViewModels.Reservations;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,5 +12,8 @@ namespace ServeIt.Services.Data.Reservations
         Task<string> MakeReservation(ReservationInputModel model);
 
         Task<ReservationViewModel> TakeReservationInfo(string id);
+
+        Task<ICollection<MyReservationsViewModel>> TakeAllMyReservation(string id);
+
     }
 }

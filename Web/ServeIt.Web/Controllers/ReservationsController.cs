@@ -35,8 +35,8 @@ namespace ServeIt.Web.Controllers
         }
         public async Task<IActionResult> MyReservations(string id)
         {
-            
-            return this.View();
+            var model = await this.reservationsService.TakeAllMyReservation(id);
+            return this.View(model);
         }
     }
 }

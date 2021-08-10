@@ -1,6 +1,7 @@
 ﻿using ServeIt.Data.Models;
 using ServeIt.Web.ViewModels.Cart;
 using ServeIt.Web.ViewModels.Orders;
+using ServeIt.Web.ViewModels.Reservations;
 using System;
 using System.Collections.Generic;
 using System.Text;

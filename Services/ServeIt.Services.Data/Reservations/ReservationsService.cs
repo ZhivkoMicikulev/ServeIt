@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ServeIt.Data.Common.Repositories;
 using ServeIt.Data.Models;
+using ServeIt.Web.ViewModels.Orders;
 using ServeIt.Web.ViewModels.Reservations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ServeIt.Services.Data.Reservations
@@ -37,6 +37,23 @@ namespace ServeIt.Services.Data.Reservations
             return reservation.Id;
         }
 
+        public async Task<ICollection<MyReservationsViewModel>> TakeAllMyReservation(string id)
+        {
+            var myReservations =await this.reservationsRepository.All().Where(x => x.UserId == id)
+                .Include(x => x.Restaurant)
+                .OrderByDescending(x=>x.Date)            
+                .Select(x => new MyReservationsViewModel
+                {
+                    ReservationId = x.Id,
+                    RestaurantName = x.Restaurant.Name,
+                    Date = x.Date.ToString("dd/MM/yyyy")
+
+
+                }).ToListAsync();
+
+            return myReservations;
+        }
+
         public async Task<ReservationViewModel> TakeReservationInfo(string id)
         {
             var reservation = reservationsRepository.All().Where(x => x.Id == id)
@@ -52,7 +69,7 @@ namespace ServeIt.Services.Data.Reservations
                     Time = x.Time.ToString("HH:mm"),
                     People = x.SeatNumber,
                     RestaurantName = x.Restaurant.Name,
-                    Description = string.IsNullOrEmpty(x.Description) ? x.Description : "",
+                    Description = string.IsNullOrEmpty(x.Description) ? " " : x.Description,
                 })
                 .FirstOrDefault();
 
