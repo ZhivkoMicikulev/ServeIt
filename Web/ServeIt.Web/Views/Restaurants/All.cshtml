@@ -10,7 +10,14 @@
         <div class="section-title">
             <h2>All</h2>
             <p>Restaurants</p>
+
+
         </div>
+        <div class="col-lg-4 col-md-6 form-group">
+            <input type="text" onkeyup="myFunction()"  name="town" class="form-control" id="search" placeholder="Search..." >
+    
+        </div>
+        <br />  
         @if (ViewData["town"] != null)
         {
             <div class="section-title">
@@ -28,9 +35,7 @@
                         <div class="box" data-aos="zoom-in" data-aos-delay="200">
                             <span>Rating: @restaurant.Rating</span>
                             <h4>@restaurant.Name </h4>
-                            <p>
-                                Address: @restaurant.Country , @restaurant.City , @restaurant.Street.
-                            </p>
+                            <p id="address">Address: @restaurant.Country, @restaurant.City, @restaurant.Street.</p>
                         </div>
                     </div>
                 }
@@ -46,3 +51,57 @@
 
     </div>
 </section>
+
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter,  i, txtValue;
+        input = document.getElementById('search');
+        filter = input.value.toUpperCase();
+      
+        restaurantsName = document.querySelectorAll("h4");
+
+
+
+        for (var i = 0; i < restaurantsName.length; i++) {
+           
+            txtValue = restaurantsName[i].textContent || restaurantsName[i].innerText;
+
+            var parrent = restaurantsName[i].parentElement.parentElement;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                parrent.style.display = "block";
+            }
+            else {
+                parrent.style.display = "none";
+            }
+        }
+
+        function adrress() {
+            // Declare variables
+            var input, filter, i, txtValue;
+            input = document.getElementById('search');
+            filter = input.value.toUpperCase();
+
+            addresses = document.querySelectorAll("#address");
+
+
+
+            for (var i = 0; i < addresses.length; i++) {
+                
+                txtValue = addresses[i].textContent || addresses[i].innerText;
+                console.log(txtValue)
+                var parrent = addresses[i].parentElement.parentElement;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    parrent.style.display = "block";
+                }
+                else {
+                    parrent.style.display = "none";
+                }
+            }
+
+
+        }
+
+        adrress();
+    }
+</script>
