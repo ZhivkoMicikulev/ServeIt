@@ -8,15 +8,23 @@
             <div class="col-lg-8">
                 <h1>Welcome to <span>@GlobalConstants.SystemName!</span></h1>
                 <h2>Find your flavour</h2>
-                @if (!User.Identity.IsAuthenticated)
-                {
-                    <div class="btns">
-                        <a href="/Users/Login" class="btn-menu animated fadeInUp scrollto">Login</a>
-                        <a href="/Users/Register" class="btn-book animated fadeInUp scrollto">Register</a>
+                <form asp-action="FindRestaurant" asp-controller="Restaurants" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+
+                    <div class="col-lg-4 col-md-6 form-group">
+                        <input type="text" name="town" class="form-control" id="name" placeholder="Town" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                        <div class="validate"></div>
                     </div>
-                }
-              
+                    <div class="text-center"><button type="submit" class="play-btn"></button></div>
+                </form>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <div class="btns">
+                            <a href="/Users/Login" class="btn-menu animated fadeInUp scrollto">Login</a>
+                            <a href="/Users/Register" class="btn-book animated fadeInUp scrollto">Register</a>
+                        </div>
+                    }
+
 
             </div>
-                </div>
+            </div>
 </section>

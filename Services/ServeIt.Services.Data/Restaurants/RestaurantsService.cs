@@ -1,4 +1,5 @@
-﻿using ServeIt.Data.Common.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using ServeIt.Data.Common.Repositories;
 using ServeIt.Data.Models;
 using ServeIt.Web.ViewModels.Restaurants;
 using System;
@@ -138,6 +139,31 @@ namespace ServeIt.Services.Data.Restaurants
 
 
                 }).OrderBy(x => x.Rating).ToList();
+
+            return restaurants;
+        }
+
+        public async Task<ICollection<AllRestaurantViewModel>> GetAllRestaurants(string townName)
+        {
+            var city = this.citiesRepository.All().Where(x => x.CityName.ToLower() == townName.ToLower()).Select(x => x.Id).FirstOrDefault();
+            if (city == null)
+            {
+                return null;
+            }
+            var restaurants=this.restaurantRepository.All()
+                .Include(x=>x.Address)
+                .Where(x=>x.Address.CityId==city)
+                   .Select(x => new AllRestaurantViewModel
+                   {
+                       Name = x.Name,
+                       Country = x.Address.City.Country.CountryName,
+                       City = x.Address.City.CityName,
+                       Street = x.Address.StreetName,
+                       RestaurantId = x.Id,
+                       Rating = x.Ratings.Any() ? ((x.Ratings.Select(r => r.RatingScore).Sum()) / x.Ratings.Count()) : 0,
+                   })
+                   .OrderBy(x => x.Rating)
+                   .ToList();
 
             return restaurants;
         }

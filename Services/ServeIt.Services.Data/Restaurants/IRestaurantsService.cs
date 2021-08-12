@@ -13,6 +13,8 @@ namespace ServeIt.Services.Data.Restaurants
 
        Task <ICollection<AllRestaurantViewModel>> GetAllRestaurants();
 
+        Task<ICollection<AllRestaurantViewModel>> GetAllRestaurants(string townName);
+
         Task<ICollection<AllRestaurantViewModel>> GetAllOwnedRestaurants(string id);
 
 
@@ -30,7 +32,7 @@ namespace ServeIt.Services.Data.Restaurants
 
         Task<bool> isTheAddressChanged(string cityId, string streetName);
 
-
+        
 
 
 

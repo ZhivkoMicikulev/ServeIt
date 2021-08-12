@@ -11,9 +11,16 @@
             <h2>All</h2>
             <p>Restaurants</p>
         </div>
+        @if (ViewData["town"] != null)
+        {
+            <div class="section-title">
+                <p>Sorry, but we don't have restaurants in @ViewData["town"]</p>
+            </div>
+        }
+        else
+        {
+            <div class="row">
 
-        <div class="row">
-            
                 @foreach (var restaurant in Model as IEnumerable<AllRestaurantViewModel>)
                 {
                     <div class="col-lg-4 mt-4 mt-lg-0" onclick="location.href = '/Restaurants/Info/@restaurant.RestaurantId'" style="cursor: pointer;">
@@ -28,10 +35,14 @@
                     </div>
                 }
 
-                
 
 
-        </div>
+
+            </div>
+        }
+
+
+
 
     </div>
 </section>

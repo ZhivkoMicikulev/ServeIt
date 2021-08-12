@@ -9,8 +9,6 @@
     using ServeIt.Services.Data.Restaurants;
     using ServeIt.Services.Data.Users;
     using ServeIt.Web.ViewModels.Restaurants;
-    [Authorize]
-
     public class RestaurantsController : BaseController
     {
         private readonly IRestaurantsService restaurantService;
@@ -96,6 +94,7 @@
 
 
 
+        [HttpGet]
         public async Task<IActionResult> All()
         {
             var model = await restaurantService.GetAllRestaurants();
@@ -104,7 +103,35 @@
             return this.View(model);
         }
 
-       
+        [HttpGet("/Restaurants/All/{town}")]
+        public async Task<IActionResult> All(string town)
+        {
+
+            var model = await restaurantService.GetAllRestaurants(town);
+            if (model==null)
+            {
+             
+                this.ViewData["town"] = town;
+            }
+
+            return this.View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> FindRestaurant(string town)
+        {
+
+            if (string.IsNullOrEmpty(town))
+            {
+                return this.Redirect("/Restaurants/All");
+            }
+
+            return this.Redirect($"/Restaurants/All/{town}");
+
+        }
+
+
+     
+
         public async Task<IActionResult> OwnedRestaurants(string id)
         {
             var model = await restaurantService.GetAllOwnedRestaurants(id);
@@ -146,14 +173,20 @@
 
         public async Task<IActionResult> Info(string id)
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await usersService.GetUser(userId);
+            if (user==null)
+            {
+                return this.Redirect("/Users/Login");
+            }
+
             var menuId = await this.menusService.RestaurantMenu(id);
             var menu = await this.menusService.TakeAllDishes(menuId);
 
 
             var restaurantInfo = await restaurantService.RestaurantInfo(id);
             var categories = await menusService.TakeAllCategoriesByMenu(menuId);
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user =await usersService.GetUser(userId);
+            
             var model = new EditRestaurantViewModel
             {
                 RestaurantId = id,
@@ -163,7 +196,7 @@
                 UserFullName=user.FirstName+" "+user.LastName,
                 UserPhone=user.PhoneNumber,
                 UserEmail=user.Email,
-                UserId=user.Id
+                UserId= user.Id
 
             };
 
