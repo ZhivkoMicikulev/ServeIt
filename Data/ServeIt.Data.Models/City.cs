@@ -6,7 +6,7 @@
 
     using ServeIt.Data.Common.Models;
 
-    public class City : BaseModel<string>
+    public class City : BaseDeletableModel<string>
     {
         public City()
         {

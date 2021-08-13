@@ -13,11 +13,8 @@
 
 
         </div>
-        <div class="col-lg-4 col-md-6 form-group">
-            <input type="text" onkeyup="myFunction()"  name="town" class="form-control" id="search" placeholder="Search..." >
-    
-        </div>
-        <br />  
+
+        <br />
         @if (ViewData["town"] != null)
         {
             <div class="section-title">
@@ -26,27 +23,32 @@
         }
         else
         {
-    <div class="row">
+            <div class="col-lg-4 col-md-6 form-group">
+                <input type="text" onkeyup="myFunction()" name="town" class="form-control" id="search" placeholder="Search...">
 
-        @foreach (var restaurant in Model as IEnumerable<AllRestaurantViewModel>)
-        {
-
-        <div class="col-lg-4 mt-4 mt-lg-0" onclick="location.href = '/Restaurants/Info/@restaurant.RestaurantId'" style="cursor: pointer;">
-
-            <div class="box" data-aos="zoom-in" data-aos-delay="200">
-                <span>Rating: @restaurant.Rating.ToString("F2") / 5,00</span>
-                <h4>@restaurant.Name </h4>
-                <p id="address">Address: @restaurant.Country, @restaurant.City, @restaurant.Street.</p>
             </div>
             <br />
-        </div>
+            <div class="row">
 
-        }
+                @foreach (var restaurant in Model as IEnumerable<AllRestaurantViewModel>)
+                {
+
+                    <div class="col-lg-4 mt-4 mt-lg-0" onclick="location.href = '/Restaurants/Info/@restaurant.RestaurantId'" style="cursor: pointer;">
+
+                        <div class="box" data-aos="zoom-in" data-aos-delay="200">
+                            <span>Rating: @restaurant.Rating.ToString("F2") / 5,00</span>
+                            <h4>@restaurant.Name </h4>
+                            <p id="address">Address: @restaurant.Country, @restaurant.City, @restaurant.Street.</p>
+                        </div>
+                        <br />
+                    </div>
+
+                }
 
 
 
 
-    </div>
+            </div>
         }
 
 

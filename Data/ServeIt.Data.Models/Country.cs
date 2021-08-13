@@ -6,7 +6,7 @@
 
     using ServeIt.Data.Common.Models;
 
-    public class Country : BaseModel<string>
+    public class Country : BaseDeletableModel<string>
     {
         public Country()
         {

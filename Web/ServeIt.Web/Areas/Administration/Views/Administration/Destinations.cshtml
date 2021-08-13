@@ -1,0 +1,113 @@
+﻿<br />
+<br />
+<br />
+
+<section id="menu" class="menu section-bg">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>All</h2>
+            <p>Destinations</p>
+        </div>
+        <div class="text-center">
+            <a id="addCountry" onclick="CreateCountryInputField()" class="book-a-table-btn"> Add Country</a>
+
+            <form style="display:none" id="countryForm" asp-action="AddCountry" asp-controller="Administration" asp-area="Administration" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 form-group mt-3 text-center ">
+                        <input type="text" name="countryName" class="form-control "  placeholder="Country Name..." >
+                    </div>
+                    <div class="col-lg-4 col-md-6 form-group mt-3 text-center">
+                        <button type="submit" class="book-a-table-btn" style="background-color: #1a1814 ">Add Country</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br />
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <ul id="menu-flters">
+                    <li data-filter="*" class="filter-active">All</li>
+                    @foreach(var country in Model)
+                    {
+                    <li data-filter=".filter-@country.Name">@country.Name</li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+            @foreach(var country in Model)
+            {
+            <div class="col-lg-6 menu-item filter-@country.Name">
+
+                <div class="menu-content">
+                    <a style="cursor: pointer;">@country.Name</a>
+                   
+                        <span style="cursor:pointer" onclick="AddCity(this)">Add City</span>
+                        
+                        <div class="text-center" style="display:none">
+                            <br />
+                            <form id="countryForm" asp-action="AddCity" asp-controller="Administration" asp-area="Administration" asp-route-id="@country.Id" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 form-group mt-3 text-center ">
+                                        <input type="text" name="cityName" class="form-control " placeholder="City Name...">
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 form-group mt-3 text-center">
+                                        <button type="submit" class="book-a-table-btn" style="background-color: #1a1814 ">Add City</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    
+                </div>
+                <div class="menu-ingredients">
+                    @foreach(var city in country.Cities)
+                    {
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 form-group mt-3 text-center">
+                            <p>@city.Name</p>
+                        </div>
+                        <div class="col-lg-4 col-md-6 form-group mt-3 text-left menu-content">
+                            <a asp-action="RemoveCity" asp-area="Administration" asp-controller="Administration" asp-route-id="@city.Id">Delete</a>
+                        </div>
+                    </div>
+                   
+
+                    }
+                    <br />
+                    <div class="text-center">
+                        <a class="book-a-table-btn" asp-action="RemoveCountry" asp-area="Administration" asp-controller="Administration" asp-route-id="@country.Id"><i class="bi bi-person-x"></i>Remove</a>
+                    </div>
+                    <br />
+                </div>
+                </div>
+
+            }
+
+
+        </div>
+
+    </div>
+</section>
+
+<script>
+    function CreateCountryInputField() {
+
+        var a = document.getElementById("addCountry");
+        var form = document.getElementById("countryForm");
+        a.style.display = "none";
+        form.style.display = "block";
+    }
+    function AddCity(e) {
+
+        var span = e;
+        var form = e.nextElementSibling;
+        e.style.display = "none"
+        form.style.display="block"
+
+
+    }
+
+
+</script>

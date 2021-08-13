@@ -955,3 +955,5 @@ D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Orders\MyOrders.
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Reservations\MyReservations.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Administration\Index.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Administration\Users.cshtml.g.cs
+D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Administration\Restaurants.cshtml.g.cs
+D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Administration\Destinations.cshtml.g.cs

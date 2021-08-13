@@ -10,9 +10,23 @@ namespace ServeIt.Services.Data.Administration
     {
         Task<ICollection<AllUserViewModel>> GetAllUsers();
 
-        Task  BlockUser(string userId);
+        Task<ICollection<AllRestaurantsVIewModel>> GetAllRestaurants();
 
-        Task  UnblockUser(string userId);
+        Task<ICollection<AllCountriesViewModel>> GetAllCountries();
+
+        Task CreateCountry(string countryName);
+
+        Task AddCity(string countryId,string cityName);
+        Task RemoveCountry(string countryId);
+        Task RemoveCity(string cityId);
+
+
+        Task BlockUser(string userId);
+
+        Task BlockRestaurant(string restaurantId);
+
+
+        Task UnblockUser(string userId);
 
     }
 }

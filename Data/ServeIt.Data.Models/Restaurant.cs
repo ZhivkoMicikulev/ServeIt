@@ -25,6 +25,8 @@
 
         [Required]
         public string OwnerId { get; set; }
+
+        public User Owner { get; set; }
         public string AddressId { get; set; }
 
         [Required]
