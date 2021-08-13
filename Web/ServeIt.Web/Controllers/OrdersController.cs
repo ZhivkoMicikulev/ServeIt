@@ -27,10 +27,13 @@ namespace ServeIt.Web.Controllers
     
         }
 
+       
+
         public async Task<IActionResult> OrderedItems(string id)
         {
             var model = await this.ordersService.TakeAllItemsFromOrder(id);
             this.ViewData["OrderId"] = id;
+            this.ViewData["IsItPayed"] = await this.ordersService.IsTheOrderPayed(id);
             return this.View(model);
         }
     

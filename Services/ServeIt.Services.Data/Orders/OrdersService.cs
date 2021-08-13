@@ -197,5 +197,13 @@ namespace ServeIt.Services.Data.Orders
 
             await this.ordersRepository.SaveChangesAsync();
         }
+
+        public  async Task<bool> IsTheOrderPayed(string id)
+        {
+            var order = this.ordersRepository.All().Where(x => x.Id == id)
+                  .FirstOrDefault();
+
+            return order.IsItPayed;
+        }
     }
 }

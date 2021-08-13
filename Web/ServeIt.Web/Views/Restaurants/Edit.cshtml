@@ -47,7 +47,7 @@
                                 <div class="row" data-aos="fade-up" data-aos-delay="100">
                                     <div class="col-lg-12 d-flex justify-content-center">
                                         <ul id="menu-flters">
-                                            <li data-filter=".filter-waiting" class="filter-active">All</li>
+                                            <li data-filter="*" class="filter-active">All</li>
                                             <li data-filter=".filter-waiting" onclick="TakeOrders()">Waiting</li>
                                             <li data-filter=".filter-ready">ready</li>
                                         </ul>
@@ -55,11 +55,39 @@
                                 </div>
 
                                 <div id="orders" class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-                                  
-                                </div>
+                                    @foreach (var order in Model.Orders)
+                                    {
+
+                                        <div class="col-lg-6 menu-item filter-@(order.IsItPayed?"ready":"waiting")">
+             
+
+                                                <div class="menu-content">
+
+                                                    <a href="/Orders/OrderedItems/@order.OrderId"> Order: @order.OrderId</a>
+                                                    <span>@order.Amount $</span>
+
+                                                </div>
+                                                <div class="menu-ingredients">
+
+                                                    <div class="menu-ingredients">
+                                                        <p class="col-sm-8">Name: @order.FullName </p>
+                                                        <p class="col-sm-8">Phone: @order.Phone </p>
+                                                        <p class="col-sm-8">Street: @order.Street</p>
+                                                        <p class="col-sm-8">Email: @order.Email<p>
+                                                        <p class="col-sm-8">Date: @order.Date</p>
+                                                        <p class="col-sm-8">Hour: @order.Hour</p>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            }
+
+                                        </div>
 
 
-                            </section>
+</section>
 
 
                         </div>
@@ -198,10 +226,8 @@
 </section>
 
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+@*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script>
-
-
         $.get('/api/getOrders/@Model.RestaurantId', (data) => {
             var a = document.getElementById("orders");
 
@@ -236,7 +262,7 @@
 
 
 
-</script>
+</script>*@
 
 
 

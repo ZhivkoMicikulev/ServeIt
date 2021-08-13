@@ -8,7 +8,7 @@
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-            <h2>All</h2>
+            <h2>My</h2>
             <p>Restaurants</p>
         </div>
 
@@ -21,7 +21,7 @@
                 <div class="col-lg-4 mt-4 mt-lg-0" onclick="location.href = '/Restaurants/Edit/@restaurant.RestaurantId'" style="cursor: pointer;">
 
                     <div class="box" data-aos="zoom-in" data-aos-delay="200">
-                        <span>Rating: @restaurant.Rating</span>
+                        <span>Rating: @restaurant.Rating.ToString("F2") / 5,00</span>
                         <h4>@restaurant.Name </h4>
                         <p>
                             Address: @restaurant.Country , @restaurant.City , @restaurant.Street.

@@ -13,6 +13,8 @@ namespace ServeIt.Services.Data.Orders
     {
         Task<FinishOrderViewModel> GetAllInfoAboutOrder(User user);
 
+        Task<bool> IsTheOrderPayed(string id);
+
         Task FinishOrder(string userId, FinishOrderInputModel model);
 
         Task<ICollection<OrdersViewModel>> TakeAllOrders(string restaurantId);
