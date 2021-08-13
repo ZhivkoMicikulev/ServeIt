@@ -49,6 +49,14 @@ namespace ServeIt.Web.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<IActionResult> RateOrder(string id,int rate)
+        {
+            await this.ordersService.RateOrder(id, rate);
+
+            return this.Redirect($"/Orders/MyOrders/{UserId()}");
+
+        }
 
 
 

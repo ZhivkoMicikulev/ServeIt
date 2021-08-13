@@ -26,24 +26,27 @@
         }
         else
         {
-            <div class="row">
+    <div class="row">
 
-                @foreach (var restaurant in Model as IEnumerable<AllRestaurantViewModel>)
-                {
-                    <div class="col-lg-4 mt-4 mt-lg-0" onclick="location.href = '/Restaurants/Info/@restaurant.RestaurantId'" style="cursor: pointer;">
+        @foreach (var restaurant in Model as IEnumerable<AllRestaurantViewModel>)
+        {
 
-                        <div class="box" data-aos="zoom-in" data-aos-delay="200">
-                            <span>Rating: @restaurant.Rating</span>
-                            <h4>@restaurant.Name </h4>
-                            <p id="address">Address: @restaurant.Country, @restaurant.City, @restaurant.Street.</p>
-                        </div>
-                    </div>
-                }
+        <div class="col-lg-4 mt-4 mt-lg-0" onclick="location.href = '/Restaurants/Info/@restaurant.RestaurantId'" style="cursor: pointer;">
 
-
-
-
+            <div class="box" data-aos="zoom-in" data-aos-delay="200">
+                <span>Rating: @restaurant.Rating.ToString("F2")</span>
+                <h4>@restaurant.Name </h4>
+                <p id="address">Address: @restaurant.Country, @restaurant.City, @restaurant.Street.</p>
             </div>
+            <br />
+        </div>
+
+        }
+
+
+
+
+    </div>
         }
 
 
@@ -64,10 +67,11 @@
 
 
         for (var i = 0; i < restaurantsName.length; i++) {
-           
-            txtValue = restaurantsName[i].textContent || restaurantsName[i].innerText;
-
+            var address = restaurantsName[i].nextElementSibling.textContent.split("Address: ")[1];
+            txtValue = restaurantsName[i].textContent + " " + address || restaurantsName[i].innerText + " " + address;
+       
             var parrent = restaurantsName[i].parentElement.parentElement;
+           
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
                 parrent.style.display = "block";
             }
@@ -76,32 +80,8 @@
             }
         }
 
-        function adrress() {
-            // Declare variables
-            var input, filter, i, txtValue;
-            input = document.getElementById('search');
-            filter = input.value.toUpperCase();
+    
+       
 
-            addresses = document.querySelectorAll("#address");
-
-
-
-            for (var i = 0; i < addresses.length; i++) {
-                
-                txtValue = addresses[i].textContent || addresses[i].innerText;
-                console.log(txtValue)
-                var parrent = addresses[i].parentElement.parentElement;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    parrent.style.display = "block";
-                }
-                else {
-                    parrent.style.display = "none";
-                }
-            }
-
-
-        }
-
-        adrress();
     }
 </script>

@@ -23,5 +23,7 @@ namespace ServeIt.Services.Data.Orders
         Task<ICollection<ItemsViewModel>> TakeAllItemsFromOrder(string orderId);
 
         Task<string> DoneOrder(string orderId);
+
+        Task RateOrder(string id, int rate);
     }
 }

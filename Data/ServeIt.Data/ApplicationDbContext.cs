@@ -48,9 +48,7 @@
 
         public DbSet<Order> Orders { get; set; }
 
-        public DbSet<Rating> Ratings { get; set; }
-
-        public DbSet<RatingUser> RatingUsers { get; set; }
+      
 
         public DbSet<Reservation> Reservations { get; set; }
 
@@ -119,7 +117,6 @@
 
             builder.Entity<UserComment>().HasKey(x => new { x.UserId, x.CommentId });
 
-            builder.Entity<RatingUser>().HasKey(x => new { x.UserId, x.RatingId });
 
             builder.Entity<UserRestaurant>().HasKey(x => new { x.UserId, x.RestaurantId });
        

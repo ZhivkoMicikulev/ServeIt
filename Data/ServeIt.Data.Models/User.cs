@@ -17,7 +17,7 @@
 
          
             this.UserOrders = new HashSet<UserOrder>();
-            this.RatingUsers = new HashSet<RatingUser>();
+  
             this.UserRestaurants = new HashSet<UserRestaurant>();
         }
 
@@ -37,7 +37,7 @@
 
         public virtual ICollection<UserOrder> UserOrders { get; set; }
 
-        public virtual ICollection<RatingUser> RatingUsers { get; set; }
+
 
         // Audit info
         public DateTime CreatedOn { get; set; }

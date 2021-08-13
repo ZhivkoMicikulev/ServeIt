@@ -17,10 +17,13 @@ namespace ServeIt.Services.Data.Restaurants
         private readonly IDeletableEntityRepository<Restaurant> restaurantRepository;
         private readonly IRepository<City> citiesRepository;
         private readonly IRepository<Address> addresseRepository;
+        private readonly IDeletableEntityRepository<Order> ordersRepository;
 
         public RestaurantsService(IRepository<Country> countriesRepository,IDeletableEntityRepository<Restaurant> restaurantRepository,
             IRepository<City> citiesRepository,
-            IRepository<Address> addresseRepository
+            IRepository<Address> addresseRepository,
+            IDeletableEntityRepository<Order> ordersRepository
+
 
             )
         {
@@ -28,6 +31,7 @@ namespace ServeIt.Services.Data.Restaurants
             this.restaurantRepository = restaurantRepository;
             this.citiesRepository = citiesRepository;
             this.addresseRepository = addresseRepository;
+            this.ordersRepository = ordersRepository;
         }
 
         public async Task AddRestaurant(AddRestaurantInputModel model,string ownerId)
@@ -109,36 +113,41 @@ namespace ServeIt.Services.Data.Restaurants
 
         public async Task<ICollection<AllRestaurantViewModel>> GetAllOwnedRestaurants(string id)
         {
-            var restaurants=restaurantRepository.All().Where(x=>x.OwnerId==id)
-                .Select(x => new AllRestaurantViewModel
-            {
-                Name = x.Name,
-                Country = x.Address.City.Country.CountryName,
-                City = x.Address.City.CityName,
-                Street = x.Address.StreetName,
-                RestaurantId = x.Id,
-                Rating = x.Ratings.Any() ? ((x.Ratings.Select(r => r.RatingScore).Sum()) / x.Ratings.Count()) : 0,
 
 
-            }).OrderBy(x => x.Rating).ToList();
-
-            return restaurants;
-        }
-
-        public async Task <ICollection<AllRestaurantViewModel>> GetAllRestaurants()
-        {
-            var restaurants = restaurantRepository.All()
-                .Select(x => new AllRestaurantViewModel
+            var restaurants = restaurantRepository.All().Where(x => x.OwnerId == id)
+                .Select(x =>
+                new AllRestaurantViewModel
                 {
                     Name = x.Name,
                     Country = x.Address.City.Country.CountryName,
                     City = x.Address.City.CityName,
                     Street = x.Address.StreetName,
                     RestaurantId = x.Id,
-                    Rating = x.Ratings.Any()?((x.Ratings.Select(r => r.RatingScore).Sum()) / x.Ratings.Count()):0,
-
+                    Rating = x.Orders.Count(o => o.IsItRated == true) == 0 ? 0 : Convert.ToDecimal(x.Orders.Where(o => o.IsItRated == true).Sum(o => o.Rating)) / (x.Orders.Count(o => o.IsItRated == true))
 
                 }).OrderBy(x => x.Rating).ToList();
+
+            return restaurants;
+        }
+
+        public async Task <ICollection<AllRestaurantViewModel>> GetAllRestaurants()
+        {
+
+            var restaurants = restaurantRepository.All()
+                .Include(x=>x.Orders)
+                .Select(x =>                
+                new AllRestaurantViewModel
+                {
+                    Name = x.Name,
+                    Country = x.Address.City.Country.CountryName,
+                    City = x.Address.City.CityName,
+                    Street = x.Address.StreetName,
+                    RestaurantId = x.Id,
+                    Rating = x.Orders.Count(o => o.IsItRated == true) == 0 ? 0 : Convert.ToDecimal(x.Orders.Where(o => o.IsItRated == true).Sum(o => o.Rating)) / (x.Orders.Count(o => o.IsItRated == true))
+
+
+                }).OrderByDescending(x => x.Rating).ToList();
 
             return restaurants;
         }
@@ -150,9 +159,9 @@ namespace ServeIt.Services.Data.Restaurants
             {
                 return null;
             }
-            var restaurants=this.restaurantRepository.All()
-                .Include(x=>x.Address)
-                .Where(x=>x.Address.CityId==city)
+            var restaurants = this.restaurantRepository.All()
+                .Include(x => x.Address)
+                .Where(x => x.Address.CityId == city)
                    .Select(x => new AllRestaurantViewModel
                    {
                        Name = x.Name,
@@ -160,7 +169,8 @@ namespace ServeIt.Services.Data.Restaurants
                        City = x.Address.City.CityName,
                        Street = x.Address.StreetName,
                        RestaurantId = x.Id,
-                       Rating = x.Ratings.Any() ? ((x.Ratings.Select(r => r.RatingScore).Sum()) / x.Ratings.Count()) : 0,
+                       Rating = x.Orders.Count(o => o.IsItRated == true) == 0 ? 0 : Convert.ToDecimal(x.Orders.Where(o => o.IsItRated == true).Sum(o => o.Rating)) / (x.Orders.Count(o => o.IsItRated == true))
+
                    })
                    .OrderBy(x => x.Rating)
                    .ToList();

@@ -15,14 +15,46 @@
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
             @foreach (var order in Model)
             {
-                <div class="col-lg-6 menu-item">
-                    <div class="menu-content">
-                        <a asp-action="OrderedItems" asp-controller="Orders" asp-route-id="@order.OrderId" >@order.OrderId</a><span>$@order.Price</span>
-                    </div>
-                    <div class="menu-ingredients">
-                        Restaurant:@order.RestaurantName ,Date:@order.Date
-                    </div>
+            <div class="col-lg-6 menu-item">
+                <div class="menu-content">
+                    <a asp-action="OrderedItems" asp-controller="Orders" asp-route-id="@order.OrderId">@order.OrderId</a><span>$@order.Price</span>
                 </div>
+                <div class="menu-ingredients">
+                    Restaurant:@order.RestaurantName ,Date:@order.Date
+
+
+                    <br />
+                    @if (!order.IsItRated)
+                    {
+                        <form asp-action="RateOrder" asp-controller="Orders" asp-route-id="@order.OrderId" method="post" role="form" class="php-email-form " data-aos="fade-up" data-aos-delay="100">
+
+                            <select class="text-left" name="rate">
+                                <option class="form-control" value="1">1</option>
+                                <option class="form-control" value="2">2</option>
+                                <option class="form-control" value="3">3</option>
+                                <option class="form-control" value="4">4</option>
+                                <option class="form-control" value="5">5</option>
+                            </select>
+
+                            <div class="text-center"><button class="book-a-table-btn" type="submit" style="background-color: #1a1814 "><i class="bi bi-star"></i>Rate</button></div>
+                        </form>
+                    }
+                    else
+                    {
+                <span>
+                    Rating: @order.Rating
+                    </span>
+                    }
+                    
+
+                </div>
+             
+
+
+
+
+
+            </div>
             }
 
 

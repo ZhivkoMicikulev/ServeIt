@@ -16,7 +16,7 @@
        this.Comments = new HashSet<Comment>();
             this.Orders = new HashSet<Order>();
             this.Tables = new HashSet<Table>();
-            this.Ratings = new HashSet<Rating>();
+        
         }
 
         [Required]
@@ -52,8 +52,7 @@
 
         public virtual ICollection<Comment> Comments { get; set; }
 
-        public virtual ICollection<Rating> Ratings { get; set; }
-
+ 
         
         public string MenuId { get; set; }
 

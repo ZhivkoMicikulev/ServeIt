@@ -20,7 +20,6 @@
 
         public User User { get; set; }
 
-  
         [Required]
         public string CityId { get; set; }
         public City City { get; set; }
@@ -38,9 +37,15 @@
 
         [Required]
         public bool IsItPayed { get; set; }
+        [Required]
+        public bool IsItRated { get; set; }
+
+        public int Rating { get; set; }
 
         public virtual ICollection<DishOrder> DishOrders { get; set; }
 
         public virtual ICollection<UserOrder> UserOrders { get; set; }
+
+       
     }
 }

@@ -87,6 +87,7 @@ namespace ServeIt.Services.Data.Orders
                         TotalAmount = 0,
                         UserId = userId,
                         IsItPayed = false,
+                        IsItRated=false,
 
                     };
 
@@ -178,10 +179,23 @@ namespace ServeIt.Services.Data.Orders
                     Price = x.TotalAmount,
                     RestaurantName = x.Restaurant.Name,
                     Date = x.CreatedOn.ToString("dd/MM/yyyy"),
+                    IsItRated=x.IsItRated,
+                    Rating=x.Rating
 
                 }).ToListAsync();
 
             return myOrders;
+        }
+
+        public async Task RateOrder(string id, int rate)
+        {
+            var order = this.ordersRepository.All().Where(x => x.Id == id)
+                 .FirstOrDefault();
+
+            order.Rating = rate;
+            order.IsItRated = true;
+
+            await this.ordersRepository.SaveChangesAsync();
         }
     }
 }
