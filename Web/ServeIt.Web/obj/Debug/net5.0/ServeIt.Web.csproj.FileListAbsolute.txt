@@ -901,7 +901,6 @@ D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\scopedcss\bundle\ServeIt.Web
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\ServeIt.Web.TagHelpers.input.cache
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\ServeIt.Web.TagHelpers.output.cache
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\ServeIt.Web.RazorCoreGenerate.cache
-D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Dashboard\Index.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\_ViewImports.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\_ViewStart.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
@@ -954,3 +953,5 @@ D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Orders\OrderedIt
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Reservations\Reservation.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Orders\MyOrders.cshtml.g.cs
 D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Views\Reservations\MyReservations.cshtml.g.cs
+D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Administration\Index.cshtml.g.cs
+D:\ServeIt\ServeIt\Web\ServeIt.Web\obj\Debug\net5.0\Razor\Areas\Administration\Views\Administration\Users.cshtml.g.cs

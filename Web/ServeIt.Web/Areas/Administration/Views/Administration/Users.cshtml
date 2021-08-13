@@ -1,0 +1,86 @@
+﻿
+<br />
+<br />
+<br />
+<section id="menu" class="menu section-bg">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>All</h2>
+            <p>Users</p>
+        </div>
+        <div class="col-lg-4 col-md-6 form-group">
+            <input type="text" onkeyup="myFunction()" name="town" class="form-control" id="search" placeholder="Search...">
+
+        </div>
+
+
+        <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+
+            @foreach( var user in Model)
+            {
+
+            <div class="col-lg-6 menu-item ">
+                <div class="menu-content">
+                    <a class="username"> Username: @user.Username</a>
+                </div>
+                <div class="menu-ingredients">
+
+                    <p class="col-sm-8 fullName">Name: @user.FullName </p>
+                    <p class="col-sm-8 phone">Phone: @user.Phone </p>
+                    <p class="col-sm-8 email">Email: @user.Email<p>
+                    <p class="col-sm-8">Register Date: @user.RegisterDate</p>
+                    <p class="col-sm-8">Restaurant Owner: @user.IsOwner</p>
+
+
+                    <div class="text-center">
+                        <a class="book-a-table-btn" asp-action="BlockUser" asp-area="Administration" asp-controller="Administration" asp-route-id="@user.UserId"><i class="bi bi-person-x"></i> Remove</a>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            }
+
+        </div>
+
+    </div>
+</section>
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, i, txtValue;
+        input = document.getElementById('search');
+        filter = input.value.toUpperCase();
+
+        usernames = document.querySelectorAll(".username");
+
+
+        for (var i = 0; i < usernames.length; i++) {
+            info = usernames[i].parentElement.nextElementSibling.querySelectorAll(".fullName,.phone,.email");
+            var firstName = info[0].textContent.split("Name: ")[1].split(" ")[0];
+            var lastName = info[0].textContent.split("Name: ")[1].split(" ")[2];
+            var phone = info[1].textContent.split("Phone: ")[1];
+            var email = info[2].textContent.split("Email: ")[1];
+
+
+            txtValue = usernames[i].textContent + " " + firstName + " " + lastName + " " + phone + " " + email
+            console.log(parrent)
+
+            var parrent = usernames[i].parentElement.parentElement;
+
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                parrent.style.display = "";
+            }
+            else {
+                parrent.style.display = "none";
+            }
+        }
+
+
+
+
+    }
+</script>

@@ -27,6 +27,7 @@
     using ServeIt.Services.Data.Helper;
     using ServeIt.Services.Data.Orders;
     using ServeIt.Services.Data.Reservations;
+    using ServeIt.Services.Data.Administration;
 
     public class Startup
     {
@@ -80,6 +81,8 @@
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IOrdersService, OrdersService>();
             services.AddTransient<IReservationsService, ReservationsService>();
+            services.AddTransient<IAdministrationService, AdministrationService>();
+
 
 
 
@@ -124,7 +127,7 @@
                 endpoints =>
                     {
                   
-                        endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                        endpoints.MapControllerRoute("areas", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();
                     });
