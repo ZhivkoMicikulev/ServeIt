@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ServeIt.Data.Models
+﻿namespace ServeIt.Data.Models
 {
     public class UserRestaurant
     {
