@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ServeIt.Web.ViewModels.Administration
+﻿namespace ServeIt.Web.ViewModels.Administration
 {
-   public class AllRestaurantsVIewModel
+    public class AllRestaurantsVIewModel
     {
         public string RestaurantId { get; set; }
 
-        public string  Name { get; set; }
+        public string Name { get; set; }
 
         public string OwnerName { get; set; }
 

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ServeIt.Web.ViewModels.Cart
+﻿namespace ServeIt.Web.ViewModels.Cart
 {
-   public class CartItemsViewModel
+    using System.Collections.Generic;
+
+    public class CartItemsViewModel
     {
         public CartItemsViewModel()
         {

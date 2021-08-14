@@ -1,15 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ServeIt.Data.Common.Repositories;
-using ServeIt.Data.Models;
-using ServeIt.Web.ViewModels.Administration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ServeIt.Services.Data.Administration
+﻿namespace ServeIt.Services.Data.Administration
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Microsoft.EntityFrameworkCore;
+    using ServeIt.Data.Common.Repositories;
+    using ServeIt.Data.Models;
+    using ServeIt.Web.ViewModels.Administration;
+
     public class AdministrationService : IAdministrationService
     {
         private readonly IDeletableEntityRepository<User> usersRepository;
@@ -17,11 +16,11 @@ namespace ServeIt.Services.Data.Administration
         private readonly IDeletableEntityRepository<City> citiesRepository;
         private readonly IDeletableEntityRepository<Country> countriesRepositry;
 
-        public AdministrationService(IDeletableEntityRepository<User> usersRepository,
+        public AdministrationService(
+            IDeletableEntityRepository<User> usersRepository,
             IDeletableEntityRepository<Restaurant> restaurantRepostiry,
             IDeletableEntityRepository<City> citiesRepository,
-            IDeletableEntityRepository<Country> countriesRepositry
-         )
+            IDeletableEntityRepository<Country> countriesRepositry)
         {
             this.usersRepository = usersRepository;
             this.restaurantRepostiry = restaurantRepostiry;
@@ -31,11 +30,10 @@ namespace ServeIt.Services.Data.Administration
 
         public async Task AddCity(string countryId, string cityName)
         {
-
             var city = new City
             {
                 CountryId = countryId,
-                CityName = cityName
+                CityName = cityName,
             };
 
             await this.citiesRepository.AddAsync(city);
@@ -60,11 +58,11 @@ namespace ServeIt.Services.Data.Administration
 
         public async Task CreateCountry(string countryName)
         {
-            if (this.countriesRepositry.All().Any(x=>x.CountryName.ToLower()==countryName.ToLower()))
+            if (this.countriesRepositry.All().Any(x=> x.CountryName.ToLower() == countryName.ToLower()))
             {
                 var country = new Country
                 {
-                    CountryName = countryName
+                    CountryName = countryName,
                 };
 
                 await this.countriesRepositry.AddAsync(country);
@@ -75,11 +73,7 @@ namespace ServeIt.Services.Data.Administration
                 country.IsDeleted = false;
             }
 
-
-           
             await this.countriesRepositry.SaveChangesAsync();
-
-
         }
 
         public async Task<ICollection<AllCountriesViewModel>> GetAllCountries()

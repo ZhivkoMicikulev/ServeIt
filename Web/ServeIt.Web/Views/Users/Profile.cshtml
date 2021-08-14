@@ -18,7 +18,7 @@
 
             <div class="row mt-5">
 
-                <div class="row-cols-lg-4"  >
+                <div class="row-cols-lg-4">
                     <div class="info">
                         <div class="address">
                             <i class="bi bi-person"></i>
@@ -28,9 +28,8 @@
                             <form style="display:none" asp-action="EditUsername" asp-controller="Users" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
 
                                 <div class="col-lg-10 col-md-6 form-group">
-                                    <input type="text" class="form-control" placeholder="Username" name="input">
-                                    <span class="text-danger">  </span>
-
+                                    <input type="text" class="form-control" placeholder="Username" name="input" required minlength=3 maxlength="20"pattern="[A-Za-z0-9]{3,20}" />
+                                    <div class="validate"></div>
 
                                 </div>
                                 <button type="submit" class="bi bi-pencil edit">
@@ -42,83 +41,100 @@
                         <div class="open-hours">
                             <i class="bi bi-envelope"></i>
                             <h4>Email:</h4>
-                            <p style="display:block">@Model.Email
-                            </p>
-                            <a onclick="Edit(this)" class="bi bi-pencil edit"> Edit</a>
-                            <form style="display:none" asp-action="EditEmail" asp-controller="Users" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+                            <p style="display:block">
+                                @Model.Email
+                        </p>
+                        <a onclick="Edit(this)" class="bi bi-pencil edit"> Edit</a>
+                        <form style="display:none" asp-action="EditEmail" asp-controller="Users" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
 
-                                <div class="col-lg-10 col-md-6 form-group">
-                                    <input type="text" class="form-control" placeholder="Email" name="input">
-                                    <span class="text-danger">  </span>
-
-
-                                </div>
-                                <button type="submit" class="bi bi-pencil edit">
-                                    Edit
-                                </button>
-                            </form>
-                        </div>
+                            <div class="col-lg-10 col-md-6 form-group">
+                                <input type="email" class="form-control" placeholder="Email" name="input" required>
+                                <div class="validate"></div>
 
 
-                        <div class="phone">
-                            <i class="bi bi-phone"></i>
-                            <h4>Phone Number:</h4>
-                            <p style="display:block">@Model.PhoneNumber</p>
-                            <a onclick="Edit(this)" class="bi bi-pencil edit"> Edit</a>
-                            <form style="display:none" asp-action="EditPhone" asp-controller="Users" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
 
-                                <div class="col-lg-10 col-md-6 form-group">
-                                    <input type="text" class="form-control" name="input" placeholder="Phone number">
-                                    <span class="text-danger">  </span>
+                            </div>
+                            <button type="submit" class="bi bi-pencil edit">
+                                Edit
+                            </button>
+                        </form>
+                    </div>
 
 
-                                </div>
-                                <button type="submit" class="bi bi-pencil edit" >
-                                    Edit
-                                </button>
-                            </form>
+                    <div class="phone">
+                        <i class="bi bi-phone"></i>
+                        <h4>Phone Number:</h4>
+                        <p style="display:block">@Model.PhoneNumber</p>
+                        <a onclick="Edit(this)" class="bi bi-pencil edit"> Edit</a>
+                        <form style="display:none" asp-action="EditPhone" asp-controller="Users" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
 
-                        </div>
-
-                        <div class="phone">
-                            <i class="bi bi-key"></i>
-                            <h4>Password:</h4>
-                            <p style="display:block">**********</p>
-                            <a onclick="Edit(this)" class="bi bi-pencil edit"> Edit</a>
-                            <form style="display:none" asp-action="EditPassword" asp-controller="Users" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-
-                                <div class="col-lg-10 col-md-6 form-group">
-                                    <input type="password" class="form-control"  name="Input" placeholder="Password" >
-                                    <input type="password" class="form-control" name="ReInput" placeholder="Confirm Password">
-
-                                    <span class="text-danger">  </span>
+                            <div class="col-lg-10 col-md-6 form-group">
+                                <input type="text" class="form-control" name="input" placeholder="Phone number" required minlength=5 maxlength=10 pattern="[0-9]{5,10}">
+                                <div class="validate"></div>
 
 
-                                </div>
-                                <button type="submit" class="bi bi-pencil edit">
-                                    Edit
-                                </button>
-                            </form>
-                          
+                            </div>
+                            <button type="submit" class="bi bi-pencil edit">
+                                Edit
+                            </button>
+                        </form>
 
-                        </div>
+                    </div>
+
+                    <div class="phone">
+                        <i class="bi bi-key"></i>
+                        <h4>Password:</h4>
+                        <p style="display:block">**********</p>
+                        <a onclick="Edit(this)" class="bi bi-pencil edit"> Edit</a>
+                        <form style="display:none" asp-action="EditPassword" asp-controller="Users" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+
+                            <div class="col-lg-10 col-md-6 form-group">
+                                <input type="password" class="form-control" name="Input" id="pwd" placeholder="Password" required minlength=5 maxlength=10 pattern="[A-Za-z0-9]{5,10}">
+                                <input type="password" class="form-control" name="ReInput" id="cpwd" placeholder="Confirm Password" required minlength=5 maxlength=10 pattern="[A-Za-z0-9]{5,10}">
+                                <div class="validate"></div>
+                                <span class="text-danger">  </span>
+
+
+                            </div>
+                            <button type="submit" class="bi bi-pencil edit">
+                                Edit
+                            </button>
+                        </form>
+
 
                     </div>
 
                 </div>
 
-
             </div>
 
+
         </div>
-        <br />
-        
-    </section>
+
+    </div>
+    <br />
+
+</section>
 </div>
 
 <script>
+    var password = document.getElementById("pwd");
+    var confirm_password = document.getElementById("cpwd");
+
+    function validatePassword() {
+        if (password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
+<script>
     function Edit(target) {
-     
+
 
         var p = target.previousSibling.previousSibling;
         var form = target.nextSibling.nextSibling;
@@ -126,11 +142,11 @@
 
         if (p.style.display == 'block') {
             p.style.display = 'none'
-            a.textContent='Hide'
+            a.textContent = 'Hide'
             form.style.display = 'block'
             var input = form.querySelector('input');
             input.value = p.textContent;
-            
+
         }
         else {
             p.style.display = 'block'
@@ -138,9 +154,9 @@
             a.textContent = 'Edit'
 
         }
-       
-       
-       
+
+
+
 
     }
 

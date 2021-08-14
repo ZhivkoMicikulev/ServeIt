@@ -1,15 +1,13 @@
 ﻿namespace ServeIt.Web.Controllers
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using ServeIt.Services.Data.Users;
     using ServeIt.Web.ViewModels.User;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    using System.Security.Claims;
-    using System.Threading.Tasks;
 
     public class UsersController : BaseController
     {
@@ -19,46 +17,44 @@
         {
             this.usersService = usersService;
         }
-        [Authorize]
 
+        [Authorize]
         public async Task<IActionResult> Profile(string id)
         {
             var model = await this.usersService.GetUserInfo(id);
 
             return this.View(model);
         }
+
         [HttpPost]
         [Authorize]
 
         public async Task<IActionResult> EditUsername(EditProfileInputModel model)
         {
-            if (model.Input.Length<=20 &&
-                model.Input.Length >=3  
+            if (model.Input.Length <= 20 &&
+                model.Input.Length >= 3
                 && !string.IsNullOrEmpty(model.Input))
-                    
             {
-                await this.usersService.EditUsername(model,UserId());
+                await this.usersService.EditUsername(model, this.UserId());
             }
-            return this.Redirect($"/Users/Profile/{UserId()}");
 
+            return this.Redirect($"/Users/Profile/{this.UserId()}");
         }
 
-
-    [Authorize]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> EditPhone(EditProfileInputModel model)
         {
-
             if (model.Input.Length <= 10 &&
-                model.Input.Length >=5 &&
+                model.Input.Length >= 5 &&
                 !string.IsNullOrEmpty(model.Input))
-
             {
-                await this.usersService.EditPhoneNumber(model, UserId());
+                await this.usersService.EditPhoneNumber(model, this.UserId());
             }
-            return this.Redirect($"/Users/Profile/{UserId()}");
 
+            return this.Redirect($"/Users/Profile/{this.UserId()}");
         }
+
         [Authorize]
 
         [HttpPost]
@@ -68,34 +64,30 @@
             var emailValidator = new EmailAddressAttribute();
             if (!string.IsNullOrEmpty(model.Input) && emailValidator.IsValid(model.Input))
             {
-             await   this.usersService.EditEmail(model, UserId());
+             await this.usersService.EditEmail(model, this.UserId());
             }
-                return this.Redirect($"/Users/Profile/{UserId()}");
 
-
-
+            return this.Redirect($"/Users/Profile/{this.UserId()}");
         }
-        [Authorize]
 
+        [Authorize]
         [HttpPost]
 
         public async Task<IActionResult> EditPassword(EditProfileInputModel model)
         {
-
             if (model.Input.Length <= 10 &&
                 model.Input.Length >= 5 &&
-                    model.Input==model.ReInput  &&
+                    model.Input == model.ReInput &&
                     !string.IsNullOrEmpty(model.Input) &&
-                    !string.IsNullOrEmpty(model.ReInput)
-                   )
+                    !string.IsNullOrEmpty(model.ReInput))
             {
-                await this.usersService.EditPassword(model, UserId());
+                await this.usersService.EditPassword(model, this.UserId());
             }
 
-            this.usersService.LogoutUser();
+            await this.usersService.LogoutUser();
             return this.Redirect($"/Users/Login");
-
         }
+
         public async Task<IActionResult> Login()
         {
             return this.View();
@@ -104,14 +96,15 @@
         [HttpPost]
         public async Task<IActionResult> Login(LoginUserInputModel model)
         {
-            var user = await usersService.IsThereAnyUser(model);
+            var user = await this.usersService.IsThereAnyUser(model);
 
             if (user == null)
             {
-                ViewData["Error"] = "Invalid Username or Password";
+                this.ViewData["Error"] = "Invalid Username or Password";
                 return this.View();
             }
-           var res= await this.usersService.LoginUser(model);
+
+            var res = await this.usersService.LoginUser(model);
             if (res)
             {
                 return this.Redirect("/");
@@ -120,7 +113,6 @@
             {
                 return this.View(model);
             }
-            
         }
 
         public IActionResult Register()
@@ -133,7 +125,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return View();
+                return this.View();
             }
 
             if (model.Password != model.ConfirmPassword)
@@ -144,20 +136,18 @@
             await this.usersService.RegisterUser(model);
 
             return this.Redirect("/Users/Login");
-
         }
-        [Authorize]
 
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
-
-            this.usersService.LogoutUser();
-        return    this.Redirect("/");
+            await this.usersService.LogoutUser();
+            return this.Redirect("/");
         }
 
         private string UserId()
         {
-            var userId= this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             return userId;
         }
     }

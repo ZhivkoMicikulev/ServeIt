@@ -1,12 +1,10 @@
-﻿using ServeIt.Web.ViewModels.Orders;
-using ServeIt.Web.ViewModels.Reservations;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ServeIt.Services.Data.Reservations
+﻿namespace ServeIt.Services.Data.Reservations
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using ServeIt.Web.ViewModels.Reservations;
+
     public interface IReservationsService
     {
         Task<string> MakeReservation(ReservationInputModel model);

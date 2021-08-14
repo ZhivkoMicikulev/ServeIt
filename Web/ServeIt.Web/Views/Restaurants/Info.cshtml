@@ -1,8 +1,8 @@
 ﻿<br />
 <br />
+<br />
+<br />
 
-<br />
-<br />
 
 
 <section id="specials" class="specials">
@@ -12,7 +12,7 @@
             <h2>Specials</h2>
             <p>Check Our Specials</p>
         </div>
-       
+
         <div class="row" data-aos="fade-up" data-aos-delay="100">
 
             <div class="col-lg-3">
@@ -26,7 +26,7 @@
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Information <i class="bi bi-info-circle"></i></a>
                     </li>
-                    
+
 
                 </ul>
             </div>
@@ -34,16 +34,13 @@
 
             <div class="col-lg-9 mt-4 mt-lg-0">
                 <div class="tab-content">
+                    <!-- ======= Menu Tab ======= -->
                     <div class="tab-pane active show" id="tab-1">
                         <div class="row">
 
                             <section id="menu" class="menu section-bg">
 
-                                <div class="row" data-aos="fade-up" data-aos-delay="100">
-
-                                </div>
-                                <br />
-                                <br />
+                                
 
                                 <div class="row" data-aos="fade-up" data-aos-delay="100">
                                     <div class="col-lg-12 d-flex justify-content-center">
@@ -52,7 +49,6 @@
                                             @foreach (var category in Model.MenuCategories)
                                             {
                                                 <li data-filter=".filter-@category">@category</li>
-
                                             }
 
                                         </ul>
@@ -65,27 +61,29 @@
                                         <div class="col-lg-6 menu-item filter-@dish.CategoryName">
                                             <div class="menu-content">
                                                 <a>@dish.Name</a>
-
                                                 <span>$@dish.Price</span>
-
-
                                             </div>
-                                            <div class="menu-ingredients">
-                                                <form style="float:right; position:relative" asp-action="AddToCart" asp-controller="Cart" asp-route-id=@dish.Id method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-                                                    <div class="row">
-                                                        <div class="col-lg-2 row-cols-1 form-group ">
-                                                            <input style="width:50px" type="type" name="Quantity" class="form-control" />
-                                                            <input type="hidden" name="restaurantId" value="@Model.RestaurantId" />
+                                            @if (!User.IsInRole("Restaurant"))
+                                            {
+
+                                                <div class="menu-ingredients">
+                                                    <form style="float:right; position:relative" asp-action="AddToCart" asp-controller="Cart" asp-route-id=@dish.Id method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+                                                        <div class="row">
+                                                            <div class="col-lg-2 row-cols-1 form-group ">
+                                                                <input style="width:50px" type="number" name="Quantity" class="form-control" required min=1 />
+                                                                <input type="hidden" name="restaurantId" value="@Model.RestaurantId" />
+                                                                <div class="validate"></div>
+
+                                                            </div>
                                                         </div>
-                                                    </div>
 
-                                                    <button type="submit" class="bi bi-cart-plus"></button>
-                                                </form>
-                                            </div>
+                                                        <button type="submit" class="bi bi-cart-plus"></button>
+                                                    </form>
+                                                </div>
+                                            }
+
                                             <div class="menu-ingredients ">
                                                 <p class="col-sm-8"> @dish.Ingredients</p>
-
-
                                             </div>
 
                                         </div>
@@ -101,6 +99,8 @@
 
                         </div>
                     </div>
+
+                    <!-- ======= About Tab ======= -->
                     <div class="tab-pane" id="tab-3">
                         <div class="row">
                             <section id="contact" class="contact">
@@ -160,6 +160,7 @@
 
                         </div>
                     </div>
+                    <!-- ======= Reservation tab ======= -->
                     <div class="tab-pane" id="tab-2">
                         <div class="row">
                             <section id="book-a-table" class="book-a-table">
@@ -169,58 +170,73 @@
                                         <h2>Reservation</h2>
                                         <p>Book a Table</p>
                                     </div>
+                                    @if (!User.IsInRole("Restaurant"))
+                                    {
+                                        <form asp-action="MakeReservation" asp-controller="Reservations" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-6 form-group">
+                                                    <div class="info">   </div>
+                                                    <div class="phone">
 
-                                    <form asp-action="MakeReservation" asp-controller="Reservations" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-6 form-group">
-                                                <div class="info">   </div>
-                                                <div class="phone">
+                                                        <i class="bi bi-person"></i>
+                                                        <h4>Full Name:</h4>
+                                                        <p>@Model.UserFullName</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-6 form-group">
+                                                    <div class="info">   </div>
+                                                    <div class="phone">
+                                                        <i class="bi bi-envelope"></i>
+                                                        <h4>Email:</h4>
+                                                        <p>@Model.UserEmail</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-6 form-group">
+                                                    <div class="info">   </div>
+                                                    <div class="phone">
+                                                        <i class="bi bi-phone"></i>
+                                                        <h4>Phone Number:</h4>
+                                                        <p>@Model.UserPhone</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-6 form-group mt-3">
+                                                    <input type="date" name="date" class="form-control" id="date" placeholder="Date" required>
+                                                    <div class="validate"></div>
 
-                                                    <i class="bi bi-person"></i>
-                                                    <h4>Full Name:</h4>
-                                                    <p>@Model.UserFullName</p>
+                                                </div>
+                                                <div class="col-lg-4 col-md-6 form-group mt-3">
+                                                    <input type="time" class="form-control" name="time" id="time" placeholder="Time" required>
+                                                    <div class="validate"></div>
+
+
+                                                </div>
+                                                <div class="col-lg-4 col-md-6 form-group mt-3">
+                                                    <input type="number" class="form-control" name="people" id="people" required min=1>
+                                                    <div class="validate"></div>
+
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 col-md-6 form-group">
-                                                <div class="info">   </div>
-                                                <div class="phone">
-                                                    <i class="bi bi-envelope"></i>
-                                                    <h4>Email:</h4>
-                                                    <p>@Model.UserEmail</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 form-group">
-                                                <div class="info">   </div>
-                                                <div class="phone">
-                                                    <i class="bi bi-phone"></i>
-                                                    <h4>Phone Number:</h4>
-                                                    <p>@Model.UserPhone</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 form-group mt-3">
-                                                <input type="date" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:1" data-msg="Please enter date">
+                                            <div class="form-group mt-3">
+                                                <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
                                                 <div class="validate"></div>
                                             </div>
-                                            <div class="col-lg-4 col-md-6 form-group mt-3">
-                                                <input type="time" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:1" data-msg="Please enter time">
-                                                <div class="validate"></div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 form-group mt-3">
-                                                <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 person">
-                                                <div class="validate"></div>
-                                            </div>
+
+                                            <input hidden type="text" name="userId" value="@Model.UserId">
+                                            <input hidden type="text" name="restaurantId" value="@Model.RestaurantId">
+
+
+                                            <div class="text-center"><button type="submit">Book a Table</button></div>
+                                        </form>
+
+                                    }
+                                    else
+                                    {
+                                        <div class="section-title">
+                                            <p>Sorry, but you don't have permision to book a table.</p>
                                         </div>
-                                        <div class="form-group mt-3">
-                                            <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
-                                            <div class="validate"></div>
-                                        </div>
-
-                                        <input hidden type="text" name="userId" value="@Model.UserId">
-                                        <input hidden type="text" name="restaurantId" value="@Model.RestaurantId">
+                                    }
 
 
-                                        <div class="text-center"><button type="submit">Book a Table</button></div>
-                                    </form>
 
                                 </div>
                             </section>
@@ -231,7 +247,7 @@
                     </div>
 
                 </div>
-        </div>
+            </div>
         </div>
 
     </div>

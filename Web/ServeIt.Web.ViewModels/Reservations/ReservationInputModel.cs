@@ -1,20 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ServeIt.Web.ViewModels.Reservations
+﻿namespace ServeIt.Web.ViewModels.Reservations
 {
- public   class ReservationInputModel
+    using System.ComponentModel.DataAnnotations;
+
+    public class ReservationInputModel
     {
+        [Required]
         public string UserId { get; set; }
 
         public string RestaurantId { get; set; }
+
         public string Message { get; set; }
 
+        [Required]
         public string Date { get; set; }
 
+        [Required]
         public string Time { get; set; }
 
+        [Required]
+        [MinLength(1)]
         public int People { get; set; }
     }
 }

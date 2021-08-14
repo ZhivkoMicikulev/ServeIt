@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ServeIt.Web.ViewModels.Restaurants
+﻿namespace ServeIt.Web.ViewModels.Restaurants
 {
-   public class AllRestaurantViewModel
+    public class AllRestaurantViewModel
     {
         public decimal Rating { get; set; }
 
-        public string  Name { get; set; }
+        public string Name { get; set; }
 
         public string Country { get; set; }
 

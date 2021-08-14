@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using ServeIt.Data.Common.Models;
-    using ServeIt.Data.Models.Enums;
 
     public class Order : BaseDeletableModel<string>
     {
@@ -22,13 +22,14 @@
 
         [Required]
         public string CityId { get; set; }
+
         public City City { get; set; }
 
         [Required]
         public string StreetName { get; set; }
 
         [Required]
-        public string restaurantId { get; set; }
+        public string RestaurantId { get; set; }
 
         public Restaurant Restaurant { get; set; }
 
@@ -37,6 +38,7 @@
 
         [Required]
         public bool IsItPayed { get; set; }
+
         [Required]
         public bool IsItRated { get; set; }
 
@@ -45,7 +47,5 @@
         public virtual ICollection<DishOrder> DishOrders { get; set; }
 
         public virtual ICollection<UserOrder> UserOrders { get; set; }
-
-       
     }
 }

@@ -1,15 +1,13 @@
-﻿using ServeIt.Data.Models;
-using ServeIt.Web.ViewModels.Cart;
-using ServeIt.Web.ViewModels.Orders;
-using ServeIt.Web.ViewModels.Reservations;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ServeIt.Services.Data.Orders
+﻿namespace ServeIt.Services.Data.Orders
 {
- public   interface IOrdersService
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using ServeIt.Data.Models;
+    using ServeIt.Web.ViewModels.Cart;
+    using ServeIt.Web.ViewModels.Orders;
+
+    public interface IOrdersService
     {
         Task<FinishOrderViewModel> GetAllInfoAboutOrder(User user);
 
@@ -20,7 +18,6 @@ namespace ServeIt.Services.Data.Orders
         Task<ICollection<OrdersViewModel>> TakeAllOrders(string restaurantId);
 
         Task<ICollection<MyOrdersViewModel>> TakeAllMyOrders(string id);
-
 
         Task<ICollection<ItemsViewModel>> TakeAllItemsFromOrder(string orderId);
 

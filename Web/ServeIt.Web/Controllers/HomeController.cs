@@ -12,7 +12,6 @@
         [HttpGet("/")]
         public IActionResult Index()
         {
-          
             return this.View();
         }
 

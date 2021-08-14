@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ServeIt.Web.ViewModels.Reservations
+﻿namespace ServeIt.Web.ViewModels.Reservations
 {
- public  class ReservationViewModel
+    public class ReservationViewModel
     {
         public string ReservationId { get; set; }
-        public string  FullName { get; set; }
+
+        public string FullName { get; set; }
 
         public string Phone { get; set; }
 

@@ -1,25 +1,24 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ServeIt.Data.Common.Repositories;
-using ServeIt.Data.Models;
-using ServeIt.Web.ViewModels.Cart;
-using ServeIt.Web.ViewModels.Orders;
-
-using System.Collections.Generic;
-using System.Linq;
-
-using System.Threading.Tasks;
-
-namespace ServeIt.Services.Data.Orders
+﻿namespace ServeIt.Services.Data.Orders
 {
- 
-  public  class OrdersService:IOrdersService
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Microsoft.EntityFrameworkCore;
+    using ServeIt.Data.Common.Repositories;
+    using ServeIt.Data.Models;
+    using ServeIt.Web.ViewModels.Cart;
+    using ServeIt.Web.ViewModels.Orders;
+
+    public class OrdersService : IOrdersService
     {
         private readonly IDeletableEntityRepository<DishOrder> dishOrderRepository;
         private readonly IDeletableEntityRepository<Dish> dishesRepository;
         private readonly IDeletableEntityRepository<Restaurant> restaurantRepository;
         private readonly IDeletableEntityRepository<Order> ordersRepository;
 
-        public OrdersService(IDeletableEntityRepository<DishOrder> dishOrderRepository,
+        public OrdersService(
+            IDeletableEntityRepository<DishOrder> dishOrderRepository,
             IDeletableEntityRepository<Dish> dishesRepository,
             IDeletableEntityRepository<Restaurant> restaurantRepository,
             IDeletableEntityRepository<Order> ordersRepository)
@@ -29,6 +28,7 @@ namespace ServeIt.Services.Data.Orders
             this.restaurantRepository = restaurantRepository;
             this.ordersRepository = ordersRepository;
         }
+
         public async Task<FinishOrderViewModel> GetAllInfoAboutOrder(User user)
         {
             var items = this.dishOrderRepository.All().Where(x => x.OwnerId == user.Id && x.Status == false).ToArray();
@@ -43,7 +43,7 @@ namespace ServeIt.Services.Data.Orders
 
             foreach (var item in items)
             {
-                var restaurant = restaurantRepository.All()
+                var restaurant = this.restaurantRepository.All()
                     .Where(x => x.Id == item.RestaurantId)
                     .Include(x => x.Address)
                     .Include(x => x.Address.City)
@@ -59,13 +59,10 @@ namespace ServeIt.Services.Data.Orders
                     };
                     model.Restaurants.Add(newRestaurant);
                 }
-
             }
 
             return model;
-
         }
-
 
         public async Task FinishOrder(string userId, FinishOrderInputModel model)
         {
@@ -77,24 +74,23 @@ namespace ServeIt.Services.Data.Orders
 
             foreach (var item in items)
             {
-                if (!orderList.Any(x => x.restaurantId == item.RestaurantId))
+                if (!orderList.Any(x => x.RestaurantId == item.RestaurantId))
                 {
                     var newOrder = new Order
                     {
-                        restaurantId = item.RestaurantId,
+                        RestaurantId = item.RestaurantId,
                         CityId = item.Restaurant.Address.CityId,
                         StreetName = model.StreetName,
                         TotalAmount = 0,
                         UserId = userId,
                         IsItPayed = false,
-                        IsItRated=false,
-
+                        IsItRated = false,
                     };
 
                     orderList.Add(newOrder);
                 }
 
-                var order = orderList.Where(x => x.restaurantId == item.RestaurantId).FirstOrDefault();
+                var order = orderList.Where(x => x.RestaurantId == item.RestaurantId).FirstOrDefault();
                 order.TotalAmount += item.Amount;
                 item.Status = true;
                 order.DishOrders.Add(item);
@@ -106,30 +102,28 @@ namespace ServeIt.Services.Data.Orders
             }
 
             await this.ordersRepository.SaveChangesAsync();
-
         }
 
         public async Task<ICollection<OrdersViewModel>> TakeAllOrders(string restaurantId)
         {
             var orders = this.ordersRepository.All()
-                .Where(x => x.restaurantId == restaurantId )
+                .Where(x => x.RestaurantId == restaurantId)
                 .Include(x => x.User)
-                .OrderByDescending(x=>x.CreatedOn)
-                .Select
-                (
+                .OrderByDescending(x => x.CreatedOn)
+                .Select(
                 x => new OrdersViewModel
                 {
                     OrderId = x.Id,
                     Street = x.StreetName,
                     Date = x.CreatedOn.ToShortDateString(),
-                    Hour=x.CreatedOn.ToShortTimeString(),
-                    FullName=x.User.FirstName+" "+x.User.LastName,
-                    IsItPayed=x.IsItPayed,
-                    Amount=x.TotalAmount,
-                    Phone=x.User.PhoneNumber,
-                    Email=x.User.Email
-                }
-                ).ToList();
+                    Hour = x.CreatedOn.ToShortTimeString(),
+                    FullName = x.User.FirstName + " " + x.User.LastName,
+                    IsItPayed = x.IsItPayed,
+                    Amount = x.TotalAmount,
+                    Phone = x.User.PhoneNumber,
+                    Email = x.User.Email,
+                })
+                .ToList();
 
             return orders;
         }
@@ -137,54 +131,48 @@ namespace ServeIt.Services.Data.Orders
         public async Task<ICollection<ItemsViewModel>> TakeAllItemsFromOrder(string orderId)
         {
             var order = this.ordersRepository.All().Where(x => x.Id == orderId)
-                .Include(x=>x.DishOrders)
-                .ThenInclude(x=>x.Dish)
+                .Include(x => x.DishOrders)
+                .ThenInclude(x => x.Dish)
                 .FirstOrDefault();
 
-            var items= order.DishOrders              
+            var items = order.DishOrders
                 .Select(x => new ItemsViewModel
                 {
-                   
                     Name = x.Dish.Name,
-                    Quantity = x.Quantity
-                }).OrderBy(x=>x.Name).ToList();
-
+                    Quantity = x.Quantity,
+                }).OrderBy(x => x.Name).ToList();
 
             return items;
-              
         }
 
         public async Task<string> DoneOrder(string orderId)
         {
             var order = this.ordersRepository.All().Where(x => x.Id == orderId).FirstOrDefault();
 
-            var restaurantId = order.restaurantId;
+            var restaurantId = order.RestaurantId;
 
             order.IsItPayed = true;
 
-            await ordersRepository.SaveChangesAsync();
+            await this.ordersRepository.SaveChangesAsync();
 
             return restaurantId;
-              
         }
 
         public async Task<ICollection<MyOrdersViewModel>> TakeAllMyOrders(string id)
         {
-            var myOrders =await this.ordersRepository.All().Where(x => x.UserId == id)
+
+            return await this.ordersRepository.All().Where(x => x.UserId == id)
                 .Include(x => x.Restaurant)
-                .OrderByDescending(x=>x.CreatedOn)
+                .OrderByDescending(x => x.CreatedOn)
                 .Select(x => new MyOrdersViewModel
                 {
                     OrderId = x.Id,
                     Price = x.TotalAmount,
                     RestaurantName = x.Restaurant.Name,
                     Date = x.CreatedOn.ToString("dd/MM/yyyy"),
-                    IsItRated=x.IsItRated,
-                    Rating=x.Rating
-
+                    IsItRated = x.IsItRated,
+                    Rating = x.Rating,
                 }).ToListAsync();
-
-            return myOrders;
         }
 
         public async Task RateOrder(string id, int rate)
@@ -198,7 +186,7 @@ namespace ServeIt.Services.Data.Orders
             await this.ordersRepository.SaveChangesAsync();
         }
 
-        public  async Task<bool> IsTheOrderPayed(string id)
+        public async Task<bool> IsTheOrderPayed(string id)
         {
             var order = this.ordersRepository.All().Where(x => x.Id == id)
                   .FirstOrDefault();

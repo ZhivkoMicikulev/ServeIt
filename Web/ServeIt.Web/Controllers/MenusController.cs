@@ -1,42 +1,33 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using ServeIt.Services.Data.Menus;
-using ServeIt.Services.Data.Restaurants;
-using ServeIt.Web.ViewModels.Menu;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ServeIt.Web.Controllers
+﻿namespace ServeIt.Web.Controllers
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using ServeIt.Services.Data.Menus;
+    using ServeIt.Services.Data.Restaurants;
+    using ServeIt.Web.ViewModels.Menu;
 
     [Authorize]
 
-    public class MenusController:BaseController
+    public class MenusController : BaseController
     {
         private readonly IMenusService menusServices;
-        private readonly IRestaurantsService restaurantsService;
 
-        public MenusController(IMenusService menusServices, IRestaurantsService restaurantsService)
+        public MenusController(IMenusService menusServices)
         {
             this.menusServices = menusServices;
-            this.restaurantsService = restaurantsService;
         }
 
         public async Task<IActionResult> Add(string id)
         {
-           
-
-            
-
-            var menuId = await menusServices.RestaurantMenu(id);
+            var menuId = await this.menusServices.RestaurantMenu(id);
 
             if (menuId == null)
             {
-                menuId = await menusServices.AddMenu(id);
+                menuId = await this.menusServices.AddMenu(id);
             }
-      
+
             this.ViewData["RestaurantId"] = id;
             return this.View();
         }
@@ -46,59 +37,47 @@ namespace ServeIt.Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-            
                 this.ViewData["RestaurantId"] = id;
                 return this.View(model);
             }
-            var menuId = await menusServices.RestaurantMenu(id);
-           
+
+            var menuId = await this.menusServices.RestaurantMenu(id);
+
             await this.menusServices.AddDish(model, menuId);
 
-
             return this.Redirect($"/Restaurants/Edit/{id}");
-
         }
 
         public async Task<IActionResult> RemoveDish(string id)
         {
-           var restaurantId= await this.menusServices.RemoveDish(id);
+           var restaurantId = await this.menusServices.RemoveDish(id);
 
-            this.ViewData["DishId"] = id;
+           this.ViewData["DishId"] = id;
 
-            return this.Redirect($"/Restaurants/Edit/{restaurantId}");
-
+           return this.Redirect($"/Restaurants/Edit/{restaurantId}");
         }
-
 
         public async Task<IActionResult> Edit(string id)
         {
-            var model = await menusServices.TakeDish(id);
+            var model = await this.menusServices.TakeDish(id);
 
             this.ViewData["DishId"] = id;
 
             return this.View(model);
-        
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(string id,AddDishInputModel model)
+        public async Task<IActionResult> Edit(string id, AddDishInputModel model)
         {
-
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 this.ViewData["DishId"] = id;
                 return this.View(model);
             }
 
-        var restaurantId=await  this.menusServices.EditDish(id, model);
-
-           
+            var restaurantId = await this.menusServices.EditDish(id, model);
 
             return this.Redirect($"/Restaurants/Edit/{restaurantId}");
-
         }
-
-
-
     }
 }

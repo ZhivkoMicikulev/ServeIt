@@ -38,9 +38,10 @@
                 </ul>
             </div>
 
-
             <div class="col-lg-9 mt-4 mt-lg-0">
                 <div class="tab-content">
+                    <!-- ======= Orders Tab ======= -->
+
                     <div class="tab-pane active show" id="tab-1">
                         <div class="row">
                             <section id="menu" class="menu section-bg">
@@ -48,8 +49,8 @@
                                     <div class="col-lg-12 d-flex justify-content-center">
                                         <ul id="menu-flters">
                                             <li data-filter="*" class="filter-active">All</li>
-                                            <li data-filter=".filter-waiting" onclick="TakeOrders()">Waiting</li>
-                                            <li data-filter=".filter-ready">ready</li>
+                                            <li data-filter=".filter-waiting">Waiting</li>
+                                            <li data-filter=".filter-ready">Ready</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -59,87 +60,31 @@
                                     {
 
                                         <div class="col-lg-6 menu-item filter-@(order.IsItPayed?"ready":"waiting")">
-             
-
-                                                <div class="menu-content">
-
-                                                    <a href="/Orders/OrderedItems/@order.OrderId"> Order: @order.OrderId</a>
-                                                    <span>@order.Amount $</span>
-
-                                                </div>
-                                                <div class="menu-ingredients">
-
-                                                    <div class="menu-ingredients">
-                                                        <p class="col-sm-8">Name: @order.FullName </p>
-                                                        <p class="col-sm-8">Phone: @order.Phone </p>
-                                                        <p class="col-sm-8">Street: @order.Street</p>
-                                                        <p class="col-sm-8">Email: @order.Email<p>
-                                                        <p class="col-sm-8">Date: @order.Date</p>
-                                                        <p class="col-sm-8">Hour: @order.Hour</p>
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                            }
-
-                                        </div>
 
 
-</section>
-
-
-                        </div>
-                    </div>
-
-                    <div class="tab-pane " id="tab-3">
-                        <div class="row">
-
-                            <section id="menu" class="menu section-bg">
-
-                                <div class="row" data-aos="fade-up" data-aos-delay="100">
-                                    <div class="col-lg-12 d-flex justify-content-center">
-
-                                        <a style="font-family:Playfair Display , serif;" asp-action="Add" asp-controller="Menus" asp-route-id="@Model.RestaurantId">Add Dish</a>
-
-                                    </div>
-                                </div>
-                                <br />
-                                <br />
-
-                                <div class="row" data-aos="fade-up" data-aos-delay="100">
-                                    <div class="col-lg-12 d-flex justify-content-center">
-                                        <ul id="menu-flters">
-                                            <li data-filter="*" class="filter-active">All</li>
-                                            @foreach (var category in Model.MenuCategories)
-                                            {
-                                                <li data-filter=".filter-@category">@category</li>
-
-                                            }
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-                                    @foreach (var dish in Model.Dishes)
-                                    {
-                                        <div class="col-lg-6 menu-item filter-@dish.CategoryName">
                                             <div class="menu-content">
-                                                <a asp-action="Edit" asp-controller="Menus" asp-route-id=@dish.Id>@dish.Name</a><span>$@dish.Price</span>
+
+                                                <a href="/Orders/OrderedItems/@order.OrderId"> Order: @order.OrderId</a>
+                                                <span>@order.Amount $</span>
 
                                             </div>
-
                                             <div class="menu-ingredients">
-                                                <p class="col-sm-8"> @dish.Ingredients</p>
+
+                                                <div class="menu-ingredients">
+                                                    <p class="col-sm-8">Name: @order.FullName </p>
+                                                    <p class="col-sm-8">Phone: @order.Phone </p>
+                                                    <p class="col-sm-8">Street: @order.Street</p>
+                                                    <p class="col-sm-8">Email: @order.Email<p>
+                                                    <p class="col-sm-8">Date: @order.Date</p>
+                                                    <p class="col-sm-8">Hour: @order.Hour</p>
+
+                                                </div>
 
                                             </div>
-
                                         </div>
-
 
                                     }
+
                                 </div>
 
 
@@ -148,7 +93,52 @@
 
                         </div>
                     </div>
+                    <!-- ======= Menu Tab ======= -->
 
+                    <div class="tab-pane " id="tab-3">
+
+
+                        <section id="menu" class="menu section-bg">
+                            <div class="row" data-aos="fade-up" data-aos-delay="100">
+                                <div class="col-lg-12 d-flex justify-content-center">
+                                    <a style="font-family:Playfair Display , serif;" asp-action="Add" asp-controller="Menus" asp-route-id="@Model.RestaurantId">Add Dish</a>
+                                </div>                          
+                             <br />  
+                             <br />                            
+                                 <div class="col-lg-12 d-flex justify-content-center">
+                                        <ul id="menu-flters">
+                                            <li data-filter="*" class="filter-active">All</li>
+                                            @foreach (var category in Model.MenuCategories)
+                                            {
+                                                <li data-filter=".filter-@category">@category</li>
+                                            }
+
+                                        </ul>
+                                    </div>
+                            </div>
+
+                            <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+                                @foreach (var dish in Model.Dishes)
+                                {
+                                    <div class="col-lg-6 menu-item filter-@dish.CategoryName">
+                                        <div class="menu-content">
+                                            <a asp-action="Edit" asp-controller="Menus" asp-route-id=@dish.Id>@dish.Name</a>
+                                            <span>$@dish.Price</span>
+                                        </div>
+
+                                        <div class="menu-ingredients">
+                                            <p class="col-sm-8"> @dish.Ingredients</p>
+
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+
+                        </section>
+
+                    </div>
+                    <!-- ======= About Tab ======= -->
 
                     <div class="tab-pane " id="tab-4">
                         <div class="row">
@@ -212,16 +202,21 @@
                         </div>
                     </div>
 
-
-
-
-
                 </div>
 
-            </div>
-        </div>
 
+              
+
+
+
+
+            </div>
+
+        </div>
+     
     </div>
+
+   
 
 </section>
 

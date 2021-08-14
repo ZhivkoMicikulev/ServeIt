@@ -1,14 +1,9 @@
 ﻿namespace ServeIt.Services.Data.Users
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.Extensions.DependencyInjection;
     using ServeIt.Data.Common.Repositories;
     using ServeIt.Data.Models;
     using ServeIt.Web.ViewModels.User;
@@ -28,56 +23,50 @@
 
         public async Task EditEmail(EditProfileInputModel model, string userId)
         {
-          
-            var user = await userManager.FindByIdAsync(userId);
-
-
+            var user = await this.userManager.FindByIdAsync(userId);
             user.Email = model.Input;
-            await userManager.UpdateAsync(user);
+            await this.userManager.UpdateAsync(user);
         }
 
         public async Task EditPassword(EditProfileInputModel model, string userId)
         {
-            var user = await userManager.FindByIdAsync(userId);
+            var user = await this.userManager.FindByIdAsync(userId);
 
-            var token = await userManager.GeneratePasswordResetTokenAsync(user);
+            var token = await this.userManager.GeneratePasswordResetTokenAsync(user);
 
-          await userManager.ResetPasswordAsync(user, token, model.Input);
-            await userManager.UpdateAsync(user);
+            await this.userManager.ResetPasswordAsync(user, token, model.Input);
+            await this.userManager.UpdateAsync(user);
         }
 
         public async Task EditPhoneNumber(EditProfileInputModel model, string userId)
         {
-            var user = await userManager.FindByIdAsync(userId);
-
-
+            var user = await this.userManager.FindByIdAsync(userId);
             user.PhoneNumber = model.Input;
-            await userManager.UpdateAsync(user);
+            await this.userManager.UpdateAsync(user);
         }
 
         public async Task EditUsername(EditProfileInputModel model, string userId)
         {
-            var user = await userManager.FindByIdAsync(userId);
+            var user = await this.userManager.FindByIdAsync(userId);
 
             user.UserName = model.Input;
-            await userManager.UpdateAsync(user);
+            await this.userManager.UpdateAsync(user);
         }
 
-        public  async Task<User> GetUser(string userId)
+        public async Task<User> GetUser(string userId)
         {
-            var user = await userManager.FindByIdAsync(userId);
+            var user = await this.userManager.FindByIdAsync(userId);
             return user;
         }
 
         public async Task<EditProfileViewModel> GetUserInfo(string id)
         {
-            var user = await userManager.FindByIdAsync(id);
+            var user = await this.userManager.FindByIdAsync(id);
             var result = new EditProfileViewModel
             {
                 Username = user.UserName,
                 Email = user.Email,
-                PhoneNumber = user.PhoneNumber
-
+                PhoneNumber = user.PhoneNumber,
             };
 
             return result;
@@ -117,7 +106,6 @@
         {
             var user = new User
             {
-                
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 UserName = model.Username,
@@ -125,7 +113,7 @@
                 PhoneNumber = model.Phonenumber,
                 IsItOwnerOfRestaurant = model.IsItOwner,
             };
-          
+
             var result = await this.userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
@@ -143,7 +131,5 @@
                 }
             }
         }
-
-    
     }
 }

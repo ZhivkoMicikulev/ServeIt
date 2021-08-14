@@ -87,8 +87,9 @@
                             <a class="inactiveLink"><span>Restaurant Profile</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
                                 <li><a asp-action="Add" asp-controller="Restaurants">Add Restaurant <i class="bi bi-patch-plus"></i></a></li>
-                                <li class="dropdown">
-                                    <a asp-controller="Restaurants" asp-action="OwnedRestaurants" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Restaurants</a>
+                                <li>
+
+                                    <a asp-controller="Restaurants" asp-action="OwnedRestaurants" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)"> My Restaurants</a>
                                 </li>
                                 <li><a asp-controller="Users" asp-action="Profile" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Profile <i class="bi bi-person-bounding-box"></i></a></li>
 
@@ -118,7 +119,7 @@
             }
             else
             {
-                <a class="book-a-table-btn scrollto d-none d-lg-flex nav-link" asp-action="Logout" asp-controller="Users">Logout</a>
+                <a class="book-a-table-btn scrollto d-none d-lg-flex nav-link" href="/Users/Logout">Logout</a>
 
             }
 

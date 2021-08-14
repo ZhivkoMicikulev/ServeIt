@@ -1,11 +1,10 @@
-﻿using ServeIt.Web.ViewModels.Administration;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ServeIt.Services.Data.Administration
+﻿namespace ServeIt.Services.Data.Administration
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using ServeIt.Web.ViewModels.Administration;
+
     public interface IAdministrationService
     {
         Task<ICollection<AllUserViewModel>> GetAllUsers();
@@ -16,17 +15,16 @@ namespace ServeIt.Services.Data.Administration
 
         Task CreateCountry(string countryName);
 
-        Task AddCity(string countryId,string cityName);
-        Task RemoveCountry(string countryId);
-        Task RemoveCity(string cityId);
+        Task AddCity(string countryId, string cityName);
 
+        Task RemoveCountry(string countryId);
+
+        Task RemoveCity(string cityId);
 
         Task BlockUser(string userId);
 
         Task BlockRestaurant(string restaurantId);
 
-
         Task UnblockUser(string userId);
-
     }
 }

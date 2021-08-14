@@ -1,12 +1,12 @@
 ﻿namespace ServeIt.Web.Areas.Administration.Controllers
 {
-    using ServeIt.Common;
-    using ServeIt.Web.Controllers;
+    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
+    using ServeIt.Common;
     using ServeIt.Services.Data.Administration;
+    using ServeIt.Web.Controllers;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     [Area("Administration")]
@@ -28,19 +28,19 @@
         [HttpPost]
         public async Task<IActionResult> AddCountry(string countryName)
         {
-
             if (!string.IsNullOrEmpty(countryName))
             {
                 await this.administrationService.CreateCountry(countryName);
             }
+
             return this.Redirect("/Administration/Administration/Destinations");
         }
 
         public async Task<IActionResult> RemoveCountry(string id)
         {
                 await this.administrationService.RemoveCountry(id);
-            
-            return this.Redirect("/Administration/Administration/Destinations");
+
+                return this.Redirect("/Administration/Administration/Destinations");
         }
 
         public async Task<IActionResult> RemoveCity(string id)
@@ -49,11 +49,12 @@
 
             return this.Redirect("/Administration/Administration/Destinations");
         }
-        public async Task<IActionResult> AddCity(string id,string cityName)
+
+        public async Task<IActionResult> AddCity(string id, string cityName)
         {
             if (!string.IsNullOrEmpty(cityName))
             {
-                await this.administrationService.AddCity(id,cityName);
+                await this.administrationService.AddCity(id, cityName);
             }
 
             return this.Redirect("/Administration/Administration/Destinations");

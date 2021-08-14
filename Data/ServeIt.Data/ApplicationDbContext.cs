@@ -22,7 +22,7 @@
             : base(options)
         {
         }
-     
+
         public DbSet<Setting> Settings { get; set; }
 
         public DbSet<Address> Addresses { get; set; }
@@ -37,26 +37,17 @@
 
         public DbSet<Dish> Dishes { get; set; }
 
-
-
         public DbSet<DishOrder> DishOrders { get; set; }
 
         public DbSet<FoodStyle> FoodStyles { get; set; }
-
 
         public DbSet<Menu> Menus { get; set; }
 
         public DbSet<Order> Orders { get; set; }
 
-      
-
         public DbSet<Reservation> Reservations { get; set; }
 
         public DbSet<Restaurant> Restaurants { get; set; }
-
-        public DbSet<Table> Tables { get; set; }
-
-        public DbSet<UserComment> UsersComments { get; set; }
 
         public DbSet<UserOrder> UsersOrders { get; set; }
 
@@ -115,15 +106,8 @@
 
             builder.Entity<UserOrder>().HasKey(x => new { x.UserId, x.OrderId });
 
-            builder.Entity<UserComment>().HasKey(x => new { x.UserId, x.CommentId });
-
 
             builder.Entity<UserRestaurant>().HasKey(x => new { x.UserId, x.RestaurantId });
-       
-
-
-
-
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

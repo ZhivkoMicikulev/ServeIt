@@ -1,9 +1,9 @@
-﻿namespace ServeIt.Data.Configurations
-{
-    using ServeIt.Data.Models;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using ServeIt.Data.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+namespace ServeIt.Data.Configurations
+{
     public class ApplicationUserConfiguration : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> appUser)

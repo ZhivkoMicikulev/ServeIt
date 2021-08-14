@@ -17,8 +17,8 @@
         </div>
         <form asp-action="Login" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
             <div class="col-lg-4 col-md-6 form-group">  <span class="text-danger">@ViewData["Error"]</span> </div>
-                
-          
+
+
             <div class="row">
                 <div class="col-lg-4 col-md-6 form-group">
                     <input type="text" asp-for="Username" class="form-control" id="name" placeholder="Your Username">
@@ -30,6 +30,14 @@
                 </div>
                 <div class="text-center "><button type="submit">Login</button></div>
             </div>
+            <div class="container">
+                <div class="copyright">
+                    <div class="credits">
+                        If you don't have account you can register <a asp-controller="Users" asp-action="Register">Here</a>
+                    </div>
+                </div>
+            </div>
+
         </form>
 
     </div>

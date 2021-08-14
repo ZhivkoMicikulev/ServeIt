@@ -1,8 +1,5 @@
 ﻿namespace ServeIt.Services.Data.Users
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
     using System.Threading.Tasks;
 
     using ServeIt.Data.Models;
@@ -27,6 +24,7 @@
         Task<EditProfileViewModel> GetUserInfo(string id);
 
         Task<User> GetUser(string userId);
+
         Task LogoutUser();
     }
 }

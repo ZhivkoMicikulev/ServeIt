@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using Microsoft.AspNetCore.Identity;
     using ServeIt.Data.Common.Models;
 
@@ -14,10 +15,7 @@
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
-
-         
             this.UserOrders = new HashSet<UserOrder>();
-  
             this.UserRestaurants = new HashSet<UserRestaurant>();
         }
 
@@ -34,10 +32,7 @@
 
         public virtual ICollection<Reservation> Reservations { get; set; }
 
-
         public virtual ICollection<UserOrder> UserOrders { get; set; }
-
-
 
         // Audit info
         public DateTime CreatedOn { get; set; }

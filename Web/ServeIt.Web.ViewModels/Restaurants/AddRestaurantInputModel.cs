@@ -1,18 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
-using ServeIt.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace ServeIt.Web.ViewModels.Restaurants
+﻿namespace ServeIt.Web.ViewModels.Restaurants
 {
-  public class AddRestaurantInputModel
+    using System.ComponentModel.DataAnnotations;
+
+    public class AddRestaurantInputModel
     {
         [Required(ErrorMessage = "Restaurant name is required.")]
         [StringLength(10, MinimumLength = 3, ErrorMessage = "The field must be with a minimum length of 3 and a maximum length of 10.")]
         public string Name { get; set; }
-
 
         [Required(ErrorMessage = "Country is required.")]
         public string CountryId { get; set; }
@@ -25,8 +19,8 @@ namespace ServeIt.Web.ViewModels.Restaurants
         public string StreetName { get; set; }
 
         [Required(ErrorMessage = "Phone Number is required.")]
-        [StringLength(10,MinimumLength =5,ErrorMessage = "The field must be with a minimum length of 5 and a maximum length of 10.")]
-        public  string Phone { get; set; }
+        [StringLength(10, MinimumLength =5, ErrorMessage = "The field must be with a minimum length of 5 and a maximum length of 10.")]
+        public string Phone { get; set; }
 
         [Required(ErrorMessage = "Email is required.")]
 
@@ -35,13 +29,9 @@ namespace ServeIt.Web.ViewModels.Restaurants
 
         [Required(ErrorMessage = "About is required.")]
 
-        [StringLength(200 ,MinimumLength =3, ErrorMessage = "The field must be with a minimum length of 3 and a maximum length of 200.")]
+        [StringLength(200, MinimumLength =3, ErrorMessage = "The field must be with a minimum length of 3 and a maximum length of 200.")]
         public string About { get; set; }
 
-        public IFormFile Image { get; set; }
-
-
-
-
+        public string ImageUrl { get; set; }
     }
 }

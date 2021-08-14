@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ServeIt.Web.ViewModels.Administration
+﻿namespace ServeIt.Web.ViewModels.Administration
 {
-   public class AllUserViewModel
+    public class AllUserViewModel
     {
         public bool IsDeleted { get; set; }
 
@@ -21,6 +17,5 @@ namespace ServeIt.Web.ViewModels.Administration
         public string RegisterDate { get; set; }
 
         public string IsOwner { get; set; }
-
     }
 }

@@ -1,15 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ServeIt.Data.Common.Repositories;
-using ServeIt.Data.Models;
-using ServeIt.Web.ViewModels.Orders;
-using ServeIt.Web.ViewModels.Reservations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ServeIt.Services.Data.Reservations
+﻿namespace ServeIt.Services.Data.Reservations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Microsoft.EntityFrameworkCore;
+    using ServeIt.Data.Common.Repositories;
+    using ServeIt.Data.Models;
+    using ServeIt.Web.ViewModels.Reservations;
+
     public class ReservationsService : IReservationsService
     {
         private readonly IDeletableEntityRepository<Reservation> reservationsRepository;
@@ -39,29 +39,25 @@ namespace ServeIt.Services.Data.Reservations
 
         public async Task<ICollection<MyReservationsViewModel>> TakeAllMyReservation(string id)
         {
-            var myReservations =await this.reservationsRepository.All().Where(x => x.UserId == id)
+            return await this.reservationsRepository.All().Where(x => x.UserId == id)
                 .Include(x => x.Restaurant)
-                .OrderByDescending(x=>x.Date)            
+                .OrderByDescending(x => x.Date)
                 .Select(x => new MyReservationsViewModel
                 {
                     ReservationId = x.Id,
                     RestaurantName = x.Restaurant.Name,
-                    Date = x.Date.ToString("dd/MM/yyyy")
-
-
+                    Date = x.Date.ToString("dd/MM/yyyy"),
                 }).ToListAsync();
-
-            return myReservations;
         }
 
         public async Task<ReservationViewModel> TakeReservationInfo(string id)
         {
-            var reservation = reservationsRepository.All().Where(x => x.Id == id)
+            var reservation = this.reservationsRepository.All().Where(x => x.Id == id)
                  .Include(x => x.User)
                  .Include(x => x.Restaurant)
                 .Select(x => new ReservationViewModel
                 {
-                    ReservationId=x.Id,
+                    ReservationId = x.Id,
                     FullName = x.User.FirstName + " " + x.User.LastName,
                     Phone = x.User.PhoneNumber,
                     Email = x.User.Email,
@@ -74,7 +70,6 @@ namespace ServeIt.Services.Data.Reservations
                 .FirstOrDefault();
 
             return reservation;
-
         }
     }
 }

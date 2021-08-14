@@ -1,9 +1,6 @@
 ﻿namespace ServeIt.Web.ViewModels.User
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
 
     using ServeIt.Common;
 

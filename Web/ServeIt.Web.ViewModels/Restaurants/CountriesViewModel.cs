@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ServeIt.Web.ViewModels.Restaurants
+﻿namespace ServeIt.Web.ViewModels.Restaurants
 {
- public   class CountriesViewModel
+    using System.Collections.Generic;
+
+    public class CountriesViewModel
     {
         public string CountryName { get; set; }
 
         public string CountryId { get; set; }
 
-        public ICollection<CitiesViewModel>  Cities { get; set; }
+        public ICollection<CitiesViewModel> Cities { get; set; }
     }
 }
