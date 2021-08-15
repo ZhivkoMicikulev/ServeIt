@@ -34,7 +34,7 @@ using ServeIt.Web.ViewModels.Restaurants;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6af2b29e9b7023046108d9e5511193e31c94ca0f", @"/Views/Restaurants/EditInfo.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c4178e793a085b6265468725742979c8d767569c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"882c8429f0e1242f69e1535b6caa1277ffa5daa4", @"/Views/_ViewImports.cshtml")]
     public class Views_Restaurants_EditInfo : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ServeIt.Web.ViewModels.Restaurants.AddRestaurantInputModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", "text", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);

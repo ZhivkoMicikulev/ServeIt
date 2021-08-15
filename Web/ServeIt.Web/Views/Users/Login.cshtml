@@ -1,6 +1,6 @@
 ﻿@model ServeIt.Web.ViewModels.User.LoginUserInputModel
 @using ServeIt.Common
-
+@using AspNetCore.ReCaptcha
 @{
     this.ViewData["Title"] = "Login Page";
 }
@@ -12,7 +12,7 @@
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-            
+
             <p>Login</p>
         </div>
         <form asp-action="Login" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
@@ -37,8 +37,9 @@
                     </div>
                 </div>
             </div>
-
+            @Html.ReCaptcha()
         </form>
+
 
     </div>
 </section>

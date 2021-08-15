@@ -18,7 +18,7 @@
         public string Time { get; set; }
 
         [Required]
-        [MinLength(1)]
+       
         public int People { get; set; }
     }
 }

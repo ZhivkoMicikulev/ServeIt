@@ -2,7 +2,7 @@
 {
     using System.Security.Claims;
     using System.Threading.Tasks;
-
+    using AspNetCore.ReCaptcha;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using ServeIt.Services.Data.Orders;
@@ -18,6 +18,7 @@
             this.cartService = cartService;
         }
 
+        [ValidateReCaptcha]
         [Authorize(Roles = "User")]
         [HttpPost]
         public async Task<IActionResult> AddToCart(string id,   AddToCartInputModel model)

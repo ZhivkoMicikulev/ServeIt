@@ -1,7 +1,7 @@
 ﻿namespace ServeIt.Web.Controllers
 {
     using System.Threading.Tasks;
-
+    using AspNetCore.ReCaptcha;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using ServeIt.Services.Data.Reservations;
@@ -17,6 +17,7 @@
             this.reservationsService = reservationsService;
         }
 
+        [ValidateReCaptcha]
         [HttpPost]
         public async Task<IActionResult> MakeReservation(ReservationInputModel model)
         {
@@ -25,7 +26,7 @@
             return this.Redirect($"/Reservations/Reservation/{reservationId}");
         }
 
-        [Authorize(Roles = "Restaurant")]
+   
         public async Task<IActionResult> Reservation(string id)
         {
             var model = await this.reservationsService.TakeReservationInfo(id);

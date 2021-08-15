@@ -2,17 +2,7 @@
 {
     using System.Reflection;
 
-    using ServeIt.Data;
-    using ServeIt.Data.Common;
-    using ServeIt.Data.Common.Repositories;
-    using ServeIt.Data.Models;
-    using ServeIt.Data.Repositories;
-    using ServeIt.Data.Seeding;
-    using ServeIt.Services.Data;
-    using ServeIt.Services.Mapping;
-    using ServeIt.Services.Messaging;
-    using ServeIt.Web.ViewModels;
-
+    using AspNetCore.ReCaptcha;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -21,13 +11,23 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using ServeIt.Services.Data.Users;
-    using ServeIt.Services.Data.Restaurants;
-    using ServeIt.Services.Data.Menus;
+    using ServeIt.Data;
+    using ServeIt.Data.Common;
+    using ServeIt.Data.Common.Repositories;
+    using ServeIt.Data.Models;
+    using ServeIt.Data.Repositories;
+    using ServeIt.Data.Seeding;
+    using ServeIt.Services.Data;
+    using ServeIt.Services.Data.Administration;
     using ServeIt.Services.Data.Helper;
+    using ServeIt.Services.Data.Menus;
     using ServeIt.Services.Data.Orders;
     using ServeIt.Services.Data.Reservations;
-    using ServeIt.Services.Data.Administration;
+    using ServeIt.Services.Data.Restaurants;
+    using ServeIt.Services.Data.Users;
+    using ServeIt.Services.Mapping;
+    using ServeIt.Services.Messaging;
+    using ServeIt.Web.ViewModels;
 
     public class Startup
     {
@@ -65,6 +65,7 @@
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddSingleton(this.configuration);
+            services.AddReCaptcha(this.configuration.GetSection("ReCaptcha"));
 
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
@@ -82,7 +83,6 @@
             services.AddTransient<IOrdersService, OrdersService>();
             services.AddTransient<IReservationsService, ReservationsService>();
             services.AddTransient<IAdministrationService, AdministrationService>();
-
 
 
 

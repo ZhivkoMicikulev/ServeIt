@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Security.Claims;
     using System.Threading.Tasks;
-
+    using AspNetCore.ReCaptcha;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using ServeIt.Services.Data.Users;
@@ -93,12 +93,19 @@
             return this.View();
         }
 
+        [ValidateReCaptcha]
         [HttpPost]
         public async Task<IActionResult> Login(LoginUserInputModel model)
         {
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
             var user = await this.usersService.IsThereAnyUser(model);
 
-            if (user == null)
+            if (user == null )
             {
                 this.ViewData["Error"] = "Invalid Username or Password";
                 return this.View();
@@ -120,6 +127,7 @@
             return this.View();
         }
 
+        [ValidateReCaptcha]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterUserModel model)
         {

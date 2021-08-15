@@ -15,9 +15,9 @@
 
         Task<ICollection<AllRestaurantViewModel>> GetAllOwnedRestaurants(string id);
 
-        Task AddRestaurant(AddRestaurantInputModel model,string ownerId);
+        Task AddRestaurant(AddRestaurantInputModel model, string ownerId);
 
-        Task<bool> AreYouTheOwner(string restaurantId,string ownerId);
+        Task<bool> AreYouTheOwner(string restaurantId, string ownerId);
 
         Task<RestaurantInfoViewModel> RestaurantInfo(string restaurantId);
 
