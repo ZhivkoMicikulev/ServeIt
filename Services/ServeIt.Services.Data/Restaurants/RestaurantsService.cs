@@ -119,7 +119,7 @@
                     Street = x.Address.StreetName,
                     RestaurantId = x.Id,
                     Rating = x.Orders.Count(o => o.IsItRated == true) == 0 ? 0 : Convert.ToDecimal(x.Orders.Where(o => o.IsItRated == true).Sum(o => o.Rating)) / x.Orders.Count(o => o.IsItRated == true),
-                }).OrderByDescending(x => x.Rating).ToList();
+                }).OrderByDescending(x => x.Rating).ThenBy(x => x.Name).ToList();
 
             return restaurants;
         }
@@ -138,7 +138,10 @@
                     Street = x.Address.StreetName,
                     RestaurantId = x.Id,
                     Rating = x.Orders.Count(o => o.IsItRated == true) == 0 ? 0 : Convert.ToDecimal(x.Orders.Where(o => o.IsItRated).Sum(o => o.Rating)) / x.Orders.Count(o => o.IsItRated == true),
-                }).OrderByDescending(x => x.Rating).ToList();
+                }).OrderByDescending(x => x.Rating)
+                .ThenBy(x => x.Country)
+                .ThenBy(x => x.City)
+                .ThenBy(x => x.Name).ToList();
 
             return restaurants;
         }

@@ -13,18 +13,16 @@
     public class OrdersService : IOrdersService
     {
         private readonly IDeletableEntityRepository<DishOrder> dishOrderRepository;
-        private readonly IDeletableEntityRepository<Dish> dishesRepository;
+    
         private readonly IDeletableEntityRepository<Restaurant> restaurantRepository;
         private readonly IDeletableEntityRepository<Order> ordersRepository;
 
         public OrdersService(
-            IDeletableEntityRepository<DishOrder> dishOrderRepository,
-            IDeletableEntityRepository<Dish> dishesRepository,
+            IDeletableEntityRepository<DishOrder> dishOrderRepository,       
             IDeletableEntityRepository<Restaurant> restaurantRepository,
             IDeletableEntityRepository<Order> ordersRepository)
         {
             this.dishOrderRepository = dishOrderRepository;
-            this.dishesRepository = dishesRepository;
             this.restaurantRepository = restaurantRepository;
             this.ordersRepository = ordersRepository;
         }

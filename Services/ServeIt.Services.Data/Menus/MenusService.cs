@@ -51,7 +51,6 @@
             };
 
             await this.dishesRepostory.AddAsync(dish);
-            await this.dishesRepostory.AddAsync(dish);
             await this.dishesRepostory.SaveChangesAsync();
         }
 

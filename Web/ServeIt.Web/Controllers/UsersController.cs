@@ -1,9 +1,13 @@
 ﻿namespace ServeIt.Web.Controllers
 {
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
     using AspNetCore.ReCaptcha;
+    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Authentication.Cookies;
+    using Microsoft.AspNetCore.Authentication.Facebook;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using ServeIt.Services.Data.Users;

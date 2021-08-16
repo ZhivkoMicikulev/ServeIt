@@ -58,7 +58,7 @@
 
         public async Task CreateCountry(string countryName)
         {
-            if (this.countriesRepositry.All().Any(x=> x.CountryName.ToLower() == countryName.ToLower()))
+            if (!this.countriesRepositry.All().Any(x => x.CountryName.ToLower() == countryName.ToLower()))
             {
                 var country = new Country
                 {
@@ -88,10 +88,10 @@
                     Cities = x.Cities.Select(c => new AllCitiesViewModel
                     {
                         Id = c.Id,
-                        Name = c.CityName
-                    }).OrderBy(c=>c.Name).ToList()
+                        Name = c.CityName,
+                    }).OrderBy(c => c.Name).ToList(),
 
-                }).OrderBy(x=>x.Name).ToList();
+                }).OrderBy(x => x.Name).ToList();
 
             return countries;
         }

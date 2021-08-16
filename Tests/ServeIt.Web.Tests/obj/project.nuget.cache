@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XS5GzF7L4aKGF/K7XA/WNo8XwkrV05KSGpa95Nz03eiOlxz7PyhPNMvrsSwOwzWQHbpiItR5nWr8XoqfKYxa6A==",
+  "dgSpecHash": "yF6bntAJJFxLjd/9UTt0RGYyzJCOyywyg2Q5al3NXYOIhRdbrpJFuDTftOpkfpqPrjD89W5vFDc144Ke0u83+A==",
   "success": true,
   "projectFilePath": "D:\\ServeIt\\ServeIt\\Tests\\ServeIt.Web.Tests\\ServeIt.Web.Tests.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "C:\\Users\\Zhivko\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Zhivko\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
     "C:\\Users\\Zhivko\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\Zhivko\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\5.0.9\\microsoft.aspnetcore.authentication.facebook.5.0.9.nupkg.sha512",
     "C:\\Users\\Zhivko\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\5.0.9\\microsoft.aspnetcore.connections.abstractions.5.0.9.nupkg.sha512",
     "C:\\Users\\Zhivko\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.9\\microsoft.aspnetcore.cryptography.internal.5.0.9.nupkg.sha512",
     "C:\\Users\\Zhivko\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.9\\microsoft.aspnetcore.cryptography.keyderivation.5.0.9.nupkg.sha512",
