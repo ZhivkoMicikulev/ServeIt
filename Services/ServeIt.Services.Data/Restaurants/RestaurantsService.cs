@@ -12,24 +12,24 @@
 
     public class RestaurantsService : IRestaurantsService
     {
-        private readonly IRepository<Country> countriesRepository;
+        private readonly IDeletableEntityRepository<Country> countriesRepository;
         private readonly IDeletableEntityRepository<Restaurant> restaurantRepository;
-        private readonly IRepository<City> citiesRepository;
+        private readonly IDeletableEntityRepository<City> citiesRepository;
         private readonly IRepository<Address> addresseRepository;
-        private readonly IDeletableEntityRepository<Order> ordersRepository;
+      
 
         public RestaurantsService(
-            IRepository<Country> countriesRepository,
+            IDeletableEntityRepository<Country> countriesRepository,
             IDeletableEntityRepository<Restaurant> restaurantRepository,
-            IRepository<City> citiesRepository,
-            IRepository<Address> addresseRepository,
-            IDeletableEntityRepository<Order> ordersRepository)
+            IDeletableEntityRepository<City> citiesRepository,
+            IRepository<Address> addresseRepository)
+         
         {
             this.countriesRepository = countriesRepository;
             this.restaurantRepository = restaurantRepository;
             this.citiesRepository = citiesRepository;
             this.addresseRepository = addresseRepository;
-            this.ordersRepository = ordersRepository;
+         
         }
 
         public async Task AddRestaurant(AddRestaurantInputModel model, string ownerId)

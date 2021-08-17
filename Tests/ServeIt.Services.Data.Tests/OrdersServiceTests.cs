@@ -2,6 +2,7 @@
 using ServeIt.Data.Common.Repositories;
 using ServeIt.Data.Models;
 using ServeIt.Services.Data.Orders;
+using ServeIt.Web.ViewModels.Cart;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,12 +58,409 @@ namespace ServeIt.Services.Data.Tests
         }
 
         [Fact]
-        public void TestAddDishShouldReturnCorrectCountOfDishRepo()
+        public async void TestAddDishShouldReturnCorrectCountOfDishRepo()
         {
+            var user = new User
+            {
+                FirstName = "Pesho",
+                LastName = "Gosho",
+                Email = "k@abv.bg",
+                PhoneNumber = "00000"
+            };
+
+            var dish = new DishOrder
+            {
+
+                   OwnerId = user.Id,
+                   Id = "a",
+                   RestaurantId="b"
+            };
+            var country = new Country {
+                CountryName = "Bulgaria",
+                Id = "b"
+            };
+
+            var city = new City {
+                CityName = "Plovdiv",
+                Country = country
+            };
+            var address = new Address
+            {
+                StreetName = "Vitinq",
+                City = city
+            };
+
+
+
+            var restaurant = new Restaurant
+            {
+                Name = "Happy",
+                Address = address,
+                Id="b"
+
+
+            };
+
+            restaurantList.Add(restaurant);
+            dishOrderList.Add(dish);
+
+           var expectedResult = "Pesho Gosho";
+
+            var result = (await service.GetAllInfoAboutOrder(user)).FullName;
+
+            Assert.Equal(expectedResult, result);
+
 
 
         }
 
+        [Fact]
+        public async void TestFinishOrderShouldReturnCorrectCountOfOrders()
+        {
+            var user = new User
+            {
+                FirstName = "Pesho",
+                LastName = "Gosho",
+                Email = "k@abv.bg",
+                PhoneNumber = "00000"
+            };
 
+         
+            var country = new Country
+            {
+                CountryName = "Bulgaria",
+                Id = "b"
+            };
+
+            var city = new City
+            {
+                CityName = "Plovdiv",
+                Country = country
+            };
+            var address = new Address
+            {
+                StreetName = "Vitinq",
+                City = city
+            };
+
+
+
+            var restaurant = new Restaurant
+            {
+                Name = "Happy",
+                Address = address,
+                Id = "b"
+
+
+            };
+            var dish = new DishOrder
+            {
+
+                OwnerId = user.Id,
+                Id = "a",
+                RestaurantId = "b",
+                Restaurant=restaurant
+            };
+            restaurantList.Add(restaurant);
+            dishOrderList.Add(dish);
+
+            var model = new FinishOrderInputModel
+            {
+                StreetName = "Vitinq"
+            };
+
+            var expectedResult = 1;
+
+            await service.FinishOrder(user.Id, model);
+            var result = orderList.Count;
+
+            Assert.Equal(expectedResult, result);
+
+
+
+        }
+
+        [Fact]
+        public async void TestTakeAllOrdersShouldReturnTheCorrectCountOfOrders()
+        {
+            var user = new User
+            {
+                FirstName = "Pesho",
+                LastName = "Gosho",
+                Email = "k@abv.bg",
+                PhoneNumber = "00000"
+            };
+
+
+            var country = new Country
+            {
+                CountryName = "Bulgaria",
+                Id = "b"
+            };
+
+            var city = new City
+            {
+                CityName = "Plovdiv",
+                Country = country
+            };
+            var address = new Address
+            {
+                StreetName = "Vitinq",
+                City = city
+            };
+
+
+
+            var restaurant = new Restaurant
+            {
+                Name = "Happy",
+                Address = address,
+                Id = "b"
+
+
+            };
+            var dish = new DishOrder
+            {
+
+                OwnerId = user.Id,
+                Id = "a",
+                RestaurantId = "b",
+                Restaurant = restaurant
+            };
+
+            var model = new FinishOrderInputModel
+            {
+                StreetName = "Vitinq"
+            };
+
+
+            restaurantList.Add(restaurant);
+            dishOrderList.Add(dish);
+
+            await service.FinishOrder(user.Id, model);
+            orderList.First().User = user;
+            var expectedResult = orderList.Count;
+
+            var result = (await service.TakeAllOrders(restaurant.Id)).Count;
+
+            Assert.Equal(expectedResult, result);
+        }
+
+
+        [Fact]
+        public async void TestDoneOrderShouldReturnCorrect()
+        {
+            var user = new User
+            {
+                FirstName = "Pesho",
+                LastName = "Gosho",
+                Email = "k@abv.bg",
+                PhoneNumber = "00000"
+            };
+
+
+            var country = new Country
+            {
+                CountryName = "Bulgaria",
+                Id = "b"
+            };
+
+            var city = new City
+            {
+                CityName = "Plovdiv",
+                Country = country
+            };
+            var address = new Address
+            {
+                StreetName = "Vitinq",
+                City = city
+            };
+
+
+
+            var restaurant = new Restaurant
+            {
+                Name = "Happy",
+                Address = address,
+                Id = "b"
+
+
+            };
+            var dish = new DishOrder
+            {
+
+                OwnerId = user.Id,
+                Id = "a",
+                RestaurantId = "b",
+                Restaurant = restaurant
+            };
+
+            var model = new FinishOrderInputModel
+            {
+                StreetName = "Vitinq"
+            };
+
+
+            restaurantList.Add(restaurant);
+            dishOrderList.Add(dish);
+
+            await service.FinishOrder(user.Id, model);
+            orderList.First().User = user;
+            var expectedResult = true;
+            await service.DoneOrder(orderList.First().Id);
+
+            var result=orderList.First().IsItPayed;
+          
+
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Fact]
+        public async void TestRateOrderShouldReturnCorrect()
+        {
+            var user = new User
+            {
+                FirstName = "Pesho",
+                LastName = "Gosho",
+                Email = "k@abv.bg",
+                PhoneNumber = "00000"
+            };
+
+
+            var country = new Country
+            {
+                CountryName = "Bulgaria",
+                Id = "b"
+            };
+
+            var city = new City
+            {
+                CityName = "Plovdiv",
+                Country = country
+            };
+            var address = new Address
+            {
+                StreetName = "Vitinq",
+                City = city
+            };
+
+
+
+            var restaurant = new Restaurant
+            {
+                Name = "Happy",
+                Address = address,
+                Id = "b"
+
+
+            };
+            var dish = new DishOrder
+            {
+
+                OwnerId = user.Id,
+                Id = "a",
+                RestaurantId = "b",
+                Restaurant = restaurant
+            };
+
+            var model = new FinishOrderInputModel
+            {
+                StreetName = "Vitinq"
+            };
+
+
+            restaurantList.Add(restaurant);
+            dishOrderList.Add(dish);
+
+            await service.FinishOrder(user.Id, model);
+            orderList.First().User = user;
+            await service.RateOrder(orderList.First().Id, 5);
+            var expectedBoolResult = true;
+            var expectedRate = 5;
+
+
+            var resultBool = orderList.First().IsItRated;
+            var resultRate = orderList.First().Rating;
+
+
+
+            Assert.Equal(expectedBoolResult, resultBool);
+            Assert.Equal(expectedRate, resultRate);
+
+        }
+
+        [Fact]
+        public async void TestIsItPayedShouldReturnFalse()
+        {
+            var user = new User
+            {
+                FirstName = "Pesho",
+                LastName = "Gosho",
+                Email = "k@abv.bg",
+                PhoneNumber = "00000"
+            };
+
+
+            var country = new Country
+            {
+                CountryName = "Bulgaria",
+                Id = "b"
+            };
+
+            var city = new City
+            {
+                CityName = "Plovdiv",
+                Country = country
+            };
+            var address = new Address
+            {
+                StreetName = "Vitinq",
+                City = city
+            };
+
+
+
+            var restaurant = new Restaurant
+            {
+                Name = "Happy",
+                Address = address,
+                Id = "b"
+
+
+            };
+            var dish = new DishOrder
+            {
+
+                OwnerId = user.Id,
+                Id = "a",
+                RestaurantId = "b",
+                Restaurant = restaurant
+            };
+
+            var model = new FinishOrderInputModel
+            {
+                StreetName = "Vitinq"
+            };
+
+
+            restaurantList.Add(restaurant);
+            dishOrderList.Add(dish);
+
+            await service.FinishOrder(user.Id, model);
+            orderList.First().User = user;
+            await service.RateOrder(orderList.First().Id, 5);
+            var expectedBoolResult = false;
+            
+
+
+            var resultBool = orderList.First().IsItPayed;
+
+
+
+
+            Assert.Equal(expectedBoolResult, resultBool);
+      
+
+        }
     }
 }

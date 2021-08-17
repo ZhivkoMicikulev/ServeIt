@@ -39,7 +39,7 @@
 
         public async Task<ICollection<MyReservationsViewModel>> TakeAllMyReservation(string id)
         {
-            return await this.reservationsRepository.All().Where(x => x.UserId == id)
+            return  this.reservationsRepository.All().Where(x => x.UserId == id)
                 .Include(x => x.Restaurant)
                 .OrderByDescending(x => x.Date)
                 .Select(x => new MyReservationsViewModel
@@ -47,7 +47,7 @@
                     ReservationId = x.Id,
                     RestaurantName = x.Restaurant.Name,
                     Date = x.Date.ToString("dd/MM/yyyy"),
-                }).ToListAsync();
+                }).ToList();
         }
 
         public async Task<ReservationViewModel> TakeReservationInfo(string id)

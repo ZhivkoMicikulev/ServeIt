@@ -104,6 +104,7 @@
 
         public async Task<ICollection<OrdersViewModel>> TakeAllOrders(string restaurantId)
         {
+
             var orders = this.ordersRepository.All()
                 .Where(x => x.RestaurantId == restaurantId)
                 .Include(x => x.User)
