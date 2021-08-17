@@ -114,12 +114,12 @@
             </nav><!-- .navbar -->
             @if (!User.Identity.IsAuthenticated)
             {
-                <a asp-controller="Users" asp-action="Login" class="book-a-table-btn scrollto d-none d-lg-flex nav-link ">Login</a>
-                <a asp-controller="Users" asp-action="Register" class="book-a-table-btn scrollto d-none d-lg-flex nav-link">Register</a>
+                <a asp-controller="Users" asp-action="Login" class="book-a-table-btn  d-lg-flex nav-link ">Login</a>
+                <a asp-controller="Users" asp-action="Register" class="book-a-table-btn  d-lg-flex nav-link ">Register</a>
             }
             else
             {
-                <a class="book-a-table-btn scrollto d-none d-lg-flex nav-link" href="/Users/Logout">Logout</a>
+                <a class="book-a-table-btn  d-lg-flex nav-link " href="/Users/Logout">Logout</a>
 
             }
 
