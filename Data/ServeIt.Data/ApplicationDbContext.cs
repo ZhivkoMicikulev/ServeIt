@@ -33,7 +33,6 @@
 
         public DbSet<Country> Countries { get; set; }
 
-        public DbSet<Comment> Comments { get; set; }
 
         public DbSet<Dish> Dishes { get; set; }
 

@@ -11,7 +11,8 @@
         public Restaurant()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Comments = new HashSet<Comment>();
+     
+
             this.Orders = new HashSet<Order>();
         }
 
@@ -43,11 +44,8 @@
         [MaxLength(200)]
         public string About { get; set; }
 
-        public string ImageUrl { get; set; }
-
         public virtual ICollection<Order> Orders { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
 
         public string MenuId { get; set; }
 
