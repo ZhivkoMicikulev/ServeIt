@@ -25,6 +25,10 @@
 
         Task<User> GetUser(string userId);
 
+        Task<bool> isUserWithUsername(string username);
+        Task<bool> isUserWithEmail(string email);
+
+
         Task LogoutUser();
     }
 }

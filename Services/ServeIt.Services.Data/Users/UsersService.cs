@@ -83,6 +83,30 @@
             return null;
         }
 
+        public async Task<bool> isUserWithEmail(string email)
+        {
+            var user = await this.userManager.FindByEmailAsync(email);
+            if (user != null )
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+      
+
+        public async Task<bool> isUserWithUsername(string username)
+        {
+            var user = await this.userManager.FindByNameAsync(username);
+            if (user != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task<bool> LoginUser(LoginUserInputModel model)
         {
      var result = await this.signInManger.PasswordSignInAsync(model.Username, model.Password, true, false);
@@ -130,6 +154,7 @@
                     await this.userManager.AddToRoleAsync(user, "User");
                 }
             }
+           
         }
     }
 }

@@ -60,7 +60,6 @@
         }
 
         [Authorize]
-
         [HttpPost]
 
         public async Task<IActionResult> EditEmail(EditProfileInputModel model)
@@ -139,10 +138,15 @@
             {
                 return this.View();
             }
-
-            if (model.Password != model.ConfirmPassword)
+            if (await usersService.isUserWithEmail(model.Email))
             {
-                return this.Redirect("/");
+                this.ViewData["Error"] = "This email is already taken.";
+                return this.View();
+            }
+            if (await usersService.isUserWithUsername(model.Username))
+            {
+                this.ViewData["Error"] = "This username is already taken.";
+                return this.View();
             }
 
             await this.usersService.RegisterUser(model);

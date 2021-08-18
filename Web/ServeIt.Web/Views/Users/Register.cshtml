@@ -20,6 +20,7 @@
             <p>Register</p>
         </div>
         <form asp-action="Register" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+            <span class="text-danger">@ViewData["Error"]</span>
 
             <div class="col">
                 <div class="col-lg-4 col-md-6 form-group">
