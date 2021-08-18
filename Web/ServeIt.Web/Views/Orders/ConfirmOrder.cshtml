@@ -62,7 +62,7 @@
                             <div class="row">
                                 <form asp-action="FinishOrder" asp-controller="Orders" asp-route-id=@ViewData["UserId"]  method="post" role="form" class="php-email-form " data-aos="fade-up" data-aos-delay="100">
                                     <div class="col-lg-10 col-md-20 form-group">
-                                        <input type="text" class="form-control" placeholder="Street Name..." name="StreetName">
+                                        <input type="text" class="form-control" placeholder="Street Name..." name="StreetName" required>
                                     </div>
                                     <div class="row">
 

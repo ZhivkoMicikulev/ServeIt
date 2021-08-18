@@ -6,6 +6,7 @@
     {
         [Required]
         public string UserId { get; set; }
+        [Required]
 
         public string RestaurantId { get; set; }
 
